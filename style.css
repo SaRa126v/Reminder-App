@@ -1,40 +1,53 @@
 /* min & max width****************** */
 
 body {
-  width: 375px;
-  height: 812px;
-  border-radius: 10px;
   background: #f9f9f9;
+}
+
+/* Text Style...................................... */
+
+h2,
+h3,
+span,
+h6 {
+  color: var(--Gray-8, #404040);
+  font-family: Glory;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.24px;
+}
+
+/* Headlines: */
+h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+h2 span {
+  color: var(--Primary, #8983f4);
+}
+
+h6 {
+  color: var(--gray-gray-7, #606060);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
+  margin-bottom: 5px;
 }
 
 /* Header......................................... */
 
 #upHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#downHeader {  
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-}
-
-/* Headline................... */
-h2 {
-  color: var(--Gray-8, #404040);
-  font-family: Glory;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.24px;
-}
-
-h2 span {
-  color: var(--Primary, #8983f4);
+#downHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Menu Svg................... */
@@ -45,29 +58,89 @@ h2 span {
   flex-shrink: 0;
 }
 
-/* Search Box................... */
+/* Search Box.................................. */
 
 #searchBox {
   width: 100%;
   height: 32px;
   flex-shrink: 0;
-  border-radius: 5px;
-  border: 0.25px solid var(--tint-tint-1, #dfdef1);
-  background: var(--gray-gray-2, #ededed);
 
   position: relative;
 }
 
 /* Searchbox Input................... */
+
 #searchBox input {
-    width: 100%;
-    height: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  border-radius: 5px;
+  border: 0.25px solid var(--tint-tint-1, #dfdef1);
+  background: var(--gray-gray-2, #ededed);
+  outline: none;
+}
+
+#searchBox input::placeholder {
+  color: var(--gray-gray-4, #cbcbcb);
+  font-family: Inter;
+  font-weight: 400;
 }
 
 /* Search Icon................... */
-#searchBox  svg {
-    position: absolute;
-    right: 4px;
-    bottom: 0;
+
+#searchBox svg {
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  transform: translate(1%, -50%);
 }
 
+/* Calender........................................ */
+
+#calender {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+#calender > div {
+  min-height: fit-content;
+  min-width: fit-content;
+  width: 34px;
+  height: 52px;
+  padding: 5px 3px;
+  border-radius: 5px;
+  background: var(--tint-tint-1, #dfdef1);
+  text-align: center;
+}
+
+#calender span {
+  font-size: 1rem;
+}
+
+/* Sprcial Evnts................................... */
+
+#routine {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: 5px;
+  border: 1px solid var(--Primary, #8983f4);
+  width: fit-content;
+
+  margin-bottom: 24px;
+}
+
+#routine div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* Circular Progress Bar........................... */
