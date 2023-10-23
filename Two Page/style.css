@@ -1,0 +1,48 @@
+body{
+    background-color: rgba(124, 104, 238, 0.349);
+}
+
+section{
+    width: 260px;
+    margin: 68px auto;
+}
+
+body section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label{
+    display: inline-block;
+    font-family: arial;
+    font-size: 18px;
+    margin: 15px 0px;
+}
+
+#menu{
+    float: right;
+    margin: -48px 20px;
+}
+
+#section-one{
+    display: inline-block;
+}
+
+#title{
+    margin: 0px 0px;
+    padding: 0px 8px;
+    border: none;
+    outline: none;
+    width: 260px;
+    height: 40px;
+}
+
+#description{
+    margin: 0px 0px;
+    padding: 8px 8px;
+    border: none;
+    outline: none;
+    width: 260px;
+    height: 90px;
+}
