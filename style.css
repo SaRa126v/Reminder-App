@@ -97,9 +97,9 @@ h6 {
   transform: translate(1%, -50%);
 }
 
-/* Calender........................................ */
+/* Calendar........................................ */
 
-#calender {
+#calendar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -108,7 +108,7 @@ h6 {
   margin-bottom: 24px;
 }
 
-#calender > div {
+#calendar > div {
   min-height: fit-content;
   min-width: fit-content;
   width: 34px;
@@ -119,7 +119,7 @@ h6 {
   text-align: center;
 }
 
-#calender span {
+#calendar span {
   font-size: 1rem;
 }
 
