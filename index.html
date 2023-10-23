@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
+    <div class="container">
     <!-- Header.................................... -->
     <header>
       <!-- Logo & Menu............................. -->
@@ -135,7 +136,6 @@
       </div>
 
       <!-- Circular Progress Bar -->
-      <!-- سرج شود -->
       <div id="progress">
         <div id="outer">
           <div id="inner">
@@ -173,10 +173,10 @@
     <section>
       <!-- headline -->
       <div>
+        <div class="headlineSec">
         <h2>Today:</h2>
-        <div>
+        <div class="sort">
           <span>Sort by</span>
-
           <!-- Drop Down Svg..................... -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -198,12 +198,12 @@
       <!-- تسک ها توی جی اس ساخته بشن -->
 
       <!-- Tasks -->
-      <div>
+      <div class="tasks">
         <!-- radio......................... -->
-        <div><input type="radio" /></div>
-        <div>
+        <div class="radio"><input type="radio" /></div>
+        <div class="task">
           <img src="assets/images/Hard Working.png" alt="" />
-          <div>
+          <div class="taskContent">
             <h5>Meet My Friends</h5>
             <span>2023.17.10</span>
             <span>09:15</span>
@@ -287,9 +287,9 @@
     <!-- Finished Tasks.......................... -->
     <section>
       <!-- headline -->
-      <div>
+      <div class="headlineSec">
         <h2>Done:</h2>
-        <div>
+        <div class="sort">
           <span>Sort by</span>
 
           <!-- Drop Down Svg...................... -->
@@ -311,12 +311,12 @@
       </div>
 
       <!-- Tasks -->
-      <div>
+      <div class="tasks">
         <!-- radio......................... -->
-        <div><input type="radio" /></div>
-        <div>
+        <div class="radio"><input type="radio" /></div>
+        <div class="task">
           <img src="assets/images/Hard Working.png" alt="" />
-          <div>
+          <div class="taskContent">
             <h5>Meet My Friends</h5>
             <span>2023.17.10</span>
             <span>09:15</span>
@@ -399,7 +399,7 @@
 
     <!-- Mobile Nav Bar..................... -->
     <section></section>
-
+  </div>
     <script src="app.js"></script>
   </body>
 </html>
