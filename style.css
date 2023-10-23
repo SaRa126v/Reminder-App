@@ -6,6 +6,7 @@ body {
 
 /* Text Style...................................... */
 
+h1,
 h2,
 h3,
 span,
@@ -15,6 +16,11 @@ h6 {
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.24px;
+}
+
+/* progress bar text */
+h1 {
+  font-size: 2rem;
 }
 
 /* Headlines: */
@@ -131,16 +137,89 @@ h6 {
   justify-content: space-between;
 
   border-radius: 5px;
-  border: 1px solid var(--Primary, #8983f4);
-  width: fit-content;
-
-  margin-bottom: 24px;
+  border: 2px solid var(--Primary, #8983f4);
+  width: 40%;
+  padding: 0px 18px 18px 18px;
 }
 
 #routine div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+#routine .backImg {
+  border-radius: 5px;
+  background: var(--tint-tint-1, #dfdef1);
+  width: 40px;
+  height: 40px;
+}
+
+#upRow > div {
+  margin-bottom: 10px;
+}
+
+#routine .backImg:hover {
+  /* Active in js *************************/
+  box-shadow: 0px 0px 5px 0px #e4b1f1;
 }
 
 /* Circular Progress Bar........................... */
+
+#important {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#progress {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* outer circle.............. */
+#outer {
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  background: #e9e9ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+/* inner circle.............. */
+#inner {
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  background: #f9f9f9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* progress bar.............. */
+circle {
+  fill: none;
+  stroke: url(#paint0_radial_160_346);
+  stroke-width: 15px;
+  stroke-dasharray: 472;
+  stroke-dashoffset: 0;
+  /* in js***************************************** */
+  animation: progress;
+}
+
+#progress svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
