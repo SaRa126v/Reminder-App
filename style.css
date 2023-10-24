@@ -296,6 +296,9 @@ width: 20%;
   align-items: center;
 
   border-radius: 5px;
+}
+
+.toDo .task  {
   border: 1.5px solid var(--tint-tint-5, #A29EF1);
   box-shadow: 0px 0px 3px 0px #E4B1F1;
   background: var(--gray-gray-1, #F9F9F9);
@@ -328,6 +331,20 @@ font-size: 0.87rem;
 .taskContent  span:last-of-type{
   margin-left: 5px;
 }
+
+/* Finished Tasks................................... */
+
+.finished .task {
+  fill: var(--gray-gray-1, #F9F9F9);
+stroke-width: 1px;
+stroke: var(--tint-tint-3, #C5C3F0);
+}
+
+.finished h4 {
+  color: var(--Gray-6, #868686);
+  text-decoration: line-through;
+}
+
 
 /* Mobile Navigation Menu............................ */
 
