@@ -2,6 +2,7 @@
 
 body {
   background: #7b7a7a;
+  margin: 0;
 }
 
 .container {
@@ -9,8 +10,9 @@ body {
   width: 375px;
   height: 812px;
   padding: 24px;
-  border-radius: 10px;
   background: var(--gray-gray-1, #f9f9f9);
+  position: relative;
+  overflow-y: scroll;
 }
 
 /* Text Style...................................... */
@@ -19,7 +21,7 @@ span,
 h1,
 h2,
 h3,
-h5,
+h4,
 h6 {
   color: var(--Gray-8, #404040);
   font-family: Glory;
@@ -40,6 +42,8 @@ h2 {
 }
 
 h2 span {
+  font-weight: 500;
+  font-size: 1.5rem;
   color: var(--Primary, #8983f4);
 }
 
@@ -100,8 +104,8 @@ letter-spacing: -0.12px;
   padding: 10px;
 
   border-radius: 5px;
-  border: 0.25px solid var(--tint-tint-1, #dfdef1);
-  background: var(--gray-gray-2, #ededed);
+  border: 1.5px solid var(--tint-tint-5, #A29EF1);
+  background: var(--gray-gray-1, #F9F9F9);
   outline: none;
 }
 
@@ -152,9 +156,8 @@ letter-spacing: -0.12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   border-radius: 5px;
-  border: 2px solid var(--Primary, #8983f4);
+  border: 1.5px solid var(--tint-tint-5, #A29EF1);
   width: 40%;
   padding: 0px 18px 18px 18px;
 }
@@ -258,13 +261,20 @@ circle {
   margin-left: 5px;
 }
 
-/* Tasks Section.......... */
+/* Tasks Section...................................... */
 
 .tasks {
+  display: flex; 
+   flex-direction: column; 
+}
+
+.taskRow {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  margin-bottom: 24px;
 }
 
 /* ********************************** */
@@ -286,7 +296,8 @@ width: 20%;
   align-items: center;
 
   border-radius: 5px;
-  border: 1px solid var(--tint-tint-5, #A29EF1);
+  border: 1.5px solid var(--tint-tint-5, #A29EF1);
+  box-shadow: 0px 0px 3px 0px #E4B1F1;
   background: var(--gray-gray-1, #F9F9F9);
 }
 
@@ -295,9 +306,10 @@ padding: 10px 0px;
 width: 60%;
   }
 
-.taskContent h5 {
+.taskContent h4 {
 margin: 0;
 margin-bottom: 5px;
+font-size: 0.87rem;
 }
 
 .taskContent  svg {
@@ -317,3 +329,25 @@ margin-bottom: 5px;
   margin-left: 5px;
 }
 
+/* Mobile Navigation Menu............................ */
+
+#nav {
+  margin: 0 auto;
+  position: sticky;
+  bottom: 0;
+  width: fit-content;
+}
+
+#nav ul {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--Primary, #8983F4);
+  min-height: 56px;
+  min-width: 375px;
+  padding-right: 24px;
+  padding-left: 24px;
+}
