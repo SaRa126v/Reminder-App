@@ -18,6 +18,7 @@ body {
 /* Text Style...................................... */
 
 span,
+p,
 h1,
 h2,
 h3,
@@ -57,9 +58,9 @@ h6 {
 
 span {
   color: var(--Gray-6, #868686);
-font-size: 12px;
-font-weight: 400;
-letter-spacing: -0.12px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
 }
 
 /* Header......................................... */
@@ -82,7 +83,6 @@ letter-spacing: -0.12px;
 #menuIcon {
   width: 24.297px;
   height: 24px;
-  flex-shrink: 0;
 }
 
 /* Search Box.................................. */
@@ -90,8 +90,6 @@ letter-spacing: -0.12px;
 #searchBox {
   width: 100%;
   height: 32px;
-  flex-shrink: 0;
-
   position: relative;
 }
 
@@ -104,8 +102,8 @@ letter-spacing: -0.12px;
   padding: 10px;
 
   border-radius: 5px;
-  border: 1.5px solid var(--tint-tint-5, #A29EF1);
-  background: var(--gray-gray-1, #F9F9F9);
+  border: 1.5px solid var(--tint-tint-5, #a29ef1);
+  background: var(--gray-gray-1, #f9f9f9);
   outline: none;
 }
 
@@ -146,55 +144,74 @@ letter-spacing: -0.12px;
   text-align: center;
 }
 
+#calendar > div:hover {
+  box-shadow: 0px 0px 5px 0px #dfdef1;
+}
+
 #calendar span {
   font-size: 1rem;
 }
 
-/* Sprcial Evnts................................... */
-
-#routine {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+#calendar .activeDay {
   border-radius: 5px;
-  border: 1.5px solid var(--tint-tint-5, #A29EF1);
-  width: 40%;
-  padding: 0px 18px 18px 18px;
+  background: var(--Primary, #8983f4);
 }
 
-#routine div {
+#calendar .activeDay span {
+  color: var(--gray-gray-1, #f9f9f9);
+}
+
+/* Sprcial Events & Progress Bar.................... */
+
+#important {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
-#routine .backImg {
+/* Sprcial Events................................... */
+
+#event {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: row;
+  /* border-radius: 5px;
+border: 1.5px solid var(--tint-tint-3, #C5C3F0);
+padding: 3px 5px; */
+}
+
+#event .backImg {
   border-radius: 5px;
   background: var(--tint-tint-1, #dfdef1);
   width: 40px;
   height: 40px;
+  display: flex;
+  align-content: center;
 }
 
-#upRow > div {
+.column {
   margin-bottom: 10px;
 }
 
-#routine .backImg:hover {
-  /* Active in js *************************/
+#event p {
+  font-size: 0.75rem;
+  margin-left: 10px;
+}
+
+#event .backImg:hover {
   box-shadow: 0px 0px 5px 0px #e4b1f1;
 }
 
 /* Circular Progress Bar........................... */
 
-#important {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 #progress {
-  width: 40%;
+  width: 45%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,10 +219,9 @@ letter-spacing: -0.12px;
 
 /* outer circle.............. */
 #outer {
-  margin: 0 auto;
   border-radius: 50%;
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   background: #e9e9ff;
 
   display: flex;
@@ -218,8 +234,8 @@ letter-spacing: -0.12px;
 /* inner circle.............. */
 #inner {
   border-radius: 50%;
-  width: 140px;
-  height: 140px;
+  width: 125px;
+  height: 125px;
   background: #f9f9f9;
 
   display: flex;
@@ -231,10 +247,9 @@ letter-spacing: -0.12px;
 circle {
   fill: none;
   stroke: url(#paint0_radial_160_346);
-  stroke-width: 15px;
+  stroke-width: 12px;
   stroke-dasharray: 472;
   stroke-dashoffset: 0;
-  /* in js***************************************** */
   animation: progress;
 }
 
@@ -264,8 +279,8 @@ circle {
 /* Tasks Section...................................... */
 
 .tasks {
-  display: flex; 
-   flex-direction: column; 
+  display: flex;
+  flex-direction: column;
 }
 
 .taskRow {
@@ -277,16 +292,19 @@ circle {
   margin-bottom: 24px;
 }
 
-/* ********************************** */
-
-.radio {
-width: 20%;
-}
-
-.radio input {
+/* the task is not checked yet............ */
+.unChecked {
   width: 20px;
   height: 20px;
+  border-radius: 50%;
+border: 1px solid gray;
 }
+
+.unChecked:hover,
+.checked:hover {
+  box-shadow: 0px 0px 3px 0px #e4b1f1;
+}
+
 
 .task {
   width: 80%;
@@ -294,50 +312,59 @@ width: 20%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
+margin-left: 10px;
   border-radius: 5px;
 }
 
-.toDo .task  {
-  border: 1.5px solid var(--tint-tint-5, #A29EF1);
-  box-shadow: 0px 0px 3px 0px #E4B1F1;
-  background: var(--gray-gray-1, #F9F9F9);
+.toDo .task {
+  border: 1.5px solid var(--tint-tint-5, #a29ef1);
+  background: var(--gray-gray-1, #f9f9f9);
 }
 
-.taskContent  {
-padding: 10px 0px;
-width: 60%;
-  }
+.toDo .task:hover {
+  box-shadow: 0px 0px 3px 0px #e4b1f1;
+}
+
+/* img background........... */
+
+.lightBack {
+  border-radius: 4px;
+  background: #c5c3f0;
+}
+
+.taskContent {
+  padding: 10px 0px;
+  width: 60%;
+}
 
 .taskContent h4 {
-margin: 0;
-margin-bottom: 5px;
-font-size: 0.87rem;
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 0.87rem;
 }
 
-.taskContent  svg {
+.taskContent svg {
   margin-left: 10px;
   vertical-align: middle;
 }
 
-.taskContent  svg:last-of-type {
+.taskContent svg:last-of-type {
   margin-left: 5px;
 }
 
-.taskContent  span{
+.taskContent span {
   font-size: 0.75rem;
 }
 
-.taskContent  span:last-of-type{
+.taskContent span:last-of-type {
   margin-left: 5px;
 }
 
 /* Finished Tasks................................... */
 
 .finished .task {
-  fill: var(--gray-gray-1, #F9F9F9);
-stroke-width: 1px;
-stroke: var(--tint-tint-3, #C5C3F0);
+  background: var(--gray-gray-1, #f9f9f9);
+  border: 1.5px solid var(--tint-tint-3, #c5c3f0);
 }
 
 .finished h4 {
@@ -345,6 +372,21 @@ stroke: var(--tint-tint-3, #C5C3F0);
   text-decoration: line-through;
 }
 
+/* img background........... */
+
+.darkBack {
+  border-radius: 4px;
+  background: #dfdfdf;
+}
+
+/* the task is checked............ */
+.checked {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8983F4;
+  border: 1px solid #8983F4;
+  }
 
 /* Mobile Navigation Menu............................ */
 
@@ -362,7 +404,7 @@ stroke: var(--tint-tint-3, #C5C3F0);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: var(--Primary, #8983F4);
+  background: var(--Primary, #8983f4);
   min-height: 56px;
   min-width: 375px;
   padding-right: 24px;

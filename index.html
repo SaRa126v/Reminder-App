@@ -14,7 +14,7 @@
       <div id="upHeader">
         <h2>Remind<span>Me</span></h2>
         <!-- Menu Svg............................... -->
-        <svg
+       <a href="#"><svg
           id="menuIcon"
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -28,17 +28,17 @@
             stroke-width="2"
             stroke-linecap="round"
           />
-        </svg>
+        </svg></a>
       </div>
 
       <!-- Search Box............................... -->
       <div id="downHeader">
         <div id="searchBox">
           <input type="text" placeholder="Search a task" />
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" fill="#F9F9F9" stroke="#A29EF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M19 19L14.65 14.65" stroke="#A29EF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          </svg></a>
         </div>
       </div>
     </header>
@@ -48,7 +48,7 @@
     <section>
       <h6>October,2023</h6>
       <div id="calendar">
-        <div>
+        <div class="activeDay">
           <span>Sun</span>
           <hr />
           <span>11</span>
@@ -90,30 +90,31 @@
 
     <section id="important">
       <!-- Events -->
-      <div id="routine">
-        <h3>Routine:</h3>
-        <div id="upRow">
+      <div id="event">
+        <h3>Special Events:</h3>
+
+        <!-- Each Event........... -->
+        <div class="column">
           <div class="backImg">
             <img src="assets/images/Pills.png" alt="Pills" />
           </div>
+             <p>Eli's Wedding</p>
+            </div>
+
+
+            <div class="column">
           <div class="backImg">
             <img src="assets/images/Pills.png" alt="Pills" />
           </div>
+<p>My Mom's Birthday</p>
+</div>
+
+<div class="column">
           <div class="backImg">
             <img src="assets/images/Pills.png" alt="Pills" />
           </div>
-        </div>
-        <div>
-          <div class="backImg">
-            <img src="assets/images/Pills.png" alt="Pills" />
-          </div>
-          <div class="backImg">
-            <img src="assets/images/Pills.png" alt="Pills" />
-          </div>
-          <div class="backImg">
-            <img src="assets/images/Pills.png" alt="Pills" />
-          </div>
-        </div>
+    <p>Ebi's Concert</p></div>
+
       </div>
 
       <!-- Circular Progress Bar -->
@@ -131,7 +132,7 @@
             height="160px"
           >
             <defs>
-              <!-- gradient color -->
+            
               <radialGradient
                 id="paint0_radial_160_346"
                 cx="0"
@@ -144,7 +145,7 @@
                 <stop offset="0.970666" stop-color="#E4B1F1" />
               </radialGradient>
             </defs>
-            <circle cx="80" cy="80" r="71" stroke-linecap="round" />
+            <circle cx="70" cy="71" r="64" stroke-linecap="round" />
           </svg>
         </div>
       </div>
@@ -180,9 +181,9 @@
       <div class="tasks toDo">
         <div class="taskRow">
         <!-- radio......................... -->
-        <div class="radio"><input type="radio" /></div>
+        <div class="unChecked"></div>
         <div class="task">
-          <img src="assets/images/Hard Working.png" alt="" />
+          <div class="lightBack"><img src="assets/images/Hard Working.png" alt="" /></div>
           <div class="taskContent">
             <h4>Meet My Friends</h4>
             <span>2023.17.10</span>
@@ -293,11 +294,11 @@
 
       <!-- Tasks -->
       <div class="tasks finished">
-        <!-- radio......................... -->
         <div class="taskRow">
-        <div class="radio"><input type="radio" /></div>
+                  <!-- radio......................... -->
+        <div class="checked"></div>
         <div class="task">
-          <div ><img src="assets/images/Hard Working.png" alt="" /></div>
+          <div class="darkBack"><img src="assets/images/Hard Working.png" alt="" /></div>
           <div class="taskContent">
             <h4>Meet My Friends</h4>
             <span>2023.17.10</span>
