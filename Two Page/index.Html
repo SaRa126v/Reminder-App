@@ -1,25 +1,32 @@
 <HTML>
     <head>
-        <title>Two Page</title>
+        <title>TwoPage</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <div id="menu">
+        <section>
+            <header>
                 <svg
                 id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                 <path
                 d="M22.5702 19.2001H3.13245M22.5702 12H3.13245M22.5702 4.80005H3.13245"                 stroke="#404040"stroke-width="2" stroke-linecap="round"/>
-              </svg>
+               </svg>
+            </header>
+            <div id="title">
+                <label>Title</label>
+                <input type="text">
             </div>
-        </header>
-        <section>
-            <div id="section-one">
-                <label>Title:</label>
-                <input  id="title" type="text">
+            <div id="description">
                 <label>Description:</label>
-                <textarea id="description"></textarea>
+                <textarea></textarea>
+            </div>
+            <div id="category">
+                <label>Category:</label>
+            </div>
+            <div id="date">
+                <label>Date:</label>
             </div>
         </section>
+        <script src="app.js"></script>
     </body>
 </HTML>
