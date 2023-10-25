@@ -1,48 +1,71 @@
 body{
-    background-color: rgba(124, 104, 238, 0.349);
+    background-color: gray;
 }
 
 section{
-    width: 260px;
-    margin: 68px auto;
+    background-color: rgb(200, 200, 216);
+    width: 400px;
+    height: 596px;
+    margin: 26px auto;
+    border-radius: 8px;
+    background-image: url(img/Capture.PNG);
+    background-repeat: no-repeat;
+    background-position-y: 350px;
+    background-position-x: 30px;
+    background-size: 330px;
 }
 
-body section{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header{
+    float: right;
+    margin: 20px 20px;
 }
 
 label{
-    display: inline-block;
     font-family: arial;
     font-size: 18px;
-    margin: 15px 0px;
 }
 
-#menu{
-    float: right;
-    margin: -48px 20px;
-}
-
-#section-one{
-    display: inline-block;
-}
-
-#title{
-    margin: 0px 0px;
+input{
+    margin: 8px 0px;
+    width: 260px;
+    height: 48px;
     padding: 0px 8px;
     border: none;
     outline: none;
+}
+
+textarea{
+    margin: 8px 0px;
     width: 260px;
-    height: 40px;
+    height: 80px;
+    padding: 10px 8px;
+    border: none;
+    outline: none;
+}
+
+#title{
+    display: inline-block;
+    margin: 4px 69px;
 }
 
 #description{
-    margin: 0px 0px;
-    padding: 8px 8px;
-    border: none;
+    display: inline-block;
+    margin: 4px 69px;
+}
+
+#category{
+    display: inline-block;
+    margin: 4px 69px;
+}
+
+#categorylist{
+    width: 160px;
+    height: 31px;
     outline: none;
-    width: 260px;
-    height: 90px;
+    margin: 0px 8px;
+}
+
+#date{
+    display: inline-block;
+    margin: 10px 69px;
 }
