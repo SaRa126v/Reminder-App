@@ -1,105 +1,132 @@
-body{
-    background-color: gray;
+body {
+  background-color: gray;
 }
 
 /*create form */
 
-section{
-    background-color: rgb(200, 200, 216);
-    width: 400px;
-    height: 596px;
-    margin: 26px auto;
-    border-radius: 8px;
+section {
+  background-color: rgb(200, 200, 216);
+  width: 400px;
+  height: 596px;
+  margin: 26px auto;
+  border-radius: 8px;
 }
 
 /*header*/
 
-header{
-    float: right;
-    margin: 20px 20px;
+header {
+  float: right;
+  margin: 20px 20px;
 }
 
 /*menu*/
 
-label{
-    font-family: arial;
-    font-size: 18px;
+label {
+  font-family: arial;
+  font-size: 18px;
 }
 
-input{
-    margin: 8px 0px;
-    width: 260px;
-    height: 48px;
-    padding: 0px 8px;
-    border: none;
-    outline: none;
+input {
+  margin: 8px 0px;
+  width: 260px;
+  height: 48px;
+  padding: 0px 8px;
+  border: none;
+  outline: none;
 }
 
-textarea{
-    margin: 8px 0px;
-    width: 260px;
-    height: 80px;
-    padding: 10px 8px;
-    border: none;
-    outline: none;
+textarea {
+  margin: 8px 0px;
+  width: 260px;
+  height: 80px;
+  padding: 10px 8px;
+  border: none;
+  outline: none;
 }
 
-#title{
-    display: inline-block;
-    margin: 4px 69px;
+#title {
+  display: inline-block;
+  margin: 4px 69px;
 }
 
-#description{
-    display: inline-block;
-    margin: 4px 69px;
+#description {
+  display: inline-block;
+  margin: 4px 69px;
 }
 
-#category{
-    display: inline-block;
-    margin: 4px 69px;
+/* category div................. */
+#category {
+  display: flex;
+  margin: 4px 69px;
 }
 
-#categorylist{
-    width: 160px;
-    height: 31px;
-    outline: none;
-    margin: 0px 8px;
+#categorylist {
+  width: 160px;
+  height: 31px;
+  outline: none;
+  margin: 0px 8px;
 }
 
-#date{
-    display: inline-block;
-    margin: 10px 69px;
+#date {
+  display: inline-block;
+  margin: 10px 69px;
 }
 
-#datelist{
-    width: 180px;
-    height: 28px;
-    margin: 8px 16px;
+#datelist {
+  width: 180px;
+  height: 28px;
+  margin: 8px 16px;
 }
 
-#time{
-    display: inline-block;
-    margin: 10px 69px;
+/* time div................ */
+#time {
+  display: inline-block;
+  margin: 10px 69px;
 }
 
-#reminder{
-    display: inline-block;
-    margin: 10px 69px;
+#reminder {
+  display: inline-block;
+  margin: 10px 69px;
 }
 
-#reminderlist{
-    width:160px;
-    height: 28px;
-    margin: 8px 0px;
+#reminderlist {
+  width: 160px;
+  height: 28px;
+  margin: 8px 0px;
 }
 
-#repeat{
-    display: inline-block;
-    margin: 10px 69px;
+#repeat {
+  display: inline-block;
+  margin: 10px 69px;
 }
 
-#repeatlist{
-    width: 160px;
-    height: 28px;
-    margin: 4px 16px;
+#repeatlist {
+  width: 160px;
+  height: 28px;
+  margin: 4px 16px;
 }
+
+#categorySelect {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--gray-gray-5, #adadad);
+  background: var(--gray-gray-1, #f9f9f9);
+  outline: none;
+}
+
+#categorySelect option {
+    border: 1px solid var(--gray-gray-2, #EDEDED);
+padding: 10px 0px;
+}
+
+
+/* #timeSelect {
+
+    width: 201px;
+    height: 127px;
+}
+
+#timeSelect option {
+
+} */

@@ -42,25 +42,23 @@ function gpTemp() {
 }
 
 // get the id of clicked element in order to go to the specific page chosen by the user
+// give options to the optionMaker func to build category for its task gp 
 function nextPage(e) {
-//   e.preventDefault();
 
   switch (e.target.parentElement.parentElement.id) {
+    // custom task gp
     case "customGp":
-      console.log("1");
+      optionMaker(["General","Work","Shopping","Personal","Education","Vacation"]);
       break;
 
+      // special event task gp
     case "specialGp":
-      console.log("2");
+      optionMaker(["Party","Celebration","Conference","Wedding","Birthday","Concert"]);
       break;
 
+      // routine task gp
     case "routineGp":
-      console.log("3");
+      optionMaker(["Pill","makeup","Reading","Pray","Exercise","Health"]);
       break;
   }
-}
-
-
-function optionMaker() {
-
 }

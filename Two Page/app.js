@@ -72,3 +72,25 @@ function Repeat(){
 }
 
 Repeat()
+
+// make & display Category Options for each gp
+function optionMaker(optionArray) {
+    for(let i = 0; i < optionArray.length; i++){
+        // create the option
+        const option = document.createElement("option");
+        // set its value
+        option.value = optionArray[i];
+        // show the value to user
+        option.text = optionArray[i];
+        // pu the options in select El
+        const select = document.querySelector("#categorySelect");
+        select.appendChild(option);
+    }
+}
+
+// just for test***********************
+optionMaker(["General","Work","Shopping","Personal","Education","Vacation"]);
+
+
+// make & display time Options for each gp
+
