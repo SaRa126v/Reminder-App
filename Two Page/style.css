@@ -121,12 +121,62 @@ padding: 10px 0px;
 }
 
 
-/* #timeSelect {
-
-    width: 201px;
-    height: 127px;
+.time {
+    display: flex;
+    flex-direction: row;
 }
 
-#timeSelect option {
+.containerSelect{
+    display: flex;
+    flex-direction: column;
+}
 
-} */
+.time .selectDefault{
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border-bottom: 1px solid var(--gray-gray-5, #adadad);
+    background: var(--gray-gray-1, #f9f9f9);
+
+    margin-bottom: 3px;
+}
+
+.timeSelect {
+    width: 201px;
+    height: 127px;
+    border-radius: 5px;
+    border-bottom: 1px solid var(--gray-gray-5, #adadad);
+    background: var(--gray-gray-1, #f9f9f9);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.disabledOptions {
+    display: none;
+}
+
+.optionTime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 77px;
+    height: 74px;
+}
+
+.optionTime hr {
+    height: 100%;
+}
+
+.arrowOpen {
+    transform: rotate(180deg);
+}

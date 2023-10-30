@@ -73,6 +73,8 @@ function Repeat(){
 
 Repeat()
 
+// make a template for other categories...............
+
 // make & display Category Options for each gp
 function optionMaker(optionArray) {
     for(let i = 0; i < optionArray.length; i++){
@@ -91,6 +93,30 @@ function optionMaker(optionArray) {
 // just for test***********************
 optionMaker(["General","Work","Shopping","Personal","Education","Vacation"]);
 
+// make a template for date & time.....................
 
-// make & display time Options for each gp
+
+const containerSelect = document.querySelector(".containerSelect");
+containerSelect.addEventListener("click", appear);
+
+// show Svg & options on click.................
+function appear() {
+
+    // show Svg 
+    document.querySelector(".arrowOpen")?.classList.remove("arrowOpen");
+
+    // show Options
+    document.querySelector(".disabledOptions")?.classList.remove("disabledOptions");
+}
+
+window.addEventListener("click", disappear);
+
+function disappear() {
+
+// if ( && ) {
+    
+// }
+
+}
+
 

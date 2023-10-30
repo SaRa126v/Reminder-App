@@ -1,48 +1,94 @@
-<HTML>
-    <head>
-        <title>TwoPage</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <section>
-            <header>
-                <svg
-                id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+<html>
+  <head>
+    <title>TwoPage</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section>
+      <header>
+        <svg
+          id="menuIcon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="24"
+          viewBox="0 0 25 24"
+          fill="none"
+        >
+          <path
+            d="M22.5702 19.2001H3.13245M22.5702 12H3.13245M22.5702 4.80005H3.13245"
+            stroke="#404040"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </header>
+      <div id="title">
+        <label>Title</label>
+        <input type="text" />
+      </div>
+      <div id="description">
+        <label>Description:</label>
+        <textarea></textarea>
+      </div>
+      <div id="category">
+        <label>Category:</label>
+        <select name="category" id="categorySelect"></select>
+      </div>
+      <div id="date">
+        <label>Date:</label>
+      </div>
+      <div id="time">
+        <!-- the whole div -->
+        <div class="time">
+          <span>Time:</span>
+          <div class="containerSelect">
+            <!-- select start -->
+            <div class="selectDefault">
+              <span>01:00</span>
+              <!-- Closed Svg -->
+              <svg
+              class="arrowOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="8"
+                viewBox="0 0 14 8"
+                fill="none"
+              >
                 <path
-                d="M22.5702 19.2001H3.13245M22.5702 12H3.13245M22.5702 4.80005H3.13245"                 stroke="#404040"stroke-width="2" stroke-linecap="round"/>
-               </svg>
-            </header>
-            <div id="title">
-                <label>Title</label>
-                <input type="text">
+                  d="M13 7L7 1L1 7"
+                  stroke="#202020"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </div>
-            <div id="description">
-                <label>Description:</label>
-                <textarea></textarea>
-            </div>
-            <div id="category">
-                <label>Category:</label>
-                <select name="category" id="categorySelect"></select>
-            </div>
-            <div id="date">
-                <label>Date:</label>
-            </div>
-            <div id="time">
-                <label>Time:</label>
-                <select name="time" id="timeSelect"></select>
-            </div>
-            <div id="reminder">
-                <label>Reminder:</label>
-            </div>
-            <div id="repeat">
-                <label>Repeat:</label>
-            </div>
-        </section>
+            <!-- select end -->
 
-        <!-- js of the previous oage -->
-        <!-- <script src="../app.js"></script> -->
+            <!-- options -->
+            <div class="timeSelect disabledOptions">
+              <div class="optionTime"><span>01</span><span>00</span></div>
+              <div class="optionTime">
+                <span>02</span>
+                <hr />
+                <span>01</span>
+              </div>
+              <div class="optionTime"><span>03</span><span>02</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="reminder">
+        <label>Reminder:</label>
+      </div>
+      <div id="repeat">
+        <label>Repeat:</label>
+      </div>
+    </section>
 
-        <!-- js of current page -->
-        <script src="app.js"></script>
-    </body>
-</HTML>
+    <!-- js of the previous oage -->
+    <!-- <script src="../app.js"></script> -->
+
+    <!-- js of current page -->
+    <script src="app.js"></script>
+  </body>
+</html>
