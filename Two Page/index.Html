@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section>
+    <section id="page2container">
       <header>
         <svg
           id="menuIcon"
@@ -44,10 +44,10 @@
           <div class="containerSelect">
             <!-- select start -->
             <div class="selectDefault">
-              <span>01:00</span>
+              <span class="spanChild">01:00</span>
               <!-- Closed Svg -->
               <svg
-              class="arrowOpen"
+              class="arrow arrowOpen"
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
                 height="8"
@@ -65,14 +65,14 @@
             <!-- select end -->
 
             <!-- options -->
-            <div class="timeSelect disabledOptions">
-              <div class="optionTime"><span>01</span><span>00</span></div>
+            <div class="timeSelect">
+
               <div class="optionTime">
-                <span>02</span>
-                <hr />
-                <span>01</span>
+                <div id="hour"><span>02</span></div>
+                <hr/>
+                <div id="min"><span>01</span></div>
               </div>
-              <div class="optionTime"><span>03</span><span>02</span></div>
+
             </div>
           </div>
         </div>
@@ -84,6 +84,8 @@
         <label>Repeat:</label>
       </div>
     </section>
+
+
 
     <!-- js of the previous oage -->
     <!-- <script src="../app.js"></script> -->

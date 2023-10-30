@@ -95,28 +95,38 @@ optionMaker(["General","Work","Shopping","Personal","Education","Vacation"]);
 
 // make a template for date & time.....................
 
+// variables..........
+const timeSelect = document.querySelector(".timeSelect");
+const arrow = document.querySelector(".arrow");
+
+const selectDefault = document.querySelector(".selectDefault");
+const spanChild = document.querySelector(".spanChild");
 
 const containerSelect = document.querySelector(".containerSelect");
-containerSelect.addEventListener("click", appear);
 
-// show Svg & options on click.................
-function appear() {
-
-    // show Svg 
-    document.querySelector(".arrowOpen")?.classList.remove("arrowOpen");
-
-    // show Options
-    document.querySelector(".disabledOptions")?.classList.remove("disabledOptions");
-}
-
+// on click events..........
+containerSelect.addEventListener("click", toggle);
 window.addEventListener("click", disappear);
 
-function disappear() {
+// show & hide Svg & options.................
+function toggle() {
+    // show & hide Svg 
+    arrow.classList.toggle("arrowOpen");
 
-// if ( && ) {
-    
-// }
+    // show & hide Options
+    timeSelect.classList.toggle("disabledOptions");
+}
 
+// if user clicks on sth other than the select, the options of that select disappear 
+function disappear(e) {
+    if (e.target !== selectDefault) {
+       arrow.classList.add('arrowOpen');
+       timeSelect.classList.remove('disabledOptions');
+    }
 }
 
 
+
+function timeOptionMaker() {
+    
+}

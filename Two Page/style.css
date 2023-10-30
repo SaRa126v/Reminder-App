@@ -129,6 +129,7 @@ padding: 10px 0px;
 .containerSelect{
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .time .selectDefault{
@@ -153,15 +154,26 @@ padding: 10px 0px;
     border-radius: 5px;
     border-bottom: 1px solid var(--gray-gray-5, #adadad);
     background: var(--gray-gray-1, #f9f9f9);
+    display: none;
+    overflow-y: scroll;
+}
 
+/* .timeSelect hr{
+position: sticky;
+bottom: 0;
+} */
+
+.disabledOptions {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
 
-.disabledOptions {
-    display: none;
+    position: absolute;
+    bottom: -130px;
+
+    /* for scroll snap animation */
+    scroll-snap-type: y proximity;
 }
 
 .optionTime {
@@ -171,6 +183,10 @@ padding: 10px 0px;
     align-items: center;
     width: 77px;
     height: 74px;
+    margin: 10px;
+
+    /* for scroll snap animation */
+    scroll-snap-align: start;
 }
 
 .optionTime hr {
