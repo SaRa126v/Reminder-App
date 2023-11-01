@@ -1,3 +1,7 @@
+import { optionMaker,logger } from "./Two Page/app.js";
+
+console.log(logger());
+
 // variables...........................................
 const addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", displayGp);
