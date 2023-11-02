@@ -1,14 +1,16 @@
+
 body {
   background-color: gray;
+  margin: 0;
 }
 
 /*create form */
 
-section {
+#page2container {
   background-color: rgb(200, 200, 216);
   width: 400px;
   height: 596px;
-  margin: 26px auto;
+  margin: 0 auto;
   border-radius: 8px;
 }
 
@@ -106,6 +108,8 @@ textarea {
   margin: 4px 16px;
 }
 
+/* ................................................... */
+
 #categorySelect {
   width: 200px;
   height: 30px;
@@ -163,10 +167,11 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 75px;
+  height: 90px;
   overflow-y: scroll;
   /* for scroll snap animation */
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
+  align-content: center;
 }
 
 .hour::-webkit-scrollbar,
@@ -177,9 +182,15 @@ textarea {
 .hour span,
 .min span {
   /* for scroll snap animation */
-  scroll-snap-align: start;
-  padding: 5px 10px;
+  scroll-snap-align: center;
+  box-sizing: border-box;
+  padding: 8px 10px;
   font-size: 0.85rem;
+  color: var(--Gray-5, #ADADAD);
+}
+
+.selected {
+  color: var(--gray-gray-9, #202020) !important; 
 }
 
 .disabledOptions {
