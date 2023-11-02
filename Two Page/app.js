@@ -1,4 +1,3 @@
-
 // make & display Category Options for each gp
 export function optionMaker(optionArray) {
   const select = document.querySelector("#categorySelect");
@@ -20,23 +19,47 @@ export function logger() {
   return "Saber";
 }
 
-// make a template for date & time.....................
+// Time & Date.........................................
 
-// variables..........
+// variables of time...................................
 const timeSelect = document.querySelector(".timeSelect");
+
 const arrow = document.querySelector(".arrow");
 
 const selectDefault = document.querySelector(".selectDefault");
+
 const spanChild = document.querySelector(".spanChild");
 
 const containerSelect = document.querySelector(".containerSelect");
 
-// on click events..........
-containerSelect?.addEventListener("click", toggle);
+
+// variables of date....................................
+const dateSelect = document.querySelector(".dateSelect");
+
+const arrowDate = document.querySelector(".arrowDate");
+
+const selectDateDefault = document.querySelector(".selectDateDefault");
+
+const spanDateChild = document.querySelector(".spanDateChild");
+
+const containerDateSelect = document.querySelector(".containerDateSelect");
+
+
+
+// on click events..................................
+
+//  Time event
+containerSelect?.addEventListener("click", toggleTime);
+
+//  Date event
+containerDateSelect?.addEventListener("click", toggleDate);
+
+// window event
 window.addEventListener("click", disappear);
 
-// show & hide Svg & options.................
-function toggle() {
+
+// show & hide Svg & options of time.................
+function toggleTime() {
   // show & hide Svg
   arrow?.classList.toggle("arrowOpen");
 
@@ -44,11 +67,25 @@ function toggle() {
   timeSelect.classList.toggle("disabledOptions");
 }
 
+// show & hide Svg & options of date.................
+function toggleDate() {
+  // show & hide Svg
+  arrowDate?.classList.toggle("arrowDateOpen");
+
+  // show & hide Options
+  dateSelect.classList.toggle("disabledOptions");
+}
+
 // if user clicks on sth other than the select, the options of that select disappear
 function disappear(e) {
-  if (e.target !== selectDefault) {
+  if (e.target !== selectDefault && e.target !== selectDateDefault) {
+    // for time:
     arrow?.classList.add("arrowOpen");
     timeSelect?.classList.remove("disabledOptions");
+
+    // for date:
+    arrowDate?.classList.add("arrowDateOpen");
+    dateSelect?.classList.remove("disabledOptions");
   }
 }
 
@@ -82,6 +119,39 @@ function timeMaker() {
 
 timeMaker();
 
+
+// it shows the date by making spans inside the scrollable divs
+
+// const year = document.querySelector(".year");
+// const day = document.querySelector(".day");
+// const month = document.querySelector(".month");
+
+// function dateMaker() {
+//   // making & displaying the years
+//   for (let mo = 1 ; mo < 30; mo++) {
+//     const spanMonth = document.createElement("span");
+//     spanMonth.setAttribute("class", "mo");
+//     if (mo < 10) {
+//       mo = "0" + mo;
+//     }
+//     spanMonth.innerText = mo;
+//     hour?.appendChild(spanHour);
+//   }
+
+//   // making & displaying the minutes
+//   for (let m = 0; m < 60; m++) {
+//     const spanMin = document.createElement("span");
+//     spanMin.setAttribute("class", "m");
+//     if (m < 10) {
+//       m = "0" + m;
+//     }
+//     spanMin.innerText = m;
+//     min?.appendChild(spanMin);
+//   }
+// }
+
+// dateMaker();
+
 // is it intersecting? = is it visible?..................
 
 // varibles
@@ -92,41 +162,41 @@ const hours = document.querySelectorAll(".h");
 
 // for minutes:.........................................
 
-const minObserver = new IntersectionObserver(enteries =>{
-  enteries.forEach(entry =>{
-
-    entry.target.classList.toggle("selected", entry.isIntersecting);
-
-  })
-},
-{
-  root: min,
-  rootMargin: "-50%",
-})
+const minObserver = new IntersectionObserver(
+  (enteries) => {
+    enteries.forEach((entry) => {
+      entry.target.classList.toggle("selected", entry.isIntersecting);
+    });
+  },
+  {
+    root: min,
+    rootMargin: "-50%",
+  }
+);
 
 // observe the minutes for intersection
-mins.forEach(min =>{
+mins.forEach((min) => {
   minObserver.observe(min);
-})
+});
 
 // for hours:...........................................
 
-const hourObserver = new IntersectionObserver(enteries =>{
-  enteries.forEach(entry =>{
-
-    entry.target.classList.toggle("selected", entry.isIntersecting);
-
-  })
-},
-{
-  root: hour,
-  rootMargin: "-50%",
-})
+const hourObserver = new IntersectionObserver(
+  (enteries) => {
+    enteries.forEach((entry) => {
+      entry.target.classList.toggle("selected", entry.isIntersecting);
+    });
+  },
+  {
+    root: hour,
+    rootMargin: "-50%",
+  }
+);
 
 // observe the minutes for intersection
-hours.forEach(hour =>{
+hours.forEach((hour) => {
   hourObserver.observe(hour);
-})
+});
 
 // disply the selected time in the select..............
 
@@ -135,13 +205,58 @@ const saveTimeBtn = document.querySelector("#saveTimeBtn");
 saveTimeBtn?.addEventListener("click", timeSaver);
 
 function timeSaver() {
-const selectedTime = document.querySelectorAll(".selected");
+  const selectedTime = document.querySelectorAll(".selected");
 
-const h = selectedTime[0].textContent;
-const m = selectedTime[1].textContent;
+  const h = selectedTime[0].textContent;
+  const m = selectedTime[1].textContent;
 
-spanChild.textContent = h + ":" + m;
-
+  spanChild.textContent = h + ":" + m;
 }
 
+// display the current time to the user................
+// it is the default time so if the user doesnt select a time this will be selected automatically
 
+function displayCurrentTime() {
+  // get the current time
+  let currentHour = new Date().getHours();
+  let currentMin = new Date().getMinutes();
+  // add 0 if needed
+  if (currentHour < 10) {
+    currentHour = "0" + currentHour;
+  }
+
+  if (currentMin < 10) {
+    currentMin = "0" + currentMin;
+  }
+
+  // insert it in Dom
+  spanChild.textContent = currentHour + ":" + currentMin;
+}
+
+displayCurrentTime();
+
+
+// display the current date to the user................... 
+
+function displayCurrentDate() {
+  // get the current time
+  let currentMonth = new Date().getMonth();
+  let currentday = new Date().getDay();
+  let currentyear = new Date().getFullYear();
+
+  // add 0 if needed
+  // for month:
+  if (currentMonth < 10) {
+    currentMonth = "0" + currentMonth;
+  }
+
+  // for day:
+  if (currentday < 10) {
+    currentday = "0" + currentday;
+  }
+
+  // insert & display it in Dom
+  spanDateChild.textContent = currentyear + "/" + currentday + "/" + currentMonth;
+}
+
+displayCurrentDate();

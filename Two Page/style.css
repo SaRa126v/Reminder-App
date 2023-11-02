@@ -124,18 +124,21 @@ textarea {
   padding: 10px 0px;
 }
 
-.time {
+.time,
+.date {
   display: flex;
   flex-direction: row;
 }
 
-.containerSelect {
+.containerSelect,
+.containerDateSelect {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.time .selectDefault {
+.time .selectDefault,
+.date .selectDateDefault {
   box-sizing: border-box;
   padding: 5px;
   display: flex;
@@ -151,7 +154,8 @@ textarea {
   margin-bottom: 3px;
 }
 
-.timeSelect {
+.timeSelect,
+.dateSelect {
   width: 201px;
   height: 127px;
   border-radius: 5px;
@@ -162,7 +166,10 @@ textarea {
 }
 
 .hour,
-.min  {
+.min,
+.day,
+.month,
+.year  {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -201,9 +208,11 @@ textarea {
 
   position: absolute;
   bottom: -130px;
+  z-index: 1;
 }
 
-.optionTime {
+.optionTime,
+.optionDate {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -217,6 +226,7 @@ textarea {
   height: 50%;
 }
 
-.arrowOpen {
+.arrowOpen,
+.arrowDateOpen {
   transform: rotate(180deg);
 }

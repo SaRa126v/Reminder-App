@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TwoPage</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TwoPage</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
   <body>
     <div id="page2container">
       <header>
@@ -25,21 +25,84 @@
           />
         </svg>
       </header>
+
+      <!-- Title Section......................... -->
+
       <div id="title">
         <label>Title</label>
         <input type="text" />
       </div>
+
+      <!-- Description Section....................... -->
+
       <div id="description">
         <label>Description:</label>
         <textarea></textarea>
       </div>
+
+      <!-- Categories Section......................... -->
+
       <div id="category">
         <label>Category:</label>
         <select name="category" id="categorySelect"></select>
       </div>
+
+      <!-- Date Section......................... -->
+
       <div id="date">
-        <label>Date:</label>
+        <!-- the whole div -->
+        <div class="date">
+          <span>Date:</span>
+          <div class="containerDateSelect">
+            <!-- select start -->
+            <div class="selectDateDefault">
+              <span class="spanDateChild"></span>
+              <!-- Closed Svg -->
+              <svg
+                class="arrowDate arrowDateOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="8"
+                viewBox="0 0 14 8"
+                fill="none"
+              >
+                <path
+                  d="M13 7L7 1L1 7"
+                  stroke="#202020"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <!-- select end -->
+
+            <!-- options -->
+            <div class="dateSelect">
+              <div class="optionDate">
+                <!-- day.......... -->
+                <div class="day"></div>
+
+                <hr />
+
+                <!-- month.......... -->
+                <div class="month"></div>
+
+                <hr />
+
+                <!-- year.......... -->
+                <div class="year"></div>
+              </div>
+
+              <div>
+                <button>Cancel</button>
+                <button id="saveDateBtn">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Time Section............................. -->
       <div id="time">
         <!-- the whole div -->
         <div class="time">
@@ -50,7 +113,7 @@
               <span class="spanChild">01:00</span>
               <!-- Closed Svg -->
               <svg
-              class="arrow arrowOpen"
+                class="arrow arrowOpen"
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
                 height="8"
@@ -69,38 +132,37 @@
 
             <!-- options -->
             <div class="timeSelect">
-
               <div class="optionTime">
+                <!-- hour.......... -->
+                <div class="hour"></div>
 
-                <!-- hour.......................... -->
-                <div class="hour">
-                </div>
+                <hr />
 
-                <hr/>
-
-                <!-- min............................ -->
-                <div class="min">
-                </div>
+                <!-- min.......... -->
+                <div class="min"></div>
               </div>
 
               <div>
                 <button>Cancel</button>
                 <button id="saveTimeBtn">Save</button>
               </div>
-
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Reminder Section......................... -->
+
       <div id="reminder">
         <label>Reminder:</label>
       </div>
+
+      <!-- Repeat Section......................... -->
+
       <div id="repeat">
         <label>Repeat:</label>
       </div>
     </div>
-
-
 
     <!-- js of the previous oage -->
     <!-- <script src="../app.js"></script> -->
