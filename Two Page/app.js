@@ -66,11 +66,11 @@ const containerRepeatSelect = document.querySelector(".containerRepeatSelect");
 
 // on click events..................................
 
-//  Time event
-containerSelect?.addEventListener("click", toggleTime);
-
 //  Date event
 containerDateSelect?.addEventListener("click", toggleDate);
+
+//  Time event
+containerSelect?.addEventListener("click", toggleTime);
 
 //  Reminder event
 containerReminderSelect?.addEventListener("click", toggleReminder);
@@ -80,6 +80,8 @@ containerRepeatSelect?.addEventListener("click", toggleRepeat);
 
 // window event
 window.addEventListener("click", disappear);
+
+// .................................................
 
 // show & hide Svg & options of time.................
 function toggleTime() {
@@ -93,7 +95,7 @@ function toggleTime() {
 // show & hide Svg & options of date.................
 function toggleDate() {
   // show & hide Svg
-  arrowDate?.classList.toggle("arrowDateOpen");
+  arrowDate?.classList.toggle("arrowOpen");
 
   // show & hide Options
   dateSelect.classList.toggle("disabledOptions");
@@ -101,7 +103,7 @@ function toggleDate() {
 // show & hide Svg & options of date.................
 function toggleReminder() {
   // show & hide Svg
-  arrowReminder?.classList.toggle("arrowReminderOpen");
+  arrowReminder?.classList.toggle("arrowOpen");
 
   // show & hide Options
   reminderSelect.classList.toggle("disabledOptions");
@@ -110,17 +112,17 @@ function toggleReminder() {
 // show & hide Svg & options of date.................
 function toggleRepeat() {
   // show & hide Svg
-  arrowRepeat?.classList.toggle("arrowRepeatOpen");
+  arrowRepeat?.classList.toggle("arrowOpen");
 
   // show & hide Options
   repeatSelect.classList.toggle("disabledOptions");
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// .................................................
 
 // if user clicks on sth other than the select, the options of that select disappear
 function disappear(e) {
-  if(!Object.is(e.target , selectDefault)){
+  if (!Object.is(e.target, selectDefault)) {
     // for time:
     arrow?.classList.add("arrowOpen");
     timeSelect?.classList.remove("disabledOptions");
@@ -128,22 +130,24 @@ function disappear(e) {
 
   if (e.target !== selectDateDefault) {
     // for date:
-    arrowDate?.classList.add("arrowDateOpen");
+    arrowDate?.classList.add("arrowOpen");
     dateSelect?.classList.remove("disabledOptions");
   }
 
   if (e.target !== selectReminderDefault) {
     // for reminder:
-    arrowReminder?.classList.add("arrowReminderOpen");
+    arrowReminder?.classList.add("arrowOpen");
     reminderSelect?.classList.remove("disabledOptions");
   }
 
   if (e.target !== selectRepeatDefault) {
     // for repeat:
-    arrowRepeat?.classList.add("arrowRepeatOpen");
+    arrowRepeat?.classList.add("arrowOpen");
     repeatSelect?.classList.remove("disabledOptions");
   }
 }
+
+// .................................................
 
 // display the current time to the user................
 // it is the default time so if the user doesnt select a time this will be selected automatically
@@ -194,6 +198,8 @@ function displayCurrentDate() {
 }
 
 displayCurrentDate();
+
+// .................................................
 
 // it shows the time by making spans inside the scrollable divs
 const hour = document.querySelector(".hour");
@@ -262,8 +268,10 @@ function dateMaker() {
 
 dateMaker();
 
+// .................................................
+
 // is it intersecting? = is it visible?
-// varibles..............................................
+// varibles:
 
 // for time:
 const mins = document.querySelectorAll(".m");
@@ -303,6 +311,8 @@ timeDateObserver(month, months);
 timeDateObserver(day, days);
 timeDateObserver(year, years);
 
+// .................................................
+
 // disply the selected time in the select..............
 
 const saveTimeBtn = document.querySelector("#saveTimeBtn");
@@ -333,6 +343,8 @@ function dateSaver() {
 
   spanDateChild.textContent = y + "/" + d + "/" + mo;
 }
+
+// .................................................
 
 // Reminder & Repeat Maker...........................
 
@@ -386,6 +398,29 @@ optionMaker(ReminderList, reminderSelect, "reminderOption");
 
 // call the function to build its options
 optionMaker(RepeatList, repeatSelect, "repeatOption");
+
+// ..................................................
+
+// disply the selected repeat & reminder in the select
+
+// variables
+const repeatOptions = document.querySelectorAll(".repeatOption");
+
+const reminderOptions = document.querySelectorAll(".reminderOption");
+
+// by clicking on the option the text of select div should change to the chosen option span
+
+function optionChosser(options, selectedOption) {
+  options.forEach((option) => {
+    option?.addEventListener("click", () => {
+      const span = option.firstElementChild;
+      selectedOption.textContent = span.textContent;
+    });
+  });
+}
+
+optionChosser(repeatOptions, spanRepeatChild);
+optionChosser(reminderOptions, spanReminderChild);
 
 // console.log(+0 === -0);
 // console.log(Object.is(+0, -0));

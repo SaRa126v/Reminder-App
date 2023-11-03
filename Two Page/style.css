@@ -250,10 +250,7 @@ textarea {
   height: 50%;
 }
 
-.arrowOpen,
-.arrowDateOpen,
-.arrowReminderOpen,
-.arrowRepeatOpen {
+.arrowOpen {
   transform: rotate(180deg);
 }
 
