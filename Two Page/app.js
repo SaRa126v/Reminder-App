@@ -1,23 +1,19 @@
 // make & display Category Options for each gp
-export function optionMaker(optionArray) {
-  const select = document.querySelector("#categorySelect");
-  if (!select) return;
+// export function optionMaker(optionArray) {
+//   const select = document.querySelector("#categorySelect");
+//   if (!select) return;
 
-  for (let i = 0; i < optionArray.length; i++) {
-    // create the option
-    const option = document.createElement("option");
-    // set its value
-    option.value = optionArray[i];
-    // show the value to user
-    option.text = optionArray[i];
-    // pu the options in select El
-    select.appendChild(option);
-  }
-}
-
-export function logger() {
-  return "Saber";
-}
+//   for (let i = 0; i < optionArray.length; i++) {
+//     // create the option
+//     const option = document.createElement("option");
+//     // set its value
+//     option.value = optionArray[i];
+//     // show the value to user
+//     option.text = optionArray[i];
+//     // pu the options in select El
+//     select.appendChild(option);
+//   }
+// }
 
 // Time & Date.........................................
 
@@ -32,7 +28,6 @@ const spanChild = document.querySelector(".spanChild");
 
 const containerSelect = document.querySelector(".containerSelect");
 
-
 // variables of date....................................
 const dateSelect = document.querySelector(".dateSelect");
 
@@ -44,7 +39,30 @@ const spanDateChild = document.querySelector(".spanDateChild");
 
 const containerDateSelect = document.querySelector(".containerDateSelect");
 
+// variables of reminder...............................
+const reminderSelect = document.querySelector(".reminderSelect");
 
+const arrowReminder = document.querySelector(".arrowReminder");
+
+const selectReminderDefault = document.querySelector(".selectReminderDefault");
+
+const spanReminderChild = document.querySelector(".spanReminderChild");
+
+const containerReminderSelect = document.querySelector(
+  ".containerReminderSelect"
+);
+
+// variables of Repeat...............................
+
+const repeatSelect = document.querySelector(".repeatSelect");
+
+const arrowRepeat = document.querySelector(".arrowRepeat");
+
+const selectRepeatDefault = document.querySelector(".selectRepeatDefault");
+
+const spanRepeatChild = document.querySelector(".spanRepeatChild");
+
+const containerRepeatSelect = document.querySelector(".containerRepeatSelect");
 
 // on click events..................................
 
@@ -54,9 +72,14 @@ containerSelect?.addEventListener("click", toggleTime);
 //  Date event
 containerDateSelect?.addEventListener("click", toggleDate);
 
+//  Reminder event
+containerReminderSelect?.addEventListener("click", toggleReminder);
+
+//  Repeat event
+containerRepeatSelect?.addEventListener("click", toggleRepeat);
+
 // window event
 window.addEventListener("click", disappear);
-
 
 // show & hide Svg & options of time.................
 function toggleTime() {
@@ -75,19 +98,102 @@ function toggleDate() {
   // show & hide Options
   dateSelect.classList.toggle("disabledOptions");
 }
+// show & hide Svg & options of date.................
+function toggleReminder() {
+  // show & hide Svg
+  arrowReminder?.classList.toggle("arrowReminderOpen");
+
+  // show & hide Options
+  reminderSelect.classList.toggle("disabledOptions");
+}
+
+// show & hide Svg & options of date.................
+function toggleRepeat() {
+  // show & hide Svg
+  arrowRepeat?.classList.toggle("arrowRepeatOpen");
+
+  // show & hide Options
+  repeatSelect.classList.toggle("disabledOptions");
+}
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 // if user clicks on sth other than the select, the options of that select disappear
 function disappear(e) {
-  if (e.target !== selectDefault && e.target !== selectDateDefault) {
+  if(!Object.is(e.target , selectDefault)){
     // for time:
     arrow?.classList.add("arrowOpen");
     timeSelect?.classList.remove("disabledOptions");
+  }
 
+  if (e.target !== selectDateDefault) {
     // for date:
     arrowDate?.classList.add("arrowDateOpen");
     dateSelect?.classList.remove("disabledOptions");
   }
+
+  if (e.target !== selectReminderDefault) {
+    // for reminder:
+    arrowReminder?.classList.add("arrowReminderOpen");
+    reminderSelect?.classList.remove("disabledOptions");
+  }
+
+  if (e.target !== selectRepeatDefault) {
+    // for repeat:
+    arrowRepeat?.classList.add("arrowRepeatOpen");
+    repeatSelect?.classList.remove("disabledOptions");
+  }
 }
+
+// display the current time to the user................
+// it is the default time so if the user doesnt select a time this will be selected automatically
+
+// get the current time
+let currentHour = new Date().getHours();
+let currentMin = new Date().getMinutes();
+
+function displayCurrentTime() {
+  // add 0 if needed
+  if (currentHour < 10) {
+    currentHour = "0" + currentHour;
+  }
+
+  if (currentMin < 10) {
+    currentMin = "0" + currentMin;
+  }
+
+  // insert it in Dom
+  if (spanChild) spanChild.textContent = currentHour + ":" + currentMin;
+}
+
+displayCurrentTime();
+
+// display the current date to the user...................
+
+// get the current time
+let currentMonth = new Date().getMonth();
+let currentday = new Date().getDay();
+let currentyear = new Date().getFullYear();
+
+function displayCurrentDate() {
+  // add 0 if needed
+  // for month:
+  if (currentMonth < 10) {
+    currentMonth = "0" + currentMonth;
+  }
+
+  // for day:
+  if (currentday < 10) {
+    currentday = "0" + currentday;
+  }
+
+  // insert & display it in Dom
+  if (spanDateChild)
+    spanDateChild.textContent =
+      currentyear + "/" + currentday + "/" + currentMonth;
+}
+
+displayCurrentDate();
 
 // it shows the time by making spans inside the scrollable divs
 const hour = document.querySelector(".hour");
@@ -119,84 +225,83 @@ function timeMaker() {
 
 timeMaker();
 
-
 // it shows the date by making spans inside the scrollable divs
 
-// const year = document.querySelector(".year");
-// const day = document.querySelector(".day");
-// const month = document.querySelector(".month");
+const year = document.querySelector(".year");
+const day = document.querySelector(".day");
+const month = document.querySelector(".month");
 
-// function dateMaker() {
-//   // making & displaying the years
-//   for (let mo = 1 ; mo < 30; mo++) {
-//     const spanMonth = document.createElement("span");
-//     spanMonth.setAttribute("class", "mo");
-//     if (mo < 10) {
-//       mo = "0" + mo;
-//     }
-//     spanMonth.innerText = mo;
-//     hour?.appendChild(spanHour);
-//   }
+function dateMaker() {
+  // making & displaying the years
+  for (let y = currentyear; y <= currentyear + 10; y++) {
+    const spanYear = document.createElement("span");
+    spanYear.setAttribute("class", "y");
+    spanYear.innerText = y;
+    year?.appendChild(spanYear);
+  }
+  //  about 31 days*****************************
+  // making & displaying the days
+  for (let d = 1; d <= 30; d++) {
+    const spanDay = document.createElement("span");
+    spanDay.setAttribute("class", "d");
+    spanDay.innerText = d;
+    day?.appendChild(spanDay);
+  }
 
-//   // making & displaying the minutes
-//   for (let m = 0; m < 60; m++) {
-//     const spanMin = document.createElement("span");
-//     spanMin.setAttribute("class", "m");
-//     if (m < 10) {
-//       m = "0" + m;
-//     }
-//     spanMin.innerText = m;
-//     min?.appendChild(spanMin);
-//   }
-// }
+  // making & displaying the months
+  for (let mo = 1; mo <= 12; mo++) {
+    const spanMonth = document.createElement("span");
+    spanMonth.setAttribute("class", "mo");
+    if (mo < 10) {
+      mo = "0" + mo;
+    }
+    spanMonth.innerText = mo;
+    month?.appendChild(spanMonth);
+  }
+}
 
-// dateMaker();
+dateMaker();
 
-// is it intersecting? = is it visible?..................
+// is it intersecting? = is it visible?
+// varibles..............................................
 
-// varibles
+// for time:
 const mins = document.querySelectorAll(".m");
 const hours = document.querySelectorAll(".h");
+// for date:
+const years = document.querySelectorAll(".y");
+const days = document.querySelectorAll(".d");
+const months = document.querySelectorAll(".mo");
 
 // change the color of min or hour when it is scrolled & selected
 
-// for minutes:.........................................
+function timeDateObserver(value, array) {
+  const observer = new IntersectionObserver(
+    (enteries) => {
+      enteries.forEach((entry) => {
+        entry.target.classList.toggle("selected", entry.isIntersecting);
+      });
+    },
+    {
+      root: value,
+      rootMargin: "-50%",
+    }
+  );
 
-const minObserver = new IntersectionObserver(
-  (enteries) => {
-    enteries.forEach((entry) => {
-      entry.target.classList.toggle("selected", entry.isIntersecting);
-    });
-  },
-  {
-    root: min,
-    rootMargin: "-50%",
-  }
-);
+  // observe the minutes for intersection
+  array.forEach((value) => {
+    observer.observe(value);
+  });
+}
 
-// observe the minutes for intersection
-mins.forEach((min) => {
-  minObserver.observe(min);
-});
+// for Time:
+timeDateObserver(hour, hours);
+timeDateObserver(min, mins);
 
-// for hours:...........................................
-
-const hourObserver = new IntersectionObserver(
-  (enteries) => {
-    enteries.forEach((entry) => {
-      entry.target.classList.toggle("selected", entry.isIntersecting);
-    });
-  },
-  {
-    root: hour,
-    rootMargin: "-50%",
-  }
-);
-
-// observe the minutes for intersection
-hours.forEach((hour) => {
-  hourObserver.observe(hour);
-});
+// for Date:
+timeDateObserver(month, months);
+timeDateObserver(day, days);
+timeDateObserver(year, years);
 
 // disply the selected time in the select..............
 
@@ -213,50 +318,76 @@ function timeSaver() {
   spanChild.textContent = h + ":" + m;
 }
 
-// display the current time to the user................
-// it is the default time so if the user doesnt select a time this will be selected automatically
+// disply the selected date in the select..............
 
-function displayCurrentTime() {
-  // get the current time
-  let currentHour = new Date().getHours();
-  let currentMin = new Date().getMinutes();
-  // add 0 if needed
-  if (currentHour < 10) {
-    currentHour = "0" + currentHour;
-  }
+const saveDateBtn = document.querySelector("#saveDateBtn");
 
-  if (currentMin < 10) {
-    currentMin = "0" + currentMin;
-  }
+saveDateBtn?.addEventListener("click", dateSaver);
 
-  // insert it in Dom
-  spanChild.textContent = currentHour + ":" + currentMin;
+function dateSaver() {
+  const selectedDate = document.querySelectorAll(".selected");
+
+  const y = selectedDate[0].textContent;
+  const d = selectedDate[1].textContent;
+  const mo = selectedDate[2].textContent;
+
+  spanDateChild.textContent = y + "/" + d + "/" + mo;
 }
 
-displayCurrentTime();
+// Reminder & Repeat Maker...........................
 
+// build a template and options for reminder and repeat select
+function optionMaker(list, select, optionClass) {
+  for (let o = 0; o < list.length; o++) {
+    // create div
+    const div = document.createElement("div");
+    // put it in its parent div
+    select.appendChild(div);
+    // give it class
+    div.setAttribute("class", `${optionClass}`);
 
-// display the current date to the user................... 
-
-function displayCurrentDate() {
-  // get the current time
-  let currentMonth = new Date().getMonth();
-  let currentday = new Date().getDay();
-  let currentyear = new Date().getFullYear();
-
-  // add 0 if needed
-  // for month:
-  if (currentMonth < 10) {
-    currentMonth = "0" + currentMonth;
+    // create span
+    const span = document.createElement("span");
+    // show the value to user
+    span.textContent = list[o];
+    // pu the options in select El
+    div.appendChild(span);
   }
-
-  // for day:
-  if (currentday < 10) {
-    currentday = "0" + currentday;
-  }
-
-  // insert & display it in Dom
-  spanDateChild.textContent = currentyear + "/" + currentday + "/" + currentMonth;
 }
 
-displayCurrentDate();
+// array of options for reminder..........
+const ReminderList = [
+  "Never",
+  "5 Minutes",
+  "15 Minutes",
+  "1 Hours before",
+  "1 Day before",
+  "custom",
+  "only once",
+];
+
+// array of options for repeat..........
+const RepeatList = [
+  "Whitout repeat",
+  "Daily",
+  "Weekly",
+  "Monthly",
+  "Yearly",
+  "Custom",
+  "only once",
+];
+
+// the defualt option should be the first option
+spanReminderChild.textContent = ReminderList[0];
+spanRepeatChild.textContent = RepeatList[0];
+
+// call the function to build its options
+optionMaker(ReminderList, reminderSelect, "reminderOption");
+
+// call the function to build its options
+optionMaker(RepeatList, repeatSelect, "repeatOption");
+
+// console.log(+0 === -0);
+// console.log(Object.is(+0, -0));
+// console.log(Object.is(null, null));
+// console.log(null === null);

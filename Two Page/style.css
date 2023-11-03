@@ -1,4 +1,3 @@
-
 body {
   background-color: gray;
   margin: 0;
@@ -7,46 +6,60 @@ body {
 /*create form */
 
 #page2container {
-  background-color: rgb(200, 200, 216);
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: var(--tint-tint-1, #dfdef1);
   width: 400px;
-  height: 596px;
   margin: 0 auto;
-  border-radius: 8px;
+  padding: 50px;
 }
 
 /*header*/
 
 header {
-  float: right;
-  margin: 20px 20px;
+  width: 100%;
+  height: 50px;
+  text-align: right;
 }
 
-/*menu*/
-
-label {
-  font-family: arial;
-  font-size: 18px;
+.textareaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-input {
-  margin: 8px 0px;
-  width: 260px;
-  height: 48px;
+.textareaContainer div {
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+input,
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
   padding: 0px 8px;
+  margin-top: 4px;
   border: none;
   outline: none;
+  border-radius: 5px;
+  background: var(--gray-gray-1, #f9f9f9);
+  margin-bottom: 16px;
 }
 
 textarea {
-  margin: 8px 0px;
-  width: 260px;
-  height: 80px;
-  padding: 10px 8px;
-  border: none;
-  outline: none;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 80px;
+  max-height: 80px;
+  padding: 10px;
 }
 
-#title {
+/* #title {
   display: inline-block;
   margin: 4px 69px;
 }
@@ -54,7 +67,7 @@ textarea {
 #description {
   display: inline-block;
   margin: 4px 69px;
-}
+} */
 
 /* category div................. */
 #category {
@@ -69,46 +82,16 @@ textarea {
   margin: 0px 8px;
 }
 
-#date {
-  display: inline-block;
-  margin: 10px 69px;
-}
-
-#datelist {
-  width: 180px;
-  height: 28px;
-  margin: 8px 16px;
-}
-
-/* time div................ */
-#time {
-  display: inline-block;
-  margin: 10px 69px;
-}
-
-#reminder {
-  display: inline-block;
-  margin: 10px 69px;
-}
-
-#reminderlist {
-  width: 160px;
-  height: 28px;
-  margin: 8px 0px;
-}
-
-#repeat {
-  display: inline-block;
-  margin: 10px 69px;
-}
-
-#repeatlist {
-  width: 160px;
-  height: 28px;
-  margin: 4px 16px;
-}
-
 /* ................................................... */
+
+/* the container of inputs.... */
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 #categorySelect {
   width: 200px;
@@ -125,20 +108,30 @@ textarea {
 }
 
 .time,
-.date {
+.date,
+.reminder,
+.repeat {
+  width: 100%;
+  margin-bottom: 16px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .containerSelect,
-.containerDateSelect {
+.containerDateSelect,
+.containerReminderSelect,
+.containerRepeatSelect {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.time .selectDefault,
-.date .selectDateDefault {
+.selectDefault,
+.selectDateDefault,
+.selectReminderDefault,
+.selectRepeatDefault {
   box-sizing: border-box;
   padding: 5px;
   display: flex;
@@ -155,49 +148,64 @@ textarea {
 }
 
 .timeSelect,
-.dateSelect {
-  width: 201px;
-  height: 127px;
-  border-radius: 5px;
-  border-bottom: 1px solid var(--gray-gray-5, #adadad);
-  background: var(--gray-gray-1, #f9f9f9);
+.dateSelect,
+.reminderSelect,
+.repeatSelect {
   display: none;
-  overflow: hidden;
+}
+
+.reminderSelect div,
+.repeatSelect div {
+  padding: 3px;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+  border-bottom: 1px solid var(--gray-gray-3, #dfdfdf);
+  background: var(--gray-gray-1, #f9f9f9);
 }
 
 .hour,
 .min,
 .day,
 .month,
-.year  {
+.year {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 90px;
+  width: fit-content;
+
   overflow-y: scroll;
   /* for scroll snap animation */
   scroll-snap-type: y mandatory;
   align-content: center;
 }
 
+/* hide the scroll........... */
+
 .hour::-webkit-scrollbar,
-.min::-webkit-scrollbar {
+.min::-webkit-scrollbar,
+.day::-webkit-scrollbar,
+.month::-webkit-scrollbar,
+.year::-webkit-scrollbar {
   display: none;
 }
 
 .hour span,
-.min span {
+.min span,
+.day span,
+.month span,
+.year span {
   /* for scroll snap animation */
   scroll-snap-align: center;
   box-sizing: border-box;
-  padding: 8px 10px;
+  margin: 8px 0px;
   font-size: 0.85rem;
-  color: var(--Gray-5, #ADADAD);
+  color: var(--Gray-5, #adadad);
 }
 
 .selected {
-  color: var(--gray-gray-9, #202020) !important; 
+  color: var(--gray-gray-9, #202020) !important;
 }
 
 .disabledOptions {
@@ -206,13 +214,28 @@ textarea {
   justify-content: center;
   align-items: center;
 
+  width: 201px;
+  min-height: 127px;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--gray-gray-5, #adadad);
+  background: var(--gray-gray-1, #f9f9f9);
+  overflow: hidden;
+
   position: absolute;
-  bottom: -130px;
+  bottom: -126px;
   z-index: 1;
 }
 
+.repeat .disabledOptions,
+.reminder .disabledOptions {
+  /* justify-content: start; */
+  align-items: start;
+  bottom: -175px;
+}
 .optionTime,
-.optionDate {
+.optionDate,
+.optionReminder,
+.optionRepeat {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -222,11 +245,29 @@ textarea {
   margin: 10px;
 }
 
-.optionTime hr {
+.optionTime hr,
+.optionDate hr {
   height: 50%;
 }
 
 .arrowOpen,
-.arrowDateOpen {
+.arrowDateOpen,
+.arrowReminderOpen,
+.arrowRepeatOpen {
   transform: rotate(180deg);
+}
+
+/* button section................................ */
+
+.btnContainer {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnContainer button {
+  width: 66px;
+  height: 42px;
 }

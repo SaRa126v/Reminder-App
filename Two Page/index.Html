@@ -8,6 +8,8 @@
   </head>
   <body>
     <div id="page2container">
+      <!-- ......................................... -->
+
       <header>
         <svg
           id="menuIcon"
@@ -26,31 +28,36 @@
         </svg>
       </header>
 
-      <!-- Title Section......................... -->
+      <!-- ......................................... -->
 
-      <div id="title">
-        <label>Title</label>
-        <input type="text" />
-      </div>
+      <!-- title & description section............ -->
+      <section class="textareaContainer">
+        <!-- Title Section......................... -->
+        <div>
+          <label>Title</label>
+          <input type="text" />
+        </div>
 
-      <!-- Description Section....................... -->
+        <!-- Description Section................... -->
+        <div>
+          <label>Description:</label>
+          <textarea></textarea>
+        </div>
+      </section>
 
-      <div id="description">
-        <label>Description:</label>
-        <textarea></textarea>
-      </div>
+      <!-- ......................................... -->
 
-      <!-- Categories Section......................... -->
+      <!-- Input Section............................. -->
+      <section class="inputContainer">
+        <!-- Categories Section...................... -->
 
-      <div id="category">
-        <label>Category:</label>
-        <select name="category" id="categorySelect"></select>
-      </div>
+        <div id="category">
+          <label>Category:</label>
+          <select name="category" id="categorySelect"></select>
+        </div>
 
-      <!-- Date Section......................... -->
+        <!-- Date Section......................... -->
 
-      <div id="date">
-        <!-- the whole div -->
         <div class="date">
           <span>Date:</span>
           <div class="containerDateSelect">
@@ -59,7 +66,7 @@
               <span class="spanDateChild"></span>
               <!-- Closed Svg -->
               <svg
-                class="arrowDate arrowDateOpen"
+                class="arrow arrowOpen"
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
                 height="8"
@@ -80,17 +87,17 @@
             <div class="dateSelect">
               <div class="optionDate">
                 <!-- day.......... -->
-                <div class="day"></div>
+                <div class="year"></div>
 
                 <hr />
 
                 <!-- month.......... -->
-                <div class="month"></div>
+                <div class="day"></div>
 
                 <hr />
 
                 <!-- year.......... -->
-                <div class="year"></div>
+                <div class="month"></div>
               </div>
 
               <div>
@@ -100,11 +107,9 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Time Section............................. -->
-      <div id="time">
-        <!-- the whole div -->
+        <!-- Time Section............................. -->
+
         <div class="time">
           <span>Time:</span>
           <div class="containerSelect">
@@ -149,19 +154,81 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Reminder Section......................... -->
+        <!-- Reminder Section......................... -->
 
-      <div id="reminder">
-        <label>Reminder:</label>
-      </div>
+        <div class="reminder">
+          <span>Reminder:</span>
+          <div class="containerReminderSelect">
+            <!-- select start -->
+            <div class="selectReminderDefault">
+              <span class="spanReminderChild"></span>
+              <!-- Closed Svg -->
+              <svg
+                class="arrow arrowOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="8"
+                viewBox="0 0 14 8"
+                fill="none"
+              >
+                <path
+                  d="M13 7L7 1L1 7"
+                  stroke="#202020"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <!-- select end -->
 
-      <!-- Repeat Section......................... -->
+            <!-- options -->
+            <div class="reminderSelect"></div>
+          </div>
+        </div>
 
-      <div id="repeat">
-        <label>Repeat:</label>
-      </div>
+        <!-- Repeat Section......................... -->
+
+        <div class="repeat">
+          <span>Repeat:</span>
+          <div class="containerRepeatSelect">
+            <!-- select start -->
+            <div class="selectRepeatDefault">
+              <span class="spanRepeatChild"></span>
+              <!-- Closed Svg -->
+              <svg
+                class="arrow arrowOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="8"
+                viewBox="0 0 14 8"
+                fill="none"
+              >
+                <path
+                  d="M13 7L7 1L1 7"
+                  stroke="#202020"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <!-- select end -->
+
+            <!-- options -->
+            <div class="repeatSelect"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ....................................... -->
+
+      <!-- button Section........................ -->
+
+<section class="btnContainer">
+  <button>Cancel</button>
+  <button>Save</button>
+</section>
+
     </div>
 
     <!-- js of the previous oage -->

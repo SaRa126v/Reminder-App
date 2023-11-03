@@ -47,22 +47,22 @@ function gpTemp() {
 
 // get the id of clicked element in order to go to the specific page chosen by the user
 // give options to the optionMaker func to build category for its task gp 
-function nextPage(e) {
+// function nextPage(e) {
 
-  switch (e.target.parentElement.parentElement.id) {
-    // custom task gp
-    case "customGp":
-      optionMaker(["General","Work","Shopping","Personal","Education","Vacation"]);
-      break;
+//   switch (e.target.parentElement.parentElement.id) {
+//     // custom task gp
+//     case "customGp":
+//       optionMaker(["General","Work","Shopping","Personal","Education","Vacation"]);
+//       break;
 
-      // special event task gp
-    case "specialGp":
-      optionMaker(["Party","Celebration","Conference","Wedding","Birthday","Concert"]);
-      break;
+//       // special event task gp
+//     case "specialGp":
+//       optionMaker(["Party","Celebration","Conference","Wedding","Birthday","Concert"]);
+//       break;
 
-      // routine task gp
-    case "routineGp":
-      optionMaker(["Pill","makeup","Reading","Pray","Exercise","Health"]);
-      break;
-  }
-}
+//       // routine task gp
+//     case "routineGp":
+//       optionMaker(["Pill","makeup","Reading","Pray","Exercise","Health"]);
+//       break;
+//   }
+// }
