@@ -422,7 +422,7 @@ circle {
 
 /* Task Groups........................................*/
 
-#groupsSec {
+.groupsSec {
   position: sticky;
   bottom: 56px;
   width: fit-content;
@@ -439,6 +439,7 @@ circle {
 
   width: 375px;
   height: 136px;
+  box-sizing: border-box;
   padding-right: 24px;
   padding-left: 24px;
 }
