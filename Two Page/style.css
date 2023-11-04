@@ -204,12 +204,16 @@ textarea {
 }
 
 .repeat .disabledOptions,
-.reminder .disabledOptions,
-.category .disabledOptions {
-  /* justify-content: start; */
+.reminder .disabledOptions {
   align-items: start;
   bottom: -175px;
 }
+
+.category .disabledOptions {
+  align-items: start;
+  bottom: -150px;
+}
+
 .optionTime,
 .optionDate,
 .optionReminder,
@@ -277,6 +281,8 @@ textarea {
 }
 
 .btnContainer .saveBtn a {
+  box-sizing: border-box;
+  padding: 14px 12px;
   color: var(--gray-gray-1, #f9f9f9);
   text-decoration: none;
 }

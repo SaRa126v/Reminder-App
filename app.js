@@ -20,6 +20,8 @@ window.addEventListener("click", hideGp);
 
 // .....................................................
 
+// functions............................................
+
 // bluring the background & displaying the pop up
 function displayGp() {
 
@@ -33,27 +35,21 @@ function displayGp() {
     groupsSec.insertAdjacentHTML("afterbegin", gpTemp());
   }
 
-  // each gp of tasks:
-// const groups = document.querySelector("#groups > div");
-// nextPage(groups);
 }
 
 // a template for dsplaying groups of tasks
 function gpTemp() {
-
-  // <a href="Two Page/index.Html"></a>
-
   return `<div id="groups">
     
     <!-- gp1 -->
-      <div id="customGp"><img src="assets/images/custom gp.png"><h2>Custom</h2></div>
+      <div id="customGp"><img src="assets/images/custom gp.png"><a href="Two Page/index.Html?type=custom"><h2>Custom</h2></a></div>
     
       <!-- gp2 -->
-      <div id="specialGp"><img src="assets/images/special gp.png"><h2>Special
-    Event</h2></div>
+      <div id="specialGp"><img src="assets/images/special gp.png"><a href="Two Page/index.Html?type=special"><h2>Special
+    Event</h2></a></div>
     
     <!-- gp3 -->
-      <div id="routineGp"><img src="assets/images/routine gp.png"><h2>Routine</h2></div>
+      <div id="routineGp"><img src="assets/images/routine gp.png"><a href="Two Page/index.Html?type=routine"><h2>Routine</h2></a></div>
 
       </div>`;
 }
@@ -67,83 +63,7 @@ function hideGp(e) {
 }
 // ....................................................
 
-// get the id of clicked element in order to go to the specific page chosen by the user
-// give options to the optionMaker func to build category for its task gp
-
-// function nextPage(groups) {
-// // each gp of task is clicked
-// console.log(groups);
-// groups.forEach((group) => {
-//   group.addEventListener("click", ()=>{
-//  // the default array of task options
-//  let taskArray = [
-//   "General",
-//   "Work",
-//   "Shopping",
-//   "Personal",
-//   "Education",
-//   "Vacation",
-// ];
-
-// // the chosen array of task options
-// switch (e.target.parentElement.parentElement.id) {
-//   // custom task gp
-//   case "customGp":
-//     taskArray = [
-//       "General",
-//       "Work",
-//       "Shopping",
-//       "Personal",
-//       "Education",
-//       "Vacation",
-//     ];
-//     break;
-
-//   // special event task gp
-//   case "specialGp":
-//     taskArray = [
-//       "Party",
-//       "Celebration",
-//       "Conference",
-//       "Wedding",
-//       "Birthday",
-//       "Concert",
-//     ];
-//     break;
-
-//   // routine task gp
-//   case "routineGp":
-//     taskArray = ["Pill", "makeup", "Reading", "Pray", "Exercise", "Health"];
-//     break;
-// }
-//   });
-// });
-
-// }
-
-// ....................................................
-
-let taskArray = [
-  "General",
-  "Work",
-  "Shopping",
-  "Personal",
-  "Education",
-  "Vacation",
-];
-fromLS(taskArray);
-
-// save the array of chosen task gp in the local storage
-
-function fromLS(taskArray) {
- const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
-
-  // for the first time:
-  if (!taskGpLs) {
-    // make an array in local storage
-    localStorage.setItem("chosenTaskGp", JSON.stringify([taskArray]));
-  }
-}
+// for notif:
 
 const Alarm =null;
 const AlarmAudio =document.querySelector("#alarm-audio")

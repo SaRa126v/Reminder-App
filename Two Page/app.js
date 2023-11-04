@@ -1,5 +1,3 @@
-const qs = simpleQueryString.parse(location.href);
-console.log(qs);
 // variables of time...................................
 const timeSelect = document.querySelector(".timeSelect");
 
@@ -61,6 +59,10 @@ const containerCategorySelect = document.querySelector(
   ".containerCategorySelect"
 );
 
+// other variables ....................................
+
+const finalSaveBtn = document.querySelector("#finalSaveBtn");
+
 // on click events..................................
 
 //  Date event
@@ -76,10 +78,13 @@ containerReminderSelect?.addEventListener("click", toggleReminder);
 containerRepeatSelect?.addEventListener("click", toggleRepeat);
 
 //  Category event
-// containerCategorySelect?.addEventListener("click", toggleCategory);
+containerCategorySelect?.addEventListener("click", toggleCategory);
 
 // window event
 window.addEventListener("click", disappear);
+
+// save the whole task event
+finalSaveBtn.addEventListener("click", taskSaver);
 
 // .................................................
 
@@ -119,13 +124,13 @@ function toggleRepeat() {
 }
 
 // show & hide Svg & options of category.................
-// function toggleCategory() {
-//   // show & hide Svg
-//   arrowCategory?.classList.toggle("arrowOpen");
+function toggleCategory() {
+  // show & hide Svg
+  arrowCategory?.classList.toggle("arrowOpen");
 
-//   // show & hide Options
-//   categorySelect.classList.toggle("disabledOptions");
-// }
+  // show & hide Options
+  categorySelect.classList.toggle("disabledOptions");
+}
 
 // .................................................
 
@@ -155,11 +160,11 @@ function disappear(e) {
     repeatSelect?.classList.remove("disabledOptions");
   }
 
-  // if (e.target !== selectCategoryDefault) {
-  //   // for category:
-  //   arrowCategory?.classList.add("arrowOpen");
-  //   categorySelect?.classList.remove("disabledOptions");
-  // }
+  if (e.target !== selectCategoryDefault) {
+    // for category:
+    arrowCategory?.classList.add("arrowOpen");
+    categorySelect?.classList.remove("disabledOptions");
+  }
 }
 
 // .................................................
@@ -404,14 +409,14 @@ const repeatList = [
   "only once",
 ];
 
-// get  the chosen category from local storage.......
-const categoryList = [];
+// get  the chosen category from the previous page....
+const categoryList = gpDeterminer();
 
-// the defualt option should be the first option.......
+// the defualt option should be the first option......
 
 spanReminderChild.textContent = reminderList[0];
 spanRepeatChild.textContent = repeatList[0];
-// spanCategoryChild.textContent = categoryList[0];
+spanCategoryChild.textContent = categoryList[0];
 
 // call the function to build its options..........
 
@@ -419,7 +424,7 @@ optionMaker(reminderList, reminderSelect, "reminderOption");
 
 optionMaker(repeatList, repeatSelect, "repeatOption");
 
-// optionMaker(categoryList, categorySelect, "categoryOption");
+optionMaker(categoryList, categorySelect, "categoryOption");
 
 // ..................................................
 
@@ -430,7 +435,7 @@ const repeatOptions = document.querySelectorAll(".repeatOption");
 
 const reminderOptions = document.querySelectorAll(".reminderOption");
 
-// const categoryOptions = document.querySelectorAll(".categoryOption");
+const categoryOptions = document.querySelectorAll(".categoryOption");
 
 // by clicking on the option the text of select div should change to the chosen option span
 
@@ -445,19 +450,65 @@ function optionChosser(options, selectedOption) {
 
 optionChosser(repeatOptions, spanRepeatChild);
 optionChosser(reminderOptions, spanReminderChild);
-// optionChosser(categoryOptions, spanCategoryChild);
+optionChosser(categoryOptions, spanCategoryChild);
 
+// get the type from the previous page to determin which task category is chosen
+
+function gpDeterminer() {
+  const { type } = simpleQueryString.parse(location.href);
+
+  let taskArray = [];
+
+  switch (type) {
+    case "custom":
+      taskArray = [
+        "General",
+        "Work",
+        "Shopping",
+        "Personal",
+        "Education",
+        "Vacation",
+      ];
+      break;
+    case "special":
+      taskArray = [
+        "Party",
+        "Celebration",
+        "Conference",
+        "Wedding",
+        "Birthday",
+        "Concert",
+      ];
+      break;
+    case "routine":
+      taskArray = ["Pill", "makeup", "Reading", "Pray", "Exercise", "Health"];
+      break;
+  }
+
+  return taskArray;
+}
+
+// ....................................................
+// fix later:
 // console.log(+0 === -0);
 // console.log(Object.is(+0, -0));
 // console.log(Object.is(null, null));
 // console.log(null === null);
 
-// ..................................................
+// ....................................................
 
-// get the saved array from local storage
-function fromLS() {
-  return JSON.parse(localStorage.getItem("chosenTaskGp"));
+// save the new task & display it in home page
+
+function taskSaver() {
+  console.log("saved");
 }
 
-console.log(fromLS());
-// ....................................................
+// function fromLS(taskArray) {
+//   const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
+
+//    // for the first time:
+//    if (!taskGpLs) {
+//      // make an array in local storage
+//      localStorage.setItem("chosenTaskGp", JSON.stringify([taskArray]));
+//    }
+//  }
