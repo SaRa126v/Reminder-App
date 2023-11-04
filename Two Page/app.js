@@ -1,19 +1,3 @@
-// make & display Category Options for each gp
-// export function optionMaker(optionArray) {
-//   const select = document.querySelector("#categorySelect");
-//   if (!select) return;
-
-//   for (let i = 0; i < optionArray.length; i++) {
-//     // create the option
-//     const option = document.createElement("option");
-//     // set its value
-//     option.value = optionArray[i];
-//     // show the value to user
-//     option.text = optionArray[i];
-//     // pu the options in select El
-//     select.appendChild(option);
-//   }
-// }
 
 // Time & Date.........................................
 

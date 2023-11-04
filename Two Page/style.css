@@ -68,29 +68,6 @@ textarea {
   padding: 10px;
 }
 
-/* #title {
-  display: inline-block;
-  margin: 4px 69px;
-}
-
-#description {
-  display: inline-block;
-  margin: 4px 69px;
-} */
-
-/* category div................. */
-#category {
-  display: flex;
-  margin: 4px 69px;
-}
-
-#categorylist {
-  width: 160px;
-  height: 31px;
-  outline: none;
-  margin: 0px 8px;
-}
-
 /* ................................................... */
 
 /* the container of inputs.... */
@@ -102,24 +79,11 @@ textarea {
   align-items: center;
 }
 
-#categorySelect {
-  width: 200px;
-  height: 30px;
-  border-radius: 5px;
-  border-bottom: 1px solid var(--gray-gray-5, #adadad);
-  background: var(--gray-gray-1, #f9f9f9);
-  outline: none;
-}
-
-#categorySelect option {
-  border: 1px solid var(--gray-gray-2, #ededed);
-  padding: 10px 0px;
-}
-
 .time,
 .date,
 .reminder,
-.repeat {
+.repeat,
+.category {
   width: 100%;
   margin-bottom: 16px;
   display: flex;
@@ -131,7 +95,8 @@ textarea {
 .containerSelect,
 .containerDateSelect,
 .containerReminderSelect,
-.containerRepeatSelect {
+.containerRepeatSelect,
+.containerCategorySelect {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -140,7 +105,8 @@ textarea {
 .selectDefault,
 .selectDateDefault,
 .selectReminderDefault,
-.selectRepeatDefault {
+.selectRepeatDefault,
+.selectCategoryDefault {
   box-sizing: border-box;
   padding: 5px;
   display: flex;
@@ -159,12 +125,14 @@ textarea {
 .timeSelect,
 .dateSelect,
 .reminderSelect,
-.repeatSelect {
+.repeatSelect,
+.categorySelect {
   display: none;
 }
 
 .reminderSelect div,
-.repeatSelect div {
+.repeatSelect div,
+.categorySelect div {
   padding: 3px;
   width: 100%;
   border-radius: 5px 5px 0px 0px;
@@ -236,7 +204,8 @@ textarea {
 }
 
 .repeat .disabledOptions,
-.reminder .disabledOptions {
+.reminder .disabledOptions,
+.category .disabledOptions {
   /* justify-content: start; */
   align-items: start;
   bottom: -175px;
@@ -244,7 +213,8 @@ textarea {
 .optionTime,
 .optionDate,
 .optionReminder,
-.optionRepeat {
+.optionRepeat,
+.optionCategory {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
