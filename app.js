@@ -70,72 +70,80 @@ function hideGp(e) {
 // get the id of clicked element in order to go to the specific page chosen by the user
 // give options to the optionMaker func to build category for its task gp
 
-function nextPage(groups) {
-// each gp of task is clicked
-console.log(groups);
-groups.forEach((group) => {
-  group.addEventListener("click", ()=>{
- // the default array of task options
- let taskArray = [
-  "General",
-  "Work",
-  "Shopping",
-  "Personal",
-  "Education",
-  "Vacation",
-];
+// function nextPage(groups) {
+// // each gp of task is clicked
+// console.log(groups);
+// groups.forEach((group) => {
+//   group.addEventListener("click", ()=>{
+//  // the default array of task options
+//  let taskArray = [
+//   "General",
+//   "Work",
+//   "Shopping",
+//   "Personal",
+//   "Education",
+//   "Vacation",
+// ];
 
-// the chosen array of task options
-switch (e.target.parentElement.parentElement.id) {
-  // custom task gp
-  case "customGp":
-    taskArray = [
-      "General",
-      "Work",
-      "Shopping",
-      "Personal",
-      "Education",
-      "Vacation",
-    ];
-    break;
+// // the chosen array of task options
+// switch (e.target.parentElement.parentElement.id) {
+//   // custom task gp
+//   case "customGp":
+//     taskArray = [
+//       "General",
+//       "Work",
+//       "Shopping",
+//       "Personal",
+//       "Education",
+//       "Vacation",
+//     ];
+//     break;
 
-  // special event task gp
-  case "specialGp":
-    taskArray = [
-      "Party",
-      "Celebration",
-      "Conference",
-      "Wedding",
-      "Birthday",
-      "Concert",
-    ];
-    break;
+//   // special event task gp
+//   case "specialGp":
+//     taskArray = [
+//       "Party",
+//       "Celebration",
+//       "Conference",
+//       "Wedding",
+//       "Birthday",
+//       "Concert",
+//     ];
+//     break;
 
-  // routine task gp
-  case "routineGp":
-    taskArray = ["Pill", "makeup", "Reading", "Pray", "Exercise", "Health"];
-    break;
-}
-  });
-});
+//   // routine task gp
+//   case "routineGp":
+//     taskArray = ["Pill", "makeup", "Reading", "Pray", "Exercise", "Health"];
+//     break;
+// }
+//   });
+// });
 
-fromLS(taskArray);
-}
+// }
 
 // ....................................................
 
+// let taskArray = [
+//   "General",
+//   "Work",
+//   "Shopping",
+//   "Personal",
+//   "Education",
+//   "Vacation",
+// ];
+// fromLS(taskArray);
+
 // save the array of chosen task gp in the local storage
 
-function fromLS(taskArray) {
-  // for other times:
-  const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
+// function fromLS(taskArray) {
+//  const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
 
-  // for the first time:
-  if (!taskGpLs) {
-    // make an array in local storage
-    localStorage.setItem("chosenTaskGp", `${taskArray}`);
-  }
-}
+//   // for the first time:
+//   if (!taskGpLs) {
+//     // make an array in local storage
+//     localStorage.setItem("chosenTaskGp", `[${taskArray}]`);
+//   }
+// }
 
 
 
