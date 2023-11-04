@@ -1,6 +1,3 @@
-
-// Time & Date.........................................
-
 // variables of time...................................
 const timeSelect = document.querySelector(".timeSelect");
 
@@ -48,6 +45,19 @@ const spanRepeatChild = document.querySelector(".spanRepeatChild");
 
 const containerRepeatSelect = document.querySelector(".containerRepeatSelect");
 
+// variables of category...............................
+
+const categorySelect = document.querySelector(".categorySelect");
+
+const arrowCategory = document.querySelector(".arrowCategory");
+
+const selectCategoryDefault = document.querySelector(".selectCategoryDefault");
+
+const spanCategoryChild = document.querySelector(".spanCategoryChild");
+
+const containerCategorySelect = document.querySelector(".containerCategorySelect");
+
+
 // on click events..................................
 
 //  Date event
@@ -61,6 +71,9 @@ containerReminderSelect?.addEventListener("click", toggleReminder);
 
 //  Repeat event
 containerRepeatSelect?.addEventListener("click", toggleRepeat);
+
+//  Category event
+// containerCategorySelect?.addEventListener("click", toggleCategory);
 
 // window event
 window.addEventListener("click", disappear);
@@ -102,6 +115,15 @@ function toggleRepeat() {
   repeatSelect.classList.toggle("disabledOptions");
 }
 
+// show & hide Svg & options of category.................
+// function toggleCategory() {
+//   // show & hide Svg
+//   arrowCategory?.classList.toggle("arrowOpen");
+
+//   // show & hide Options
+//   categorySelect.classList.toggle("disabledOptions");
+// }
+
 // .................................................
 
 // if user clicks on sth other than the select, the options of that select disappear
@@ -129,6 +151,12 @@ function disappear(e) {
     arrowRepeat?.classList.add("arrowOpen");
     repeatSelect?.classList.remove("disabledOptions");
   }
+
+  // if (e.target !== selectCategoryDefault) {
+  //   // for category:
+  //   arrowCategory?.classList.add("arrowOpen");
+  //   categorySelect?.classList.remove("disabledOptions");
+  // }
 }
 
 // .................................................
@@ -352,7 +380,7 @@ function optionMaker(list, select, optionClass) {
 }
 
 // array of options for reminder..........
-const ReminderList = [
+const reminderList = [
   "Never",
   "5 Minutes",
   "15 Minutes",
@@ -363,7 +391,7 @@ const ReminderList = [
 ];
 
 // array of options for repeat..........
-const RepeatList = [
+const repeatList = [
   "Whitout repeat",
   "Daily",
   "Weekly",
@@ -373,24 +401,33 @@ const RepeatList = [
   "only once",
 ];
 
-// the defualt option should be the first option
-spanReminderChild.textContent = ReminderList[0];
-spanRepeatChild.textContent = RepeatList[0];
+// get  the chosen category from local storage.......
+const categoryList = [];
 
-// call the function to build its options
-optionMaker(ReminderList, reminderSelect, "reminderOption");
+// the defualt option should be the first option.......
 
-// call the function to build its options
-optionMaker(RepeatList, repeatSelect, "repeatOption");
+spanReminderChild.textContent = reminderList[0];
+spanRepeatChild.textContent = repeatList[0];
+// spanCategoryChild.textContent = categoryList[0];
+
+// call the function to build its options..........
+
+optionMaker(reminderList, reminderSelect, "reminderOption");
+
+optionMaker(repeatList, repeatSelect, "repeatOption");
+
+// optionMaker(categoryList, categorySelect, "categoryOption");
 
 // ..................................................
 
-// disply the selected repeat & reminder in the select
+// disply the selected repeat & reminder & category in the select
 
 // variables
 const repeatOptions = document.querySelectorAll(".repeatOption");
 
 const reminderOptions = document.querySelectorAll(".reminderOption");
+
+// const categoryOptions = document.querySelectorAll(".categoryOption");
 
 // by clicking on the option the text of select div should change to the chosen option span
 
@@ -405,8 +442,10 @@ function optionChosser(options, selectedOption) {
 
 optionChosser(repeatOptions, spanRepeatChild);
 optionChosser(reminderOptions, spanReminderChild);
+// optionChosser(categoryOptions, spanCategoryChild);
 
 // console.log(+0 === -0);
 // console.log(Object.is(+0, -0));
 // console.log(Object.is(null, null));
 // console.log(null === null);
+
