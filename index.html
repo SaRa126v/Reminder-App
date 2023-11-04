@@ -189,6 +189,10 @@
             <span>2023/17/10</span>
             <span>09:15</span>
 
+            <h4>Hello</h4>
+            <span>2023/17/10</span>
+            <span>07: 31</span>
+
             <!-- bell svg......................... -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -378,6 +382,62 @@
           <path d="M1.71429 11.4107H25.0179" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg></li></ul>
             </section>
+
+
+
+
+
+            <html>
+  <head>
+    <title>Parcel Sandbox</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="current-time"></div>
+      <div class="create-alarm">
+        <div class="form-actions">
+          <form>
+            <div class="alarm-inputs">
+              <input
+                type="number"
+                name="hour"
+                placeholder="Enter hours"
+                min="0"
+                max="12"
+                required
+              />
+              <input
+                type="number"
+                name="min"
+                min="0"
+                max="60"
+                placeholder="Enter minutes"
+                required
+              />
+              <input
+                type="number"
+                name="sec"
+                min="0"
+                max="60"
+                placeholder="Enter seconds"
+                required
+              />
+              <select name="zone" required>
+                <option value="" selected disabled>Zone</option>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+            <button>Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="active-alarm">
+    </div>
+    <audio id="alarm-audio"></audio>
+  </body>
+</html>
 
             <script src="app.js"></script>
 

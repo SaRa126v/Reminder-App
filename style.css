@@ -485,3 +485,34 @@ circle {
 }
 
 
+
+
+
+#current-time {
+  font-size: 32px;
+}
+#current-time,
+.create-alarm,
+h1,
+#active-alarm {
+  text-align: center;
+}
+.create-alarm,
+.alarm-inputs,
+#active-alarm {
+  margin-top: 20px;
+}
+input {
+  width: 100px;
+  height: 30px;
+}
+.alarm-inputs,
+#alarm-text {
+  margin-bottom: 30px;
+}
+button {
+  font-size: 18px;
+}
+#active-alarm {
+  display: none;
+}

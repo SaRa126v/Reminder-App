@@ -145,7 +145,61 @@ function hideGp(e) {
 //   }
 // }
 
+const Alarm =null;
+const AlarmAudio =document.querySelector("#alarm-audio")
+const CreateAlarm =document.querySelector(".create-alarm");
+const ActiveAlarm =document.querySelector("#activv-alarm");
 
 
+// AlarmAudio.src ="";
+// AlarmAudio.load();
 
+function Time(event){
+  event.preventDefault();
+  const {hour, sec, min, zone} =document.forms[0];
+  GetTimeString({
+    hour: hour.value,
+    sec:sec.value,
+    min:min.value,
+    zone:zone.value
+  });
+  
+  document.forms[0].reset();
+  CreateAlarm.style.display ="none";
+}
 
+document.forms[0].addEventListener("submit", Time);
+
+function AlarmCheck(TimeStirng){
+  if(Alarm ==TimeStirng){
+    AlarmAudio.play();
+  }
+}
+
+function GetTimeString({hour, second, minute, zone}){
+  if(minute /10 <1){
+    minute ="0" + minute;
+  }else if(second /10 <1){
+    second ="0" + second;
+  }
+  return `${hour}-${minute}-${second}-${zone}`;
+}
+
+function RenderTime(){
+  const Time =document.querySelector(".tabcontent");
+  const Dates =new Date();
+
+  let hour =Dates.getHours();
+  let minute =Dates.getMinutes();
+  let second =Dates.getSeconds();
+  let zone =hour >=12? "PM" : "AM";
+
+  if(hour >15){
+    hour =hour % 12;
+  }
+
+  const TimeString =GetTimeString({hour, minute, second, zone});
+  AlarmCheck(TimeString);
+}
+
+setInterval(RenderTime, 1000);
