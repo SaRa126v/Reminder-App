@@ -1,3 +1,5 @@
+const qs = simpleQueryString.parse(location.href);
+console.log(qs);
 // variables of time...................................
 const timeSelect = document.querySelector(".timeSelect");
 
@@ -55,8 +57,9 @@ const selectCategoryDefault = document.querySelector(".selectCategoryDefault");
 
 const spanCategoryChild = document.querySelector(".spanCategoryChild");
 
-const containerCategorySelect = document.querySelector(".containerCategorySelect");
-
+const containerCategorySelect = document.querySelector(
+  ".containerCategorySelect"
+);
 
 // on click events..................................
 
@@ -453,7 +456,7 @@ optionChosser(reminderOptions, spanReminderChild);
 
 // get the saved array from local storage
 function fromLS() {
-return JSON.parse(localStorage.getItem("chosenTaskGp"));
+  return JSON.parse(localStorage.getItem("chosenTaskGp"));
 }
 
 console.log(fromLS());

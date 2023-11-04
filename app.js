@@ -123,27 +123,27 @@ function hideGp(e) {
 
 // ....................................................
 
-// let taskArray = [
-//   "General",
-//   "Work",
-//   "Shopping",
-//   "Personal",
-//   "Education",
-//   "Vacation",
-// ];
-// fromLS(taskArray);
+let taskArray = [
+  "General",
+  "Work",
+  "Shopping",
+  "Personal",
+  "Education",
+  "Vacation",
+];
+fromLS(taskArray);
 
 // save the array of chosen task gp in the local storage
 
-// function fromLS(taskArray) {
-//  const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
+function fromLS(taskArray) {
+ const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
 
-//   // for the first time:
-//   if (!taskGpLs) {
-//     // make an array in local storage
-//     localStorage.setItem("chosenTaskGp", `[${taskArray}]`);
-//   }
-// }
+  // for the first time:
+  if (!taskGpLs) {
+    // make an array in local storage
+    localStorage.setItem("chosenTaskGp", JSON.stringify([taskArray]));
+  }
+}
 
 const Alarm =null;
 const AlarmAudio =document.querySelector("#alarm-audio")
