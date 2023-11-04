@@ -449,3 +449,28 @@ optionChosser(reminderOptions, spanReminderChild);
 // console.log(Object.is(null, null));
 // console.log(null === null);
 
+// ..................................................
+
+// addInLS(taskArray);
+
+// 2) add to it..................
+
+// function addInLS(taskArray) {
+//   // we wanna push the chosen options in this
+//   taskGpLs = fromLS();
+
+//   console.log(taskGpLs);
+// console.log(taskArray);
+//     taskGpLs.push({
+
+//     });
+
+//   toLS();
+// }
+
+// 3) put it back..................
+// function toLS() {
+//   localStorage.setItem("chosenTaskGp", JSON.stringify(taskGpLs));
+// }
+
+// ....................................................

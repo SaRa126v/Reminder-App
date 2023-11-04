@@ -1,4 +1,3 @@
-// import {  } from "./Two Page/app.js";
 
 // variables...........................................
 
@@ -8,8 +7,6 @@ const addBtn = document.querySelector("#addBtn");
 const groupsSec = document.querySelector(".groupsSec");
 // the blur container:
 const blurPage = document.querySelector("#blurPage");
-// each gp of tasks:
-const groups = document.querySelectorAll("#groups > div");
 
 // .....................................................
 
@@ -21,16 +18,11 @@ addBtn.addEventListener("click", displayGp);
 // window is clicked
 window.addEventListener("click", hideGp);
 
-// each gp of task is clicked
-groups.forEach((group) => {
-  group.addEventListener("click", nextPage);
-});
-
 // .....................................................
-
 
 // bluring the background & displaying the pop up
 function displayGp() {
+
   // blur the background
   document.querySelectorAll(".disabled").forEach((disabledEl) => {
     disabledEl.classList.remove("disabled");
@@ -40,21 +32,28 @@ function displayGp() {
   if (!document.querySelector("#groups")) {
     groupsSec.insertAdjacentHTML("afterbegin", gpTemp());
   }
+
+  // each gp of tasks:
+// const groups = document.querySelector("#groups > div");
+// nextPage(groups);
 }
 
 // a template for dsplaying groups of tasks
 function gpTemp() {
+
+  // <a href="Two Page/index.Html"></a>
+
   return `<div id="groups">
     
     <!-- gp1 -->
-      <div id="customGp"><a href="Two Page/index.Html"><img src="assets/images/custom gp.png"><h2>Custom</h2></a></div>
+      <div id="customGp"><img src="assets/images/custom gp.png"><h2>Custom</h2></div>
     
       <!-- gp2 -->
-      <div id="specialGp"><a href="Two Page/index.Html"><img src="assets/images/special gp.png"><h2>Special
-    Event</h2></a></div>
+      <div id="specialGp"><img src="assets/images/special gp.png"><h2>Special
+    Event</h2></div>
     
     <!-- gp3 -->
-      <div id="routineGp"><a href="Two Page/index.Html"><img src="assets/images/routine gp.png"><h2>Routine</h2></a></div>
+      <div id="routineGp"><img src="assets/images/routine gp.png"><h2>Routine</h2></div>
 
       </div>`;
 }
@@ -70,54 +69,75 @@ function hideGp(e) {
 
 // get the id of clicked element in order to go to the specific page chosen by the user
 // give options to the optionMaker func to build category for its task gp
-function nextPage(e) {
-  // the default array of task options
-  let taskArray = [
-    "General",
-    "Work",
-    "Shopping",
-    "Personal",
-    "Education",
-    "Vacation",
-  ];
 
-  // the chosen array of task options
-  switch (e.target.parentElement.parentElement.id) {
-    // custom task gp
-    case "customGp":
-      taskArray = [
-        "General",
-        "Work",
-        "Shopping",
-        "Personal",
-        "Education",
-        "Vacation",
-      ];
-      break;
+function nextPage(groups) {
+// each gp of task is clicked
+console.log(groups);
+groups.forEach((group) => {
+  group.addEventListener("click", ()=>{
+ // the default array of task options
+ let taskArray = [
+  "General",
+  "Work",
+  "Shopping",
+  "Personal",
+  "Education",
+  "Vacation",
+];
 
-    // special event task gp
-    case "specialGp":
-      taskArray = [
-        "Party",
-        "Celebration",
-        "Conference",
-        "Wedding",
-        "Birthday",
-        "Concert",
-      ];
-      break;
+// the chosen array of task options
+switch (e.target.parentElement.parentElement.id) {
+  // custom task gp
+  case "customGp":
+    taskArray = [
+      "General",
+      "Work",
+      "Shopping",
+      "Personal",
+      "Education",
+      "Vacation",
+    ];
+    break;
 
-    // routine task gp
-    case "routineGp":
-      taskArray = ["Pill", "makeup", "Reading", "Pray", "Exercise", "Health"];
-      break;
-  }
+  // special event task gp
+  case "specialGp":
+    taskArray = [
+      "Party",
+      "Celebration",
+      "Conference",
+      "Wedding",
+      "Birthday",
+      "Concert",
+    ];
+    break;
 
-  console.log(taskArray);
-  return taskArray;
+  // routine task gp
+  case "routineGp":
+    taskArray = ["Pill", "makeup", "Reading", "Pray", "Exercise", "Health"];
+    break;
+}
+  });
+});
+
+fromLS(taskArray);
 }
 
 // ....................................................
 
 // save the array of chosen task gp in the local storage
-// nextPage();
+
+function fromLS(taskArray) {
+  // for other times:
+  const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
+
+  // for the first time:
+  if (!taskGpLs) {
+    // make an array in local storage
+    localStorage.setItem("chosenTaskGp", `${taskArray}`);
+  }
+}
+
+
+
+
+
