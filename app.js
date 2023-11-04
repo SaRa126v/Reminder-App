@@ -1,6 +1,5 @@
-import { optionMaker,logger } from "./Two Page/app.js";
+// import {  } from "./Two Page/app.js";
 
-console.log(logger());
 
 // variables...........................................
 const addBtn = document.querySelector("#addBtn");
@@ -24,7 +23,7 @@ function displayGp() {
 
   // for each gp of task
   groups.forEach((group) => {
-    group.addEventListener("click", nextPage);
+    // group.addEventListener("click", nextPage);
   });
 }
 

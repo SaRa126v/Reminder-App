@@ -47,13 +47,37 @@
 
       <!-- ......................................... -->
 
-      <!-- Input Section............................. -->
+      <!-- Select Section............................. -->
       <section class="inputContainer">
         <!-- Categories Section...................... -->
+        <div class="Category">
+          <span>Category:</span>
+          <div class="containerCategorySelect">
+            <!-- select start -->
+            <div class="selectCategoryDefault">
+              <span class="spanCategoryChild"></span>
+              <!-- Closed Svg -->
+              <svg
+                class="arrowCategory arrowOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="8"
+                viewBox="0 0 14 8"
+                fill="none"
+              >
+                <path
+                  d="M13 7L7 1L1 7"
+                  stroke="#202020"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <!-- select end -->
 
-        <div id="category">
-          <label>Category:</label>
-          <select name="category" id="categorySelect"></select>
+            <!-- options -->
+            <div class="categorySelect"></div>
+          </div>
         </div>
 
         <!-- Date Section......................... -->
@@ -100,9 +124,9 @@
                 <div class="month"></div>
               </div>
 
-              <div>
-                <button>Cancel</button>
-                <button id="saveDateBtn">Save</button>
+              <div class="btnSmallContainer">
+                <button class="cancelBtn">Cancel</button>
+                <button id="saveDateBtn" class="saveBtn">Ok</button>
               </div>
             </div>
           </div>
@@ -147,9 +171,9 @@
                 <div class="min"></div>
               </div>
 
-              <div>
-                <button>Cancel</button>
-                <button id="saveTimeBtn">Save</button>
+              <div class="btnSmallContainer">
+                <button class="cancelBtn">Cancel</button>
+                <button id="saveTimeBtn" class="saveBtn">Ok</button>
               </div>
             </div>
           </div>
@@ -224,13 +248,49 @@
 
       <!-- button Section........................ -->
 
-<section class="btnContainer">
-  <button>Cancel</button>
-  <button>Save</button>
-</section>
+      <section class="btnContainer">
 
+        <!-- cancel btn -->
+        <button type="submit" class="cancelBtn">
+          <a href="../index.html">Cancel</a>
+        </button>
+
+        <!-- save btn -->
+        <button type="submit" class="saveBtn">
+          <a href="../index.html">Save</a>
+        </button>
+
+      </section>
     </div>
+ <!-- Mobile Navigation Menu....................  -->
+ <section id="nav">
+  <ul>
 
+ <!-- User Svg............................ -->
+    <li>
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="26" viewBox="0 0 23 26" fill="none">
+    <path d="M21.7143 24.9464V22.3571C21.7143 20.9837 21.1687 19.6665 20.1975 18.6953C19.2263 17.7242 17.9092 17.1786 16.5357 17.1786H6.17857C4.80513 17.1786 3.48794 17.7242 2.51677 18.6953C1.5456 19.6665 1 20.9837 1 22.3571V24.9464" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.3571 12C14.2172 12 16.5357 9.68147 16.5357 6.82142C16.5357 3.96138 14.2172 1.64285 11.3571 1.64285C8.49708 1.64285 6.17856 3.96138 6.17856 6.82142C6.17856 9.68147 8.49708 12 11.3571 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></li>
+
+
+    <!-- Add Task Svg............................ -->
+  <li>
+    <svg id="addBtn" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+    <path d="M21.7143 41.9464C32.76 41.9464 41.7143 32.9921 41.7143 21.9464C41.7143 10.9007 32.76 1.94643 21.7143 1.94643C10.6686 1.94643 1.71429 10.9007 1.71429 21.9464C1.71429 32.9921 10.6686 41.9464 21.7143 41.9464Z" fill="#F9F9F9" stroke="#8983F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21.7143 13.9465V29.9465" stroke="#8983F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.715 21.9464H29.715" stroke="#8983F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></li>
+  
+    <!-- Calendar Svg............................ -->
+    <li>
+    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+    <path d="M22.4286 3.64285H4.30358C2.87356 3.64285 1.71429 4.80212 1.71429 6.23214V24.3571C1.71429 25.7872 2.87356 26.9464 4.30358 26.9464H22.4286C23.8586 26.9464 25.0179 25.7872 25.0179 24.3571V6.23214C25.0179 4.80212 23.8586 3.64285 22.4286 3.64285Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.5446 1.05357V6.23214" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.18752 1.05357V6.23214" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1.71429 11.4107H25.0179" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></li></ul>
+      </section>
     <!-- js of the previous oage -->
     <!-- <script src="../app.js"></script> -->
 

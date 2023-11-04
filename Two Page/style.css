@@ -7,11 +7,20 @@ body {
 
 #page2container {
   box-sizing: border-box;
-  border-radius: 10px;
   background: var(--tint-tint-1, #dfdef1);
-  width: 400px;
+  width: 375px;
+  min-height: 150px;
   margin: 0 auto;
-  padding: 50px;
+  padding: 24px;
+}
+
+#page2container::-webkit-scrollbar {
+  display: none;
+}
+
+#page2container section {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /*header*/
@@ -36,7 +45,6 @@ header {
   align-items: center;
 }
 
-
 input,
 textarea {
   box-sizing: border-box;
@@ -52,8 +60,9 @@ textarea {
 }
 
 textarea {
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 100%;
+  min-width: 100%;
+
   min-height: 80px;
   max-height: 80px;
   padding: 10px;
@@ -256,6 +265,34 @@ textarea {
 
 /* button section................................ */
 
+.saveBtn {
+  border: none;
+  box-shadow: 0px 0px 5px 0px #dfdef1;
+  border-radius: 5px;
+  background: var(--Primary, #8983f4);
+  color: var(--gray-gray-1, #f9f9f9);
+  text-align: center;
+}
+
+.cancelBtn {
+  border: none;
+  background: none;
+  color: var(--gray-gray-7, #606060);
+  text-align: center;
+}
+
+.btnSmallContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btnSmallContainer button {
+  padding: 5px 8px;
+}
+
 .btnContainer {
   margin-top: 40px;
   display: flex;
@@ -267,4 +304,42 @@ textarea {
 .btnContainer button {
   width: 66px;
   height: 42px;
+}
+
+.btnContainer .saveBtn a {
+  color: var(--gray-gray-1, #f9f9f9);
+  text-decoration: none;
+}
+
+.btnContainer .cancelBtn a {
+  color: var(--gray-gray-7, #606060);
+  text-decoration: none;
+}
+
+/* Mobile Navigation Menu............................ */
+
+#nav {
+  margin: 0 auto;
+  position: sticky;
+  bottom: 0;
+  width: fit-content;
+}
+
+#nav ul {
+  box-sizing: border-box;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--Primary, #8983f4);
+  height: 56px;
+  width: 375px;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+#nav svg {
+  cursor: pointer;
 }
