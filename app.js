@@ -7,9 +7,9 @@ const addBtn = document.querySelector("#addBtn");
 const groupsSec = document.querySelector(".groupsSec");
 // the blur container:
 const blurPage = document.querySelector("#blurPage");
+const finishedSec = document.querySelector(".finished");
 
 // .....................................................
-
 // Events.............................................
 
 // add task btn is clicked
@@ -19,7 +19,6 @@ addBtn.addEventListener("click", displayGp);
 window.addEventListener("click", hideGp);
 
 // .....................................................
-
 // functions............................................
 
 // bluring the background & displaying the pop up
@@ -78,12 +77,13 @@ function getFromLs() {
   } else {
 
   // get the new task that has been added recently
-  const newTask = taskStorage[taskStorage.length - 1]
-
+  taskStorage.forEach(task => {
+    
   // display it in Dom
-  document.querySelector(".toDo").insertAdjacentHTML("afterbegin", taskTemp(newTask));
+  document.querySelector(".toDo").insertAdjacentHTML("afterbegin", taskTemp(task));
+  
+  });
   }
-
 }
 
 getFromLs(); 
@@ -93,9 +93,9 @@ getFromLs();
 function taskTemp(newTask) {
 // **********************************************
 // task description
-const description = newTask.description;
+// const description = newTask.description;
 
-return `<div class="taskRow" data-reminder="${newTask.reminder}" data-repeat="${newTask.repeat}">
+return `<div class="taskRow">
 <!-- radio......................... -->
 <div class="unChecked"></div>
 <div class="task">
@@ -107,6 +107,7 @@ return `<div class="taskRow" data-reminder="${newTask.reminder}" data-repeat="${
 
     <!-- bell svg......................... -->
     <svg
+    data-reminder="${newTask.reminder}"
       xmlns="http://www.w3.org/2000/svg"
       width="12"
       height="13"
@@ -129,6 +130,7 @@ return `<div class="taskRow" data-reminder="${newTask.reminder}" data-repeat="${
 
     <!-- repeat svg....................... -->
     <svg
+    data-repeat="${newTask.repeat}"
       xmlns="http://www.w3.org/2000/svg"
       width="12"
       height="13"
@@ -183,11 +185,69 @@ return `<div class="taskRow" data-reminder="${newTask.reminder}" data-repeat="${
 }
 
 // ....................................................
+// when there is no task empty state should be displyed
 
 function emptyState() {
   console.log("need to work on empty state");
 }
 // ....................................................
+// tasks that are done should go to done secton
+
+function doneTasks(e) {
+finishedSec.appendChild(e.target.parentElement);
+addInLs(e.target.parentElement);
+}
+
+// get the circles
+const circles = document.querySelectorAll(".unChecked");
+
+// circle is checked
+circles.forEach(circle =>{
+  circle.addEventListener("click", doneTasks);
+})
+
+// ....................................................
+
+// 1)
+function fromLS() {
+  // get the task storage if it already exists
+  let finishedTasksStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+
+  // if task storage does not exist, build one
+  if (!finishedTasksStorage) {
+    localStorage.setItem("finishedTasks", JSON.stringify([]));
+   finishedTasksStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+  }
+
+  return finishedTasksStorage;
+}
+
+// 2)
+function addInLs(finishedTask) {
+  
+  // get our task storage.....
+  const finishedTasksStorage = fromLS();
+  
+  // add an obj in the task storage.....
+  finishedTasksStorage.push(
+    finishedTask
+  )
+  
+  // put it back in the local storage.....
+  toLS(finishedTasksStorage); 
+  
+  }
+
+  // 3)
+function toLS(finishedTasksStorage) {
+  //   then put the array back in local storage
+  localStorage.setItem("finishedTasks", JSON.stringify(finishedTasksStorage));
+
+}
+
+// ....................................................
+
+
 
 // for notif:
 
