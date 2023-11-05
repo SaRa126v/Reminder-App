@@ -61,7 +61,16 @@ const containerCategorySelect = document.querySelector(
 
 // other variables ....................................
 
+// final save btn
 const finalSaveBtn = document.querySelector("#finalSaveBtn");
+
+// title input 
+const titleInput = document.querySelector("#title");
+
+// description textarea
+const descriptionTesxtarea = document.querySelector("#description");
+
+
 
 // on click events..................................
 
@@ -500,15 +509,59 @@ function gpDeterminer() {
 // save the new task & display it in home page
 
 function taskSaver() {
-  console.log("saved");
+  // take the info
+  const taskInfo = {
+    title: titleInput.value,
+    description: descriptionTesxtarea.value,
+    category: spanCategoryChild.innerText,
+    date: spanDateChild.innerText,
+    time: spanChild.innerText,
+    reminder: spanReminderChild.innerText,
+    repeat: spanRepeatChild.innerText,
+  };
+
+
+  // put it in the local storage
+  addInLs(taskInfo); 
+
 }
 
-// function fromLS(taskArray) {
-//   const taskGpLs = JSON.parse(localStorage.getItem("chosenTaskGp"));
+// .....................................................
+// local storage:
 
-//    // for the first time:
-//    if (!taskGpLs) {
-//      // make an array in local storage
-//      localStorage.setItem("chosenTaskGp", JSON.stringify([taskArray]));
-//    }
-//  }
+// 1)
+function fromLS() {
+  // get the task storage if it already exists
+  let tasksStorage = JSON.parse(localStorage.getItem("tasks"));
+
+  // if task storage does not exist, build one
+  if (!tasksStorage) {
+    localStorage.setItem("tasks", JSON.stringify([]));
+   tasksStorage = JSON.parse(localStorage.getItem("tasks"));
+  }
+
+  return tasksStorage;
+}
+
+// 2)
+function addInLs(taskInfo) {
+  
+// get our task storage.....
+const tasksStorage = fromLS();
+
+// add an obj in the task storage.....
+tasksStorage.push(
+  taskInfo
+)
+
+// put it back in the local storage.....
+toLS(tasksStorage); 
+
+}
+
+// 3)
+function toLS(tasksStorage) {
+  //   then put the array back in local storage
+  localStorage.setItem("tasks", JSON.stringify(tasksStorage));
+
+}

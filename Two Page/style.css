@@ -1,6 +1,7 @@
 body {
   background-color: gray;
   margin: 0;
+  user-select: none;
 }
 
 /*create form */
@@ -9,7 +10,7 @@ body {
   box-sizing: border-box;
   background: var(--tint-tint-1, #dfdef1);
   width: 375px;
-  min-height: 150px;
+  min-height: 812px;
   margin: 0 auto;
   padding: 24px;
 }
@@ -19,8 +20,8 @@ body {
 }
 
 #page2container section {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 /*header*/
@@ -299,6 +300,7 @@ textarea {
   position: sticky;
   bottom: 0;
   width: fit-content;
+  z-index: 1;
 }
 
 #nav ul {

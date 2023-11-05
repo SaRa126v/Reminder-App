@@ -3,6 +3,7 @@
 body {
   background: #7b7a7a;
   margin: 0;
+  user-select: none;
 }
 
 .container {
