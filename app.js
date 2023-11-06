@@ -1,4 +1,3 @@
-
 // variables...........................................
 
 // add task button:
@@ -23,7 +22,6 @@ window.addEventListener("click", hideGp);
 
 // bluring the background & displaying the pop up
 function displayGp() {
-
   // blur the background
   document.querySelectorAll(".disabled").forEach((disabledEl) => {
     disabledEl.classList.remove("disabled");
@@ -33,7 +31,6 @@ function displayGp() {
   if (!document.querySelector("#groups")) {
     groupsSec.insertAdjacentHTML("afterbegin", gpTemp());
   }
-
 }
 
 // a template for dsplaying groups of tasks
@@ -63,39 +60,43 @@ function hideGp(e) {
 // ....................................................
 // local storage.......................................
 
-
-// the tasks should stay in home page 
+// the tasks should stay in home page
+// we get the task storage and check if it is empty
 function getFromLs() {
-  //  get our task storage from local storage 
+  //  get our task storage from local storage
   let taskStorage = JSON.parse(localStorage.getItem("tasks"));
 
   // if there is no task show empty state
-  if (!taskStorage) {
+  if (!taskStorage || !taskStorage.length) {
 
     emptyState();
 
   } else {
-
-  // get the new task that has been added recently
-  taskStorage.forEach(task => {
-    
-  // display it in Dom
-  document.querySelector(".toDo").insertAdjacentHTML("afterbegin", taskTemp(task));
-  
-  });
+    return taskStorage;
   }
 }
 
-getFromLs(); 
 
-// put it in a template & display it in the dom 
+// get the task storage & display the tasks in Dom
+function displayToDoTasks() {
+  const taskStorage = getFromLs();
+
+  taskStorage?.forEach((task) => {
+    // display it in Dom
+    document
+      .querySelector(".toDo")
+      .insertAdjacentHTML("afterbegin", taskTemp(task));
+  });
+}
+
+// put it in a template & display it in the dom
 
 function taskTemp(newTask) {
-// **********************************************
-// task description
-// const description = newTask.description;
+  // **********************************************
+  // task description
+  // const description = newTask.description;
 
-return `<div class="taskRow">
+  return `<div data-id="${newTask.id}" class="taskRow">
 <!-- radio......................... -->
 <div class="unChecked"></div>
 <div class="task">
@@ -180,8 +181,58 @@ return `<div class="taskRow">
     />
   </svg>
 </div>
-</div>`
+</div>`;
+}
 
+// a template for finished tasks..........................
+
+function taskTemp2(task) {
+  return `<div class="taskRow" data-id="${task.id}">
+<!-- radio......................... -->
+<div class="checked"></div>
+<div class="task">
+<div class="darkBack"><img src="assets/images/Hard Working.png" alt="" /></div>
+<div class="taskContent">
+<h4>${task.title}</h4>
+<span>${task.date}</span>
+<span>${task.time}</span>
+
+<!-- bell svg....................... -->
+<svg 
+data-repeat="${task.reminder}"
+xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+<path d="M9.50746 4.40299C9.50746 3.50046 9.14894 2.63489 8.51075 1.99671C7.87257 1.35853 7.00701 1 6.10448 1C5.20195 1 4.33639 1.35853 3.6982 1.99671C3.06002 2.63489 2.70149 3.50046 2.70149 4.40299C2.70149 8.37313 1 9.50746 1 9.50746H11.209C11.209 9.50746 9.50746 8.37313 9.50746 4.40299Z" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.08568 11.7761C6.98597 11.948 6.84284 12.0907 6.67064 12.1899C6.49844 12.2891 6.30321 12.3413 6.10448 12.3413C5.90576 12.3413 5.71053 12.2891 5.53833 12.1899C5.36613 12.0907 5.223 11.948 5.12329 11.7761" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<!-- repeat svg........................ -->
+<svg 
+data-repeat="${task.repeat}"
+xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+<path d="M9.20895 1L11.209 3.5L9.20895 6" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.20895 7V5.66667C1.20895 4.95942 1.44308 4.28115 1.85983 3.78105C2.27658 3.28095 2.84181 3 3.43118 3H11.209" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3.20895 12L1.20895 9.5L3.20895 7" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.209 6V7C11.209 7.53043 10.9748 8.03914 10.5581 8.41421C10.1413 8.78929 9.5761 9 8.98673 9H1.20895" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+
+<!-- Potential Star Svg................ -->
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="18"
+height="18"
+viewBox="0 0 18 18"
+fill="none"
+>
+<path
+d="M9 1L11.472 6.26604L17 7.11567L13 11.2124L13.944 17L9 14.266L4.056 17L5 11.2124L1 7.11567L6.528 6.26604L9 1Z"
+stroke="#868686"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+</div>`;
 }
 
 // ....................................................
@@ -190,123 +241,158 @@ return `<div class="taskRow">
 function emptyState() {
   console.log("need to work on empty state");
 }
+
 // ....................................................
 // tasks that are done should go to done secton
 
-function doneTasks(e) {
-finishedSec.appendChild(e.target.parentElement);
-addInLs(e.target.parentElement);
+function displayDoneTasks() {
+  // get the task storage & display the tasks in Dom
+  const finishedTaskStorage = fromLS2();
+
+  finishedTaskStorage.forEach((task) => {
+    // display it in Dom
+    document
+      .querySelector(".finished")
+      .insertAdjacentHTML("afterbegin", taskTemp2(task));
+  });
 }
 
-// get the circles
-const circles = document.querySelectorAll(".unChecked");
 
-// circle is checked
-circles.forEach(circle =>{
-  circle.addEventListener("click", doneTasks);
-})
+// move task from to do section to done seection
+function idGetter(e) {
+  // the movable div of task
+  const taskRow = e.target.parentElement;
+
+      // display it in Dom
+      document
+        .querySelector(".finished").appendChild(taskRow);
+
+  // get the id of clicked task
+  const currentId = taskRow.getAttribute("data-id");
+  moveTaskInLs(Number(currentId));
+}
+
+// 2)
+// get the id & remove from to do & add to done section
+function moveTaskInLs(currentId) {
+  // arrays in local storage
+  // to do:
+  const taskStorage = getFromLs();
+  // done:
+  const finishedTaskStorage = fromLS2();
+
+  // find the id in taskStorage
+  taskStorage.find((task) => {
+    if (Object.is(task.id, currentId)) {
+      // add it to array of finished task storage
+      finishedTaskStorage.push(task);
+      // remove it from array of task storage
+      taskStorage.splice(currentId - 1, 1);
+    }
+  });
+
+  // the task is now added to finishedTaskStorage
+  // so we must put it back in ls
+  toLS(finishedTaskStorage, "finishedTasks");
+  toLS(taskStorage, "tasks");
+}
 
 // ....................................................
 
 // 1)
-function fromLS() {
+function fromLS2() {
   // get the task storage if it already exists
-  let finishedTasksStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+  let finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
 
   // if task storage does not exist, build one
-  if (!finishedTasksStorage) {
+  if (!finishedTaskStorage) {
     localStorage.setItem("finishedTasks", JSON.stringify([]));
-   finishedTasksStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+    finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
   }
 
-  return finishedTasksStorage;
+  return finishedTaskStorage;
 }
 
-// 2)
-function addInLs(finishedTask) {
-  
-  // get our task storage.....
-  const finishedTasksStorage = fromLS();
-  
-  // add an obj in the task storage.....
-  finishedTasksStorage.push(
-    finishedTask
-  )
+// 3)
+function toLS(storage, array) {
+  //   then put the arrays back in local storage
+  localStorage.setItem(array, JSON.stringify(storage));
 
-  console.log(finishedTask);
-  
-  // put it back in the local storage.....
-  toLS(finishedTasksStorage); 
-  
-  }
-
-  // 3)
-function toLS(finishedTasksStorage) {
-  //   then put the array back in local storage
-  localStorage.setItem("finishedTasks", JSON.stringify(finishedTasksStorage));
-
+  // check if task storage is empty
+  getFromLs();
 }
 
 // ....................................................
 
+// disply to do tasks
+displayToDoTasks();
 
+// disply done tasks
+displayDoneTasks();
 
+// Events after loading notes
+const circles = document.querySelectorAll(".unChecked");
+// circle is checked
+circles.forEach((circle) => {
+  circle.addEventListener("click", idGetter);
+});
+
+// ....................................................
 // for notif:
 
-const Alarm =null;
-const AlarmAudio =document.querySelector("#alarm-audio")
-const CreateAlarm =document.querySelector(".create-alarm");
-const ActiveAlarm =document.querySelector("#activv-alarm");
-
+const Alarm = null;
+const AlarmAudio = document.querySelector("#alarm-audio");
+const CreateAlarm = document.querySelector(".create-alarm");
+const ActiveAlarm = document.querySelector("#activv-alarm");
 
 // AlarmAudio.src ="";
 // AlarmAudio.load();
 
-function Time(event){
+function Time(event) {
   event.preventDefault();
-  const {hour, sec, min, zone} =document.forms[0];
+  const { hour, sec, min, zone } = document.forms[0];
   GetTimeString({
     hour: hour.value,
-    sec:sec.value,
-    min:min.value,
-    zone:zone.value
+    sec: sec.value,
+    min: min.value,
+    zone: zone.value,
   });
-  
+
   document.forms[0].reset();
-  CreateAlarm.style.display ="none";
+  CreateAlarm.style.display = "none";
 }
 
 document.forms[0].addEventListener("submit", Time);
 
-function AlarmCheck(TimeStirng){
-  if(Alarm ==TimeStirng){
+function AlarmCheck(TimeStirng) {
+  if (Alarm == TimeStirng) {
     AlarmAudio.play();
   }
 }
 
-function GetTimeString({hour, second, minute, zone}){
-  if(minute /10 <1){
-    minute ="0" + minute;
-  }else if(second /10 <1){
-    second ="0" + second;
+function GetTimeString({ hour, second, minute, zone }) {
+  if (minute / 10 < 1) {
+    minute = "0" + minute;
+  } else if (second / 10 < 1) {
+    second = "0" + second;
   }
   return `${hour}-${minute}-${second}-${zone}`;
 }
 
-function RenderTime(){
-  const Time =document.querySelector(".tabcontent");
-  const Dates =new Date();
+function RenderTime() {
+  const Time = document.querySelector(".tabcontent");
+  const Dates = new Date();
 
-  let hour =Dates.getHours();
-  let minute =Dates.getMinutes();
-  let second =Dates.getSeconds();
-  let zone =hour >=12? "PM" : "AM";
+  let hour = Dates.getHours();
+  let minute = Dates.getMinutes();
+  let second = Dates.getSeconds();
+  let zone = hour >= 12 ? "PM" : "AM";
 
-  if(hour >15){
-    hour =hour % 12;
+  if (hour > 15) {
+    hour = hour % 12;
   }
 
-  const TimeString =GetTimeString({hour, minute, second, zone});
+  const TimeString = GetTimeString({ hour, minute, second, zone });
   AlarmCheck(TimeString);
 }
 

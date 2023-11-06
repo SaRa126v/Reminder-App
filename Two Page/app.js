@@ -93,7 +93,7 @@ containerCategorySelect?.addEventListener("click", toggleCategory);
 window.addEventListener("click", disappear);
 
 // save the whole task event
-finalSaveBtn.addEventListener("click", taskSaver);
+finalSaveBtn?.addEventListener("click", taskSaver);
 
 // .................................................
 
@@ -498,12 +498,6 @@ function gpDeterminer() {
 }
 
 // ....................................................
-// console.log(+0 === -0);
-// console.log(Object.is(+0, -0));
-// console.log(Object.is(null, null));
-// console.log(null === null);
-
-// ....................................................
 // save the new task & display it in home page
 
 // start from 1
@@ -512,7 +506,7 @@ let newId = 1;
 // make a new id for each task
 function idMaker() {
   // get our task storage.....
-const tasksStorage = fromLS();
+const tasksStorage = fromLS1();
 
 // if the same id was found in rask storage build a new one 
  tasksStorage.find(task =>{
@@ -545,7 +539,7 @@ function taskSaver() {
 // local storage:
 
 // 1)
-function fromLS() {
+ function fromLS1() {
   // get the task storage if it already exists
   let tasksStorage = JSON.parse(localStorage.getItem("tasks"));
 
@@ -562,7 +556,7 @@ function fromLS() {
 function addInLs(taskInfo) {
   
 // get our task storage.....
-const tasksStorage = fromLS();
+const tasksStorage = fromLS1();
 
 // add an obj in the task storage.....
 tasksStorage.push(
