@@ -507,14 +507,20 @@ let newId = 1;
 function idMaker() {
   // get our task storage.....
 const tasksStorage = fromLS1();
+const finishedTaskStorage = fromLS2();
 
 // if the same id was found in rask storage build a new one 
+
  tasksStorage.find(task =>{
-  if (Object.is(task.id,newId)) newId += 1; 
+  if (task.id === newId) newId += 1; 
 })
 
+finishedTaskStorage.find(task =>{
+  if (task.id === newId) newId += 1;
+ })
+
   return newId;
-  }
+}
 
   // get the info of task & add it in local storage
 function taskSaver() {
@@ -573,4 +579,18 @@ function toLS(tasksStorage) {
   //   then put the array back in local storage
   localStorage.setItem("tasks", JSON.stringify(tasksStorage));
 
+}
+
+// .....................................................
+function fromLS2() {
+  // get the task storage if it already exists
+  let finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+
+  // if task storage does not exist, build one
+  if (!finishedTaskStorage) {
+    localStorage.setItem("finishedTasks", JSON.stringify([]));
+    finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+  }
+
+  return finishedTaskStorage;
 }
