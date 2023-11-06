@@ -67,7 +67,7 @@ function getFromLs() {
   let taskStorage = JSON.parse(localStorage.getItem("tasks"));
 
   // if there is no task show empty state
-  if (!taskStorage || !taskStorage.length) {
+  if (!taskStorage) {
 
     emptyState();
 
@@ -76,19 +76,58 @@ function getFromLs() {
   }
 }
 
+function fromLS2() {
+  // get the task storage if it already exists
+  let finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
 
-// get the task storage & display the tasks in Dom
+  // if task storage does not exist, build one
+  if (!finishedTaskStorage) {
+    localStorage.setItem("finishedTasks", JSON.stringify([]));
+    finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+  }
+
+  return finishedTaskStorage;
+}
+
+// ......................................................
+// get the task storage 
 function displayToDoTasks() {
   const taskStorage = getFromLs();
 
   taskStorage?.forEach((task) => {
     // display it in Dom
-    document
-      .querySelector(".toDo")
-      .insertAdjacentHTML("afterbegin", taskTemp(task));
+    toDoDisplayer(task);
   });
 }
 
+// tasks that are done should go to done secton
+function displayDoneTasks() {
+  // get the task storage & display the tasks in Dom
+  const finishedTaskStorage = fromLS2();
+
+  finishedTaskStorage.forEach((task) => {
+    // display it in Dom
+    doneDisplayer(task);
+  });
+}
+
+// .....................................................
+// display the tasks in Dom..............................
+function toDoDisplayer(task) {
+      // display it in Dom
+      document
+      .querySelector(".toDo")
+      .insertAdjacentHTML("afterbegin", taskTemp(task));
+}
+
+function doneDisplayer(task) {
+  // display it in Dom
+  document
+  .querySelector(".finished")
+  .insertAdjacentHTML("afterbegin", taskTemp2(task));
+}
+
+// .....................................................
 // put it in a template & display it in the dom
 
 function taskTemp(newTask) {
@@ -184,10 +223,10 @@ function taskTemp(newTask) {
 </div>`;
 }
 
-// a template for finished tasks..........................
+// a template for finished tasks
 
 function taskTemp2(task) {
-  return `<div class="taskRow" data-id="${task.id}">
+  return `<div data-id="${task.id}" class="taskRow" >
 <!-- radio......................... -->
 <div class="checked"></div>
 <div class="task">
@@ -244,22 +283,8 @@ function emptyState() {
   console.log("need to work on empty state");
 }
 
+
 // ....................................................
-// tasks that are done should go to done secton
-
-function displayDoneTasks() {
-  // get the task storage & display the tasks in Dom
-  const finishedTaskStorage = fromLS2();
-
-  finishedTaskStorage.forEach((task) => {
-    // display it in Dom
-    document
-      .querySelector(".finished")
-      .insertAdjacentHTML("afterbegin", taskTemp2(task));
-  });
-}
-
-
 // move task from to do section to done seection
 function idGetter(e) {
   // the movable div of task
@@ -274,7 +299,26 @@ function idGetter(e) {
   moveTaskInLs(Number(currentId));
 }
 
-// 2)
+// move task from done section to to do seection
+
+function idGetter2(e) {
+  // the movable div of task
+  const taskRow = e.target.parentElement;
+
+      // display it in Dom
+      document
+        .querySelector(".toDo").appendChild(taskRow);
+
+  // get the id of clicked task
+  const currentId = taskRow.getAttribute("data-id");
+
+console.log(currentId);
+console.log(taskRow);
+
+  moveTaskBackInLs(Number(currentId))
+}
+
+// ....................................................
 // get the id & remove from to do & add to done section
 function moveTaskInLs(currentId) {
   // arrays in local storage
@@ -299,22 +343,33 @@ function moveTaskInLs(currentId) {
   toLS(taskStorage, "tasks");
 }
 
-// ....................................................
+function moveTaskBackInLs(currentId) {
+  // arrays in local storage
+  // to do:
+  const taskStorage = getFromLs();
+  // done:
+  const finishedTaskStorage = fromLS2();
 
-// 1)
-function fromLS2() {
-  // get the task storage if it already exists
-  let finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
+  console.log(finishedTaskStorage);
+  console.log(taskStorage);
 
-  // if task storage does not exist, build one
-  if (!finishedTaskStorage) {
-    localStorage.setItem("finishedTasks", JSON.stringify([]));
-    finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
-  }
+  // find the id in taskStorage
+  finishedTaskStorage.find((task) => {
+    if (Object.is(task.id, currentId)) {
+      // add it to array of finished task storage
+      taskStorage.push(task);
+      // remove it from array of task storage
+      finishedTaskStorage.splice(currentId - 1, 1);
+    }
+  });
 
-  return finishedTaskStorage;
+  // the task is now added to finishedTaskStorage
+  // so we must put it back in ls
+  toLS(finishedTaskStorage, "finishedTasks");
+  toLS(taskStorage, "tasks");
 }
 
+// ....................................................
 // 3)
 function toLS(storage, array) {
   //   then put the arrays back in local storage
@@ -326,17 +381,25 @@ function toLS(storage, array) {
 
 // ....................................................
 
-// disply to do tasks
+// disply to do tasks......
 displayToDoTasks();
 
-// disply done tasks
+// disply done tasks......
 displayDoneTasks();
 
-// Events after loading notes
+// Events after loading notes.........................
 const circles = document.querySelectorAll(".unChecked");
-// circle is checked
+
+// circle is checked......
 circles.forEach((circle) => {
   circle.addEventListener("click", idGetter);
+});
+
+const filledCircles = document.querySelectorAll(".checked");
+
+// circle is unchecked......
+filledCircles.forEach((circle) => {
+  circle.addEventListener("click", idGetter2);
 });
 
 // ....................................................
