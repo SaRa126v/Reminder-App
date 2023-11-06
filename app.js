@@ -232,6 +232,8 @@ function addInLs(finishedTask) {
   finishedTasksStorage.push(
     finishedTask
   )
+
+  console.log(finishedTask);
   
   // put it back in the local storage.....
   toLS(finishedTasksStorage); 

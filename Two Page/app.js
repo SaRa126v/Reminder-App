@@ -498,19 +498,35 @@ function gpDeterminer() {
 }
 
 // ....................................................
-// fix later:
 // console.log(+0 === -0);
 // console.log(Object.is(+0, -0));
 // console.log(Object.is(null, null));
 // console.log(null === null);
 
 // ....................................................
-
 // save the new task & display it in home page
 
+// start from 1
+let newId = 1;
+
+// make a new id for each task
+function idMaker() {
+  // get our task storage.....
+const tasksStorage = fromLS();
+
+// if the same id was found in rask storage build a new one 
+ tasksStorage.find(task =>{
+  if (Object.is(task.id,newId)) newId += 1; 
+})
+
+  return newId;
+  }
+
+  // get the info of task & add it in local storage
 function taskSaver() {
   // take the info
   const taskInfo = {
+    id: idMaker(),
     title: titleInput.value,
     description: descriptionTesxtarea.value,
     category: spanCategoryChild.innerText,
@@ -519,7 +535,6 @@ function taskSaver() {
     reminder: spanReminderChild.innerText,
     repeat: spanRepeatChild.innerText,
   };
-
 
   // put it in the local storage
   addInLs(taskInfo); 
