@@ -193,9 +193,11 @@ function taskTemp2(task) {
 <div class="task">
 <div class="darkBack"><img src="assets/images/Hard Working.png" alt="" /></div>
 <div class="taskContent">
-<h4>${task.title}</h4>
+<h4>${task.title}
+</h4>
 <span>${task.date}</span>
-<span>${task.time}</span>
+<span id="create-alarm">${task.time}</span>
+<audio id=""alarm-audio></audio>
 
 <!-- bell svg....................... -->
 <svg 
@@ -340,60 +342,48 @@ circles.forEach((circle) => {
 // ....................................................
 // for notif:
 
-const Alarm = null;
-const AlarmAudio = document.querySelector("#alarm-audio");
-const CreateAlarm = document.querySelector(".create-alarm");
-const ActiveAlarm = document.querySelector("#activv-alarm");
 
-// AlarmAudio.src ="";
-// AlarmAudio.load();
+const AlarmString =null;
+const CreateAlarm =document.querySelector("#create-alarm");
+const AlarmAudio =document.querySelector("#alarm-audio");
 
-function Time(event) {
-  event.preventDefault();
-  const { hour, sec, min, zone } = document.forms[0];
-  GetTimeString({
-    hour: hour.value,
-    sec: sec.value,
-    min: min.value,
-    zone: zone.value,
+AlarmAudio.src ="";
+AlarmAudio.load();
+
+function GetTime(){
+  const {hours, minutes} = CreateAlarm[0];
+  AlarmString.getTimeString({
+    hours: hours.value,
+    minutes: minutes.value,
   });
-
-  document.forms[0].reset();
-  CreateAlarm.style.display = "none";
+  CreateAlarm[o].reset();
+  CreateAlarm.style.display ="none";
 }
 
-document.forms[0].addEventListener("submit", Time);
-
-function AlarmCheck(TimeStirng) {
-  if (Alarm == TimeStirng) {
+function CheckAlarm(TimeString){
+  if(AlarmString === TimeString){
     AlarmAudio.play();
   }
 }
 
-function GetTimeString({ hour, second, minute, zone }) {
-  if (minute / 10 < 1) {
-    minute = "0" + minute;
-  } else if (second / 10 < 1) {
-    second = "0" + second;
+function GetTimeString(hours, minutes){
+  if(minutes /10 <1){
+    minutes ="0" + minutes;
   }
-  return `${hour}-${minute}-${second}-${zone}`;
+  return`${hours}:${minutes}`;
 }
 
-function RenderTime() {
-  const Time = document.querySelector(".tabcontent");
-  const Dates = new Date();
+function RenderTime(){
+  const Dates =new Date();
+  let hours =Dates.getHours();
+  let minutes =Dates.getMinutes();
 
-  let hour = Dates.getHours();
-  let minute = Dates.getMinutes();
-  let second = Dates.getSeconds();
-  let zone = hour >= 12 ? "PM" : "AM";
-
-  if (hour > 15) {
-    hour = hour % 12;
+  if(hours >10){
+    hours =hours % 12;
   }
 
-  const TimeString = GetTimeString({ hour, minute, second, zone });
-  AlarmCheck(TimeString);
+  const TimeString =GetTimeString({hours, minutes});
+  CheckAlarm(TimeString);
 }
 
 setInterval(RenderTime, 1000);
