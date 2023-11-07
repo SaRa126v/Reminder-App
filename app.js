@@ -32,7 +32,7 @@ function displayGp() {
     groupsSec.insertAdjacentHTML("afterbegin", gpTemp());
   }
 }
-
+// ......................................................
 // a template for dsplaying groups of tasks
 function gpTemp() {
   return `<div id="groups">
@@ -49,6 +49,7 @@ function gpTemp() {
 
       </div>`;
 }
+// ......................................................
 
 // if user clicks on the blur container the task groups should disappear
 function hideGp(e) {
@@ -57,30 +58,22 @@ function hideGp(e) {
     groupsSec?.classList.add("disabled");
   }
 }
+
 // ....................................................
 // local storage.......................................
 
-// the tasks should stay in home page
-// we get the task storage and check if it is empty
-function getFromLs() {
-  //  get our task storage from local storage
-  let taskStorage = JSON.parse(localStorage.getItem("tasks"));
-
-  // if there is no task show empty state
-  if (!taskStorage) {
-
-    emptyState();
-
-  } else {
-    return taskStorage;
-  }
+//  get our task storage from local storage
+// it has already ben built in page 2
+function getTaskStorage() {
+  return JSON.parse(localStorage.getItem("tasks"));
 }
 
-function fromLS2() {
-  // get the task storage if it already exists
+//  get our finished task storage from local storage
+function getFinishedTaskStorage() {
+  // get the finished task storage if it already exists
   let finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
 
-  // if task storage does not exist, build one
+  // if finished task storage does not exist, build one
   if (!finishedTaskStorage) {
     localStorage.setItem("finishedTasks", JSON.stringify([]));
     finishedTaskStorage = JSON.parse(localStorage.getItem("finishedTasks"));
@@ -89,52 +82,58 @@ function fromLS2() {
   return finishedTaskStorage;
 }
 
+  // show empty state if needed
+function emptyStateChecker() {
+  const taskStorage = getTaskStorage();
+  const finishedTaskStorage = getFinishedTaskStorage();
+
+  if (!taskStorage.length && !finishedTaskStorage.length) emptyState();
+}
+
+// ....................................................
+// when there is no task empty state should be displyed
+
+function emptyState() {
+  console.log("need to work on empty state");
+}
+
 // ......................................................
-// get the task storage 
-function displayToDoTasks() {
-  const taskStorage = getFromLs();
+// get the task storage
+function displaytasks() {
+  const taskStorage = getTaskStorage();
+  const finishedTaskStorage = getFinishedTaskStorage();
 
   taskStorage?.forEach((task) => {
     // display it in Dom
     toDoDisplayer(task);
   });
-}
 
-// tasks that are done should go to done secton
-function displayDoneTasks() {
-  // get the task storage & display the tasks in Dom
-  const finishedTaskStorage = fromLS2();
-
-  finishedTaskStorage.forEach((task) => {
+  finishedTaskStorage?.forEach((task) => {
     // display it in Dom
     doneDisplayer(task);
   });
+
 }
 
-// .....................................................
 // display the tasks in Dom..............................
 function toDoDisplayer(task) {
-      // display it in Dom
-      document
-      .querySelector(".toDo")
-      .insertAdjacentHTML("afterbegin", taskTemp(task));
+  // display it in Dom
+  document
+    .querySelector(".toDo")
+    .insertAdjacentHTML("afterbegin", taskTemp(task));
 }
 
 function doneDisplayer(task) {
   // display it in Dom
   document
-  .querySelector(".finished")
-  .insertAdjacentHTML("afterbegin", taskTemp2(task));
+    .querySelector(".finished")
+    .insertAdjacentHTML("afterbegin", taskTemp2(task));
 }
 
 // .....................................................
 // put it in a template & display it in the dom
 
 function taskTemp(newTask) {
-  // **********************************************
-  // task description
-  // const description = newTask.description;
-
   return `<div data-id="${newTask.id}" class="taskRow">
 <!-- radio......................... -->
 <div class="unChecked"></div>
@@ -275,57 +274,26 @@ stroke-linejoin="round"
 </div>
 </div>`;
 }
-
-// ....................................................
-// when there is no task empty state should be displyed
-
-function emptyState() {
-  console.log("need to work on empty state");
-}
-
-
 // ....................................................
 // move task from to do section to done seection
 function idGetter(e) {
   // the movable div of task
   const taskRow = e.target.parentElement;
 
-      // display it in Dom
-      document
-        .querySelector(".finished").appendChild(taskRow);
-
   // get the id of clicked task
   const currentId = taskRow.getAttribute("data-id");
-  moveTaskInLs(Number(currentId));
-}
-
-// move task from done section to to do seection
-
-function idGetter2(e) {
-  // the movable div of task
-  const taskRow = e.target.parentElement;
-
-      // display it in Dom
-      document
-        .querySelector(".toDo").appendChild(taskRow);
-
-  // get the id of clicked task
-  const currentId = taskRow.getAttribute("data-id");
-
-console.log(currentId);
-console.log(taskRow);
-
-  moveTaskBackInLs(Number(currentId))
+  return Number(currentId);
 }
 
 // ....................................................
 // get the id & remove from to do & add to done section
-function moveTaskInLs(currentId) {
+function moveTaskInLs(e) {
   // arrays in local storage
-  // to do:
-  const taskStorage = getFromLs();
-  // done:
-  const finishedTaskStorage = fromLS2();
+  const taskStorage = getTaskStorage();
+  const finishedTaskStorage = getFinishedTaskStorage();
+  const currentId = idGetter(e);
+
+console.log(currentId);
 
   // find the id in taskStorage
   taskStorage.find((task) => {
@@ -333,120 +301,114 @@ function moveTaskInLs(currentId) {
       // add it to array of finished task storage
       finishedTaskStorage.push(task);
       // remove it from array of task storage
-      taskStorage.splice(currentId - 1, 1);
+      taskStorage.splice(taskStorage.indexOf(task), 1);
     }
   });
 
   // the task is now added to finishedTaskStorage
   // so we must put it back in ls
-  toLS(finishedTaskStorage, "finishedTasks");
-  toLS(taskStorage, "tasks");
+  toLS(taskStorage, finishedTaskStorage);
 }
 
-function moveTaskBackInLs(currentId) {
+function moveTaskBackInLs(e) {
   // arrays in local storage
-  // to do:
-  const taskStorage = getFromLs();
-  // done:
-  const finishedTaskStorage = fromLS2();
-
-  console.log(finishedTaskStorage);
-  console.log(taskStorage);
+  const taskStorage = getTaskStorage();
+  const finishedTaskStorage = getFinishedTaskStorage();
+  const currentId = idGetter(e);
 
   // find the id in taskStorage
   finishedTaskStorage.find((task) => {
     if (Object.is(task.id, currentId)) {
-      // add it to array of finished task storage
       taskStorage.push(task);
-      // remove it from array of task storage
-      finishedTaskStorage.splice(currentId - 1, 1);
+      finishedTaskStorage.splice(taskStorage.indexOf(task), 1);
     }
   });
 
-  // the task is now added to finishedTaskStorage
-  // so we must put it back in ls
-  toLS(finishedTaskStorage, "finishedTasks");
-  toLS(taskStorage, "tasks");
+
+
+  toLS(taskStorage, finishedTaskStorage);
 }
 
 // ....................................................
 // 3)
-function toLS(storage, array) {
+function toLS(taskStorage, finishedTaskStorage) {
   //   then put the arrays back in local storage
-  localStorage.setItem(array, JSON.stringify(storage));
+  localStorage.setItem("finishedTasks", JSON.stringify(finishedTaskStorage));
 
-  // check if task storage is empty
-  getFromLs();
+  localStorage.setItem("tasks", JSON.stringify(taskStorage));
+
+  // disply to do & done tasks......
+  displaytasks()
+  // 
+
+  // check if empty state is needed
+  emptyStateChecker()
 }
 
 // ....................................................
 
-// disply to do tasks......
-displayToDoTasks();
+// disply all tasks
+displaytasks() 
 
-// disply done tasks......
-displayDoneTasks();
-
-// Events after loading notes.........................
+// Events after loading notes
 const circles = document.querySelectorAll(".unChecked");
 
-// circle is checked......
+// circle is checked
 circles.forEach((circle) => {
-  circle.addEventListener("click", idGetter);
+  circle.addEventListener("click", moveTaskInLs);
 });
 
 const filledCircles = document.querySelectorAll(".checked");
 
-// circle is unchecked......
+// circle is unchecked
 filledCircles.forEach((circle) => {
-  circle.addEventListener("click", idGetter2);
+  circle.addEventListener("click", moveTaskBackInLs);
 });
 
 // ....................................................
 // for notif:
 
+// const AlarmString = null;
+// const CreateAlarm = document.querySelector("#create-alarm");
+// const AlarmAudio = document.querySelector("#alarm-audio");
 
-const AlarmString =null;
-const CreateAlarm =document.querySelector("#create-alarm");
-const AlarmAudio =document.querySelector("#alarm-audio");
+// AlarmAudio.src = "";
+// AlarmAudio.load();
 
-AlarmAudio.src ="";
-AlarmAudio.load();
+// function GetTime() {
+//   const { hours, minutes } = CreateAlarm[0];
+//   AlarmString.getTimeString({
+//     hours: hours.value,
+//     minutes: minutes.value,
+//   });
+//   CreateAlarm[o].reset();
+//   CreateAlarm.style.display = "none";
+// }
 
-function GetTime(){
-  const {hours, minutes} = CreateAlarm[0];
-  AlarmString.getTimeString({
-    hours: hours.value,
-    minutes: minutes.value,
-  });
-  CreateAlarm[o].reset();
-  CreateAlarm.style.display ="none";
-}
+// function CheckAlarm(TimeString) {
+//   if (AlarmString === TimeString) {
+//     AlarmAudio.play();
+//   }
+// }
 
-function CheckAlarm(TimeString){
-  if(AlarmString === TimeString){
-    AlarmAudio.play();
-  }
-}
+// function GetTimeString(hours, minutes) {
+//   if (minutes / 10 < 1) {
+//     minutes = "0" + minutes;
+//   }
+//   return `${hours}:${minutes}`;
+// }
 
-function GetTimeString(hours, minutes){
-  if(minutes /10 <1){
-    minutes ="0" + minutes;
-  }
-  return`${hours}:${minutes}`;
-}
+// function RenderTime() {
+//   const Dates = new Date();
+//   let hours = Dates.getHours();
+//   let minutes = Dates.getMinutes();
 
-function RenderTime(){
-  const Dates =new Date();
-  let hours =Dates.getHours();
-  let minutes =Dates.getMinutes();
+//   if (hours > 10) {
+//     hours = hours % 12;
+//   }
 
-  if(hours >10){
-    hours =hours % 12;
-  }
+//   const TimeString = GetTimeString({ hours, minutes });
+//   CheckAlarm(TimeString);
+// }
 
-  const TimeString =GetTimeString({hours, minutes});
-  CheckAlarm(TimeString);
-}
-
-setInterval(RenderTime, 1000);
+// setInterval(RenderTime, 1000);
