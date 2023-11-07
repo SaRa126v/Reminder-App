@@ -64,9 +64,7 @@ function hideGp(e) {
 
 //  get our task storage from local storage
 // it has already ben built in page 2
-function getTaskStorage() {
-  return JSON.parse(localStorage.getItem("tasks"));
-}
+const getTaskStorage = ()=> JSON.parse(localStorage.getItem("tasks"));
 
 //  get our finished task storage from local storage
 function getFinishedTaskStorage() {
@@ -103,6 +101,9 @@ function displaytasks() {
   const taskStorage = getTaskStorage();
   const finishedTaskStorage = getFinishedTaskStorage();
 
+// load tasks only once
+removePreLoadedTasks()
+
   taskStorage?.forEach((task) => {
     // display it in Dom
     toDoDisplayer(task);
@@ -113,6 +114,15 @@ function displaytasks() {
     doneDisplayer(task);
   });
 
+}
+
+// ......................................................
+// load tasks only once by removing all the previous loaded tasks
+function removePreLoadedTasks() {
+  document
+  .querySelector(".toDo").innerHTML = "";
+  document
+  .querySelector(".finished").innerHTML = "";
 }
 
 // display the tasks in Dom..............................
@@ -274,6 +284,7 @@ stroke-linejoin="round"
 </div>
 </div>`;
 }
+
 // ....................................................
 // move task from to do section to done seection
 function idGetter(e) {
@@ -282,7 +293,7 @@ function idGetter(e) {
 
   // get the id of clicked task
   const currentId = taskRow.getAttribute("data-id");
-  return Number(currentId);
+  return currentId;
 }
 
 // ....................................................
@@ -292,8 +303,6 @@ function moveTaskInLs(e) {
   const taskStorage = getTaskStorage();
   const finishedTaskStorage = getFinishedTaskStorage();
   const currentId = idGetter(e);
-
-console.log(currentId);
 
   // find the id in taskStorage
   taskStorage.find((task) => {
@@ -324,8 +333,6 @@ function moveTaskBackInLs(e) {
     }
   });
 
-
-
   toLS(taskStorage, finishedTaskStorage);
 }
 
@@ -337,10 +344,10 @@ function toLS(taskStorage, finishedTaskStorage) {
 
   localStorage.setItem("tasks", JSON.stringify(taskStorage));
 
-  // disply to do & done tasks......
+  // disply to do & done tasks
   displaytasks()
-  // 
-
+  // add event circles
+  circleEvents()
   // check if empty state is needed
   emptyStateChecker()
 }
@@ -348,9 +355,12 @@ function toLS(taskStorage, finishedTaskStorage) {
 // ....................................................
 
 // disply all tasks
-displaytasks() 
+displaytasks(); 
+ // check & uncheck events after loading notes
+circleEvents();
 
-// Events after loading notes
+function circleEvents() {
+
 const circles = document.querySelectorAll(".unChecked");
 
 // circle is checked
@@ -363,7 +373,10 @@ const filledCircles = document.querySelectorAll(".checked");
 // circle is unchecked
 filledCircles.forEach((circle) => {
   circle.addEventListener("click", moveTaskBackInLs);
-});
+}); 
+}
+
+
 
 // ....................................................
 // for notif:
