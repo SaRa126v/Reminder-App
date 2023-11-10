@@ -376,6 +376,32 @@ filledCircles.forEach((circle) => {
 }); 
 }
 
+// ....................................................
+// swipe with touch events
+
+const taskRow = document.querySelectorAll(".taskRow");
+
+// finger touches the screen for the first time
+taskRow.addEventListener("touchstart", ()=>{
+
+});
+
+// finger moves on the screen
+taskRow.addEventListener("touchmove", ()=>{
+
+});
+
+// finger is no longer on the screen
+taskRow.addEventListener("touchend", ()=>{
+
+});
+
+// when sth unexpected happens cancel the event
+taskRow.addEventListener("touchcancel", ()=>{
+
+});
+
+
 
 
 // ....................................................
