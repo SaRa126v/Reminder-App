@@ -205,7 +205,7 @@ displayCurrentTime();
 
 // get the current time
 let currentMonth = new Date().getMonth();
-let currentday = new Date().getDay();
+let currentday = new Date().getDate();
 let currentyear = new Date().getFullYear();
 
 function displayCurrentDate() {
