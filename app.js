@@ -377,6 +377,10 @@ function toLS(taskStorage, finishedTaskStorage) {
   circleEvents();
   // check if empty state is needed
   emptyStateChecker();
+    // add event edit opions
+    editOptionEvents();
+// make swipe work after each change in local storage
+  swipeWork();
 }
 
 // ....................................................
@@ -477,29 +481,35 @@ let isDragging = false,
 // ....................................................
 // swipe with touch events
 
-taskRows.forEach((taskRow, index) => {
-  // finger:
-  // finger touches the screen for the first time
-  taskRow.addEventListener("touchstart", touchStart(index));
+function swipeWork() {
+  taskRows.forEach((taskRow, index) => {
+    // finger:
+    // finger touches the screen for the first time
+    taskRow.addEventListener("touchstart", touchStart(index));
+  
+    // finger moves on the screen
+    taskRow.addEventListener("touchmove", touchMove);
+  
+    // finger is no longer on the screen
+    taskRow.addEventListener("touchend", touchEnd);
+  
+    // when sth unexpected happens cancel the event
+    taskRow.addEventListener("touchcancel", touchEnd);
+  
+    // mouse:
+    taskRow.addEventListener("mousedown", touchStart(index));
+  
+    taskRow.addEventListener("mousemove", touchMove);
+  
+    taskRow.addEventListener("mouseup", touchEnd);
+  
+    taskRow.addEventListener("mouseleave", touchEnd);
+  }); 
+}
 
-  // finger moves on the screen
-  taskRow.addEventListener("touchmove", touchMove);
+swipeWork();
 
-  // finger is no longer on the screen
-  taskRow.addEventListener("touchend", touchEnd);
 
-  // when sth unexpected happens cancel the event
-  taskRow.addEventListener("touchcancel", touchEnd);
-
-  // mouse:
-  taskRow.addEventListener("mousedown", touchStart(index));
-
-  taskRow.addEventListener("mousemove", touchMove);
-
-  taskRow.addEventListener("mouseup", touchEnd);
-
-  taskRow.addEventListener("mouseleave", touchEnd);
-});
 
 // ....................................................
 // to prevent the menu from showing when we hold it
@@ -567,14 +577,14 @@ function setPositionX() {
 // ....................................................
 // for notif:
 
-// import notification from "./components/notification/notification.js"
+import notification from "./components/notification/notification.js"
 
-// notification(
-//   {
-//     // topImage:
-//     topText: "RemindMe",
-//     title: "Meeting",
-//     description: "talk",
+notification(
+  {
+    // topImage:
+    topText: "RemindMe",
+    title: "Meeting",
+    description: "12:00",
 
-//   }
-// );
+  }
+);
