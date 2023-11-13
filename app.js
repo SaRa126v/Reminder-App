@@ -464,9 +464,6 @@ function sharing() {
 // task container
 const toDo = document.querySelector(".toDo");
 
-// each row
-const taskRows = Array.from(document.querySelectorAll(".taskRow"));
-
 // Array.from() is used to *****************
 // animationFrameRequest() is used to***************
 
@@ -486,6 +483,9 @@ let isDragging = false,
 // swipe with touch events
 
 function swipeWork() {
+  // each row
+  const taskRows = Array.from(document.querySelectorAll(".taskRow"));
+
   taskRows.forEach((taskRow, index) => {
     // finger:
     // finger touches the screen for the first time
