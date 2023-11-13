@@ -324,6 +324,12 @@ circle {
 .toDo .task {
   border: 1.5px solid var(--tint-tint-5, #a29ef1);
   background: var(--gray-gray-1, #f9f9f9);
+
+  /* for swipe */
+overflow: hidden;
+cursor: grab;
+transform: translateX(0);
+transition: transform .5s ease-out;
 }
 
 .toDo .task:hover {

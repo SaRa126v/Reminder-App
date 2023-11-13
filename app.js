@@ -377,30 +377,94 @@ filledCircles.forEach((circle) => {
 }
 
 // ....................................................
+// swipe variables
+
+// task container
+const toDo = document.querySelector(".toDo");
+
+// each row
+const taskRows = Array.from(document.querySelectorAll(".taskRow"));
+
+// Array.from() is used to *****************
+// animationFrameRequest() is used to***************
+
+// finger touching the screen?
+let isDragging = false,
+// position of finger
+startPosition = 0,
+// translate
+currentTranslate = 0,
+preTranslate = 0,
+// animation id
+animationId = 0,
+// index of task
+currentIndex = 0;
+
+// ....................................................
 // swipe with touch events
 
-const taskRow = document.querySelectorAll(".taskRow");
-
+taskRows.forEach((taskRow, index)=>{
+  // finger:
 // finger touches the screen for the first time
-taskRow.addEventListener("touchstart", ()=>{
-
-});
+taskRow.addEventListener("touchstart", touchStart(index));
 
 // finger moves on the screen
-taskRow.addEventListener("touchmove", ()=>{
-
-});
+taskRow.addEventListener("touchmove", touchMove);
 
 // finger is no longer on the screen
-taskRow.addEventListener("touchend", ()=>{
-
-});
+taskRow.addEventListener("touchend", touchEnd);
 
 // when sth unexpected happens cancel the event
-taskRow.addEventListener("touchcancel", ()=>{
+taskRow.addEventListener("touchcancel", touchEnd);
 
-});
+// mouse:
+taskRow.addEventListener("mousedown", touchStart(index));
 
+taskRow.addEventListener("mousemove", touchMove);
+
+taskRow.addEventListener("mouseup", touchEnd);
+
+taskRow.addEventListener("mouseleave", touchEnd);
+
+})
+
+// ....................................................
+// to prevent the menu from showing when we hold it
+
+// in 4 ways:
+// window.oncontextmenu = (event) => {}
+// oncontextmenu = (event) => {};
+// addEventListener("contextmenu", (event) => {});
+
+oncontextmenu = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+// ....................................................
+// functions for swipe
+
+function touchStart(index) {
+// i want to use e as well so i put another function inside this function********************
+ return function (e) {
+  isDragging = true;
+  currentIndex = index;
+  // startPosition = e.type.includes("mouse")?e.pageX : e.touches[0].clientX
+  console.log(e.touches[0].clientX);
+  console.log(e.pageX);
+
+ }
+}
+
+function touchMove() {
+  if (isDragging) {
+    
+  }
+}
+
+function touchEnd() {
+  isDragging = false;
+}
 
 
 
