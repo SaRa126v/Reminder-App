@@ -500,6 +500,7 @@ align-items: center;
 
 .editOptions svg {
   margin-left : 21px;
+  cursor: pointer;
 }
 
 .swipeContainer {

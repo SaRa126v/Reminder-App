@@ -229,19 +229,25 @@ function taskTemp(newTask) {
 </div>
 <div class="editOptions">
   <!-- trash icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <svg 
+  class="delete"
+  xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M14.8889 4.27451V15.3006C14.8889 15.7184 14.7059 16.119 14.3804 16.4144C14.0548 16.7098 13.6132 16.8757 13.1528 16.8757H4.4722C4.01175 16.8757 3.57016 16.7098 3.24458 16.4144C2.919 16.119 2.73608 15.7184 2.73608 15.3006V4.27451M5.34025 4.27451V2.69936C5.34025 2.2816 5.52316 1.88096 5.84875 1.58556C6.17433 1.29016 6.61592 1.12421 7.07636 1.12421H10.5486C11.009 1.12421 11.4506 1.29016 11.7762 1.58556C12.1018 1.88096 12.2847 2.2816 12.2847 2.69936V4.27451" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M7.07642 8.21259V12.938" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M1 4.27472H2.73611H16.625" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M10.5486 8.21259V12.938" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   <!-- edit icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <svg 
+  class="edit"
+  xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M8.07968 2.91193H2.2816C1.84224 2.91193 1.42088 3.07351 1.11021 3.36113C0.799534 3.64875 0.625 4.03884 0.625 4.4456V15.1813C0.625 15.588 0.799534 15.9781 1.11021 16.2657C1.42088 16.5534 1.84224 16.7149 2.2816 16.7149H13.8778C14.3171 16.7149 14.7385 16.5534 15.0492 16.2657C15.3598 15.9781 15.5344 15.588 15.5344 15.1813V9.81344" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M14.2919 1.76155C14.6214 1.45648 15.0683 1.2851 15.5343 1.2851C16.0003 1.2851 16.4472 1.45648 16.7767 1.76155C17.1063 2.06661 17.2914 2.48037 17.2914 2.9118C17.2914 3.34322 17.1063 3.75698 16.7767 4.06205L8.90792 11.347L5.59473 12.1138L6.42302 9.04647L14.2919 1.76155Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   <!-- share icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <svg 
+  class="share"
+  xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M14.0413 5.6C15.4497 5.6 16.5913 4.45833 16.5913 3.05C16.5913 1.64167 15.4497 0.5 14.0413 0.5C12.633 0.5 11.4913 1.64167 11.4913 3.05C11.4913 4.45833 12.633 5.6 14.0413 5.6Z" stroke="#0C0C0C" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M3.84138 11.55C5.24971 11.55 6.39138 10.4083 6.39138 9.00001C6.39138 7.59169 5.24971 6.45001 3.84138 6.45001C2.43306 6.45001 1.29138 7.59169 1.29138 9.00001C1.29138 10.4083 2.43306 11.55 3.84138 11.55Z" stroke="#0C0C0C" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M14.0413 17.5C15.4497 17.5 16.5913 16.3584 16.5913 14.95C16.5913 13.5417 15.4497 12.4 14.0413 12.4C12.633 12.4 11.4913 13.5417 11.4913 14.95C11.4913 16.3584 12.633 17.5 14.0413 17.5Z" stroke="#0C0C0C" stroke-linecap="round" stroke-linejoin="round"/>
@@ -396,6 +402,54 @@ function circleEvents() {
   });
 }
 
+// each icon of hidden options is clicked
+function editOptionEvents() {
+  const deletee = document.querySelectorAll(".delete");
+  const edit = document.querySelectorAll(".edit");
+  const share = document.querySelectorAll(".share");
+
+  // delete icon is clicked
+  deletee.forEach((icon)=>{
+    icon.addEventListener("click", deleting);
+  })
+
+  // edit icon is clicked
+  edit.forEach((icon)=>{
+    icon.addEventListener("click", editing);
+  })
+
+    // share icon is clicked
+  share.forEach((icon)=>{
+    icon.addEventListener("click", sharing);
+  })
+
+}
+
+  // add event edit opions
+  editOptionEvents();
+
+// ....................................................
+// edit options functions
+
+// for deleting the task:
+function deleting() {
+  console.log("i am clicked");
+
+}
+
+// for editing the task:
+function editing() {
+  console.log("i am clicked");
+
+}
+
+// for editing the task:
+function sharing() {
+  console.log("i am clicked");
+
+}
+
+
 // ....................................................
 // swipe variables
 
@@ -479,15 +533,8 @@ function touchStart(index) {
 
 function touchMove(e) {
   if (isDragging) {
-    console.log(10, preTranslate);
     const currentPosition = getPositionX(e);
     currentTranslate = preTranslate + currentPosition - startPosition;
-
-    console.log(startPosition);
-    console.log(currentPosition);
-    console.log(preTranslate);
-    console.log(currentTranslate);
-
   }
 }
 
@@ -502,11 +549,8 @@ function touchEnd() {
 // ....................................................
 
 function getPositionX(e) {
-  // if (0 >= currentTranslate > 1) {
+  // if (0 >= currentTranslate > 1) {}
   return e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
-  // console.log(e.pageX);
-  // console.log(e.clientX);
-  // }
 }
 
 function animation() {
@@ -523,47 +567,14 @@ function setPositionX() {
 // ....................................................
 // for notif:
 
-// const AlarmString = null;
-// const CreateAlarm = document.querySelector("#create-alarm");
-// const AlarmAudio = document.querySelector("#alarm-audio");
+// import notification from "./components/notification/notification.js"
 
-// AlarmAudio.src = "";
-// AlarmAudio.load();
+// notification(
+//   {
+//     // topImage:
+//     topText: "RemindMe",
+//     title: "Meeting",
+//     description: "talk",
 
-// function GetTime() {
-//   const { hours, minutes } = CreateAlarm[0];
-//   AlarmString.getTimeString({
-//     hours: hours.value,
-//     minutes: minutes.value,
-//   });
-//   CreateAlarm[o].reset();
-//   CreateAlarm.style.display = "none";
-// }
-
-// function CheckAlarm(TimeString) {
-//   if (AlarmString === TimeString) {
-//     AlarmAudio.play();
 //   }
-// }
-
-// function GetTimeString(hours, minutes) {
-//   if (minutes / 10 < 1) {
-//     minutes = "0" + minutes;
-//   }
-//   return `${hours}:${minutes}`;
-// }
-
-// function RenderTime() {
-//   const Dates = new Date();
-//   let hours = Dates.getHours();
-//   let minutes = Dates.getMinutes();
-
-//   if (hours > 10) {
-//     hours = hours % 12;
-//   }
-
-//   const TimeString = GetTimeString({ hours, minutes });
-//   CheckAlarm(TimeString);
-// }
-
-// setInterval(RenderTime, 1000);
+// );
