@@ -338,6 +338,8 @@ function moveTaskInLs(e) {
       finishedTaskStorage.push(task);
       // remove it from array of task storage
       taskStorage.splice(taskStorage.indexOf(task), 1);
+
+      return task;
     }
   });
 
@@ -356,7 +358,9 @@ function moveTaskBackInLs(e) {
   finishedTaskStorage.find((task) => {
     if (Object.is(task.id, currentId)) {
       taskStorage.push(task);
-      finishedTaskStorage.splice(taskStorage.indexOf(task), 1);
+      finishedTaskStorage.splice(finishedTaskStorage.indexOf(task), 1);
+
+      return task;
     }
   });
 
