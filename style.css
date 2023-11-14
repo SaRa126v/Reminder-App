@@ -4,6 +4,8 @@ body {
   background: #7b7a7a;
   margin: 0;
   user-select: none;
+  /* stop the unnecessary movement */
+  overflow-x: hidden;
 }
 
 .container {
@@ -15,6 +17,8 @@ body {
   background: var(--gray-gray-1, #f9f9f9);
   position: relative;
   overflow-y: scroll;
+    /* stop the unnecessary movement */
+  overflow-x: hidden;
 }
 
 .container::-webkit-scrollbar {
@@ -290,8 +294,6 @@ circle {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 24px;
 }
 
 /* the task is not checked yet............ */
@@ -494,8 +496,9 @@ transition: transform .5s ease-out;
 
 .editOptions {
 display: flex;
-justify-content: space-between;
 align-items: center;
+align-content: center;
+
 }
 
 .editOptions svg {
@@ -508,6 +511,7 @@ align-items: center;
   display: flex;
   justify-content: space-around;
   transition: transform 0.5 ease-in-out;
+  margin-bottom: 24px;
 }
 
 /* ................................................ */

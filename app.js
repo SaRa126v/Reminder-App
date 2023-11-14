@@ -141,7 +141,7 @@ function doneDisplayer(task) {
 // put it in a template & display it in the dom
 
 function taskTemp(newTask) {
-  return `<div class="swipeContainer"><div data-id="${newTask.id}" class="taskRow">
+  return `<div class="swipeContainer"><div data-id="${newTask.id}" class="taskRow hiddenOption">
 <!-- radio......................... -->
 <div class="unChecked"></div>
 <div class="task">
@@ -381,9 +381,9 @@ function toLS(taskStorage, finishedTaskStorage) {
   circleEvents();
   // check if empty state is needed
   emptyStateChecker();
-    // add event edit opions
-    editOptionEvents();
-// make swipe work after each change in local storage
+  // add event edit opions
+  editOptionEvents();
+  // make swipe work after each change in local storage
   swipeWork();
 }
 
@@ -417,24 +417,23 @@ function editOptionEvents() {
   const share = document.querySelectorAll(".share");
 
   // delete icon is clicked
-  deletee.forEach((icon)=>{
+  deletee.forEach((icon) => {
     icon.addEventListener("click", deleting);
-  })
+  });
 
   // edit icon is clicked
-  edit.forEach((icon)=>{
+  edit.forEach((icon) => {
     icon.addEventListener("click", editing);
-  })
+  });
 
-    // share icon is clicked
-  share.forEach((icon)=>{
+  // share icon is clicked
+  share.forEach((icon) => {
     icon.addEventListener("click", sharing);
-  })
-
+  });
 }
 
-  // add event edit opions
-  editOptionEvents();
+// add event edit opions
+editOptionEvents();
 
 // ....................................................
 // edit options functions
@@ -442,21 +441,17 @@ function editOptionEvents() {
 // for deleting the task:
 function deleting() {
   console.log("i am clicked");
-
 }
 
 // for editing the task:
 function editing() {
   console.log("i am clicked");
-
 }
 
 // for editing the task:
 function sharing() {
   console.log("i am clicked");
-
 }
-
 
 // ....................................................
 // swipe variables
@@ -467,7 +462,7 @@ const toDo = document.querySelector(".toDo");
 // Array.from() is used to *****************
 // animationFrameRequest() is used to***************
 
-// finger touching the screen?
+  // finger touching the screen?
 let isDragging = false,
   // position of finger
   startPosition = 0,
@@ -475,45 +470,56 @@ let isDragging = false,
   currentTranslate = 0,
   preTranslate = 0,
   // animation id
-  animationId = 0,
+  animationId = 0;
   // index of task
-  currentIndex = 0;
+  // currentIndex = 0;
+
 
 // ....................................................
 // swipe with touch events
 
 function swipeWork() {
   // each row
-  const taskRows = Array.from(document.querySelectorAll(".taskRow"));
+  const taskRows = document.querySelectorAll(".hiddenOption");
 
   taskRows.forEach((taskRow, index) => {
+
+// if (taskRow.data-id === e.target.data-id) {
+  
+// }
+
+// console.log(taskRows);
+// console.log(taskRow);
+// console.log(index);
+
     // finger:
     // finger touches the screen for the first time
     taskRow.addEventListener("touchstart", touchStart(index));
-  
     // finger moves on the screen
     taskRow.addEventListener("touchmove", touchMove);
-  
+
     // finger is no longer on the screen
     taskRow.addEventListener("touchend", touchEnd);
-  
+
     // when sth unexpected happens cancel the event
     taskRow.addEventListener("touchcancel", touchEnd);
-  
+
     // mouse:
     taskRow.addEventListener("mousedown", touchStart(index));
-  
+
     taskRow.addEventListener("mousemove", touchMove);
-  
+
     taskRow.addEventListener("mouseup", touchEnd);
-  
+
     taskRow.addEventListener("mouseleave", touchEnd);
-  }); 
+
+  });
 }
 
 swipeWork();
 
-
+// edit options should be hidden again when the user click on sth else
+window.addEventListener("click", stopSwipe);
 
 // ....................................................
 // to prevent the menu from showing when we hold it
@@ -523,7 +529,7 @@ swipeWork();
 // oncontextmenu = (event) => {};
 // addEventListener("contextmenu", (event) => {});
 
- toDo.oncontextmenu = (e) => {
+toDo.oncontextmenu = (e) => {
   e.preventDefault();
   e.stopPropagation();
 };
@@ -534,9 +540,12 @@ swipeWork();
 
 function touchStart(index) {
   // i want to use e as well so i put another function inside this function********************
+  // return the whole function
+
+  console.log(index);
+
   return function (e) {
     isDragging = true;
-    currentIndex = index;
     startPosition = getPositionX(e);
     animationId = requestAnimationFrame(animation);
   };
@@ -563,9 +572,17 @@ function touchEnd() {
 // ....................................................
 
 function getPositionX(e) {
-  // if (0 >= currentTranslate > 1) {}
-  return e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+  // the amount of translate
+  const movedBy = currentTranslate - preTranslate;
+
+  // allow it a limited amount of translate
+  if (movedBy > -120 && movedBy <= 0) {
+    // the position x for touch or mouse
+    return e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+  }
 }
+
+// ....................................................
 
 function animation() {
   setPositionX();
@@ -573,22 +590,28 @@ function animation() {
 }
 
 // ....................................................
+// set the position of task
 
 function setPositionX() {
   toDo.style.transform = `translateX(${currentTranslate}px)`;
 }
 
 // ....................................................
+// set the translate of the task back to 0 
+
+function stopSwipe() {
+  currentTranslate = 0;
+  setPositionX();
+}
+
+// ....................................................
 // for notif:
 
-import notification from "./components/notification/notification.js"
+import notification from "./components/notification/notification.js";
 
-notification(
-  {
-    // topImage:
-    topText: "RemindMe",
-    title: "Meeting",
-    description: "12:00",
-
-  }
-);
+notification({
+  // topImage:
+  topText: "RemindMe",
+  title: "Meeting",
+  description: "12:00",
+});
