@@ -58,6 +58,7 @@ textarea {
   border-radius: 5px;
   background: var(--gray-gray-1, #f9f9f9);
   margin-bottom: 16px;
+  resize: none;
 }
 
 textarea {

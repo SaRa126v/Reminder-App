@@ -238,12 +238,13 @@ function taskTemp(newTask) {
     <path d="M10.5486 8.21259V12.938" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   <!-- edit icon -->
+  <a href="Two Page/index.Html">
   <svg 
   class="edit"
   xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M8.07968 2.91193H2.2816C1.84224 2.91193 1.42088 3.07351 1.11021 3.36113C0.799534 3.64875 0.625 4.03884 0.625 4.4456V15.1813C0.625 15.588 0.799534 15.9781 1.11021 16.2657C1.42088 16.5534 1.84224 16.7149 2.2816 16.7149H13.8778C14.3171 16.7149 14.7385 16.5534 15.0492 16.2657C15.3598 15.9781 15.5344 15.588 15.5344 15.1813V9.81344" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M14.2919 1.76155C14.6214 1.45648 15.0683 1.2851 15.5343 1.2851C16.0003 1.2851 16.4472 1.45648 16.7767 1.76155C17.1063 2.06661 17.2914 2.48037 17.2914 2.9118C17.2914 3.34322 17.1063 3.75698 16.7767 4.06205L8.90792 11.347L5.59473 12.1138L6.42302 9.04647L14.2919 1.76155Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+  </svg></a>
   <!-- share icon -->
   <svg 
   class="share"
@@ -463,6 +464,23 @@ function deleting(e) {
 // for editing the task:
 function editing(e) {
   console.log("i am clicked");
+
+  const taskStorage = getTaskStorage();
+  const finishedTaskStorage = getFinishedTaskStorage();
+  const currentId = idGetter(e);
+
+  // find the id in taskStorage
+  taskStorage.find((task) => {
+    if (Object.is(task.id, currentId)) {
+      // remove it from array of task storage
+      taskStorage.splice(taskStorage.indexOf(task), 1);
+      return task;
+    }
+  });
+
+  // the task is now added to finishedTaskStorage
+  // so we must put it back in ls
+  toLS(taskStorage, finishedTaskStorage);
 }
 
 // for editing the task:
@@ -536,7 +554,7 @@ function swipeWork() {
 swipeWork();
 
 // edit options should be hidden again when the user click on sth else
-// window.addEventListener("click", stopSwipe);
+window.addEventListener("click", stopSwipe);
 
 // ....................................................
 // to prevent the menu from showing when we hold it

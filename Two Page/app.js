@@ -181,9 +181,12 @@ function disappear(e) {
 // display the current time to the user................
 // it is the default time so if the user doesnt select a time this will be selected automatically
 
+// only call new date once to stop time diffrerence 
+const datee = new Date();
+
 // get the current time
-let currentHour = new Date().getHours();
-let currentMin = new Date().getMinutes();
+let currentHour = datee.getHours();
+let currentMin = datee.getMinutes();
 
 function displayCurrentTime() {
   // add 0 if needed
@@ -204,9 +207,9 @@ displayCurrentTime();
 // display the current date to the user...................
 
 // get the current time
-let currentMonth = new Date().getMonth();
-let currentday = new Date().getDate();
-let currentyear = new Date().getFullYear();
+let currentMonth = datee.getMonth();
+let currentday = datee.getDate();
+let currentyear = datee.getFullYear();
 
 function displayCurrentDate() {
   // add 0 if needed
@@ -464,7 +467,13 @@ optionChosser(categoryOptions, spanCategoryChild);
 // get the type from the previous page to determin which task category is chosen
 
 function gpDeterminer() {
-  const { type } = simpleQueryString.parse(location.href);
+  let { type } = simpleQueryString.parse(location.href);
+
+  // for editing the task in the local storage
+  // ***************************************
+if(!type) {
+  type = "custom"
+}
 
   let taskArray = [];
 

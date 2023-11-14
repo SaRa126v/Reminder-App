@@ -4,254 +4,347 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Remind Me Home Page</title>
-    <link rel="stylesheet" href="./components/notification/notification.css"/>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="./components/notification/notification.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
-    <!-- Header.................................... -->
-    <header>
-      <!-- Logo & Menu............................. -->
-      <div id="upHeader">
-        <h2>Remind<span>Me</span></h2>
-        <!-- Menu Svg............................... -->
-       <a href="#"><svg
-          id="menuIcon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="25"
-          height="24"
-          viewBox="0 0 25 24"
-          fill="none"
-        >
-          <path
-            d="M22.5702 19.2001H3.13245M22.5702 12H3.13245M22.5702 4.80005H3.13245"
-            stroke="#404040"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg></a>
-      </div>
+      <!-- Header.................................... -->
+      <header>
+        <!-- Logo & Menu............................. -->
+        <div id="upHeader">
+          <h2>Remind<span>Me</span></h2>
+          <!-- Menu Svg............................... -->
+          <a href="#"
+            ><svg
+              id="menuIcon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+            >
+              <path
+                d="M22.5702 19.2001H3.13245M22.5702 12H3.13245M22.5702 4.80005H3.13245"
+                stroke="#404040"
+                stroke-width="2"
+                stroke-linecap="round"
+              /></svg
+          ></a>
+        </div>
 
-      <!-- Search Box............................... -->
-      <div id="downHeader">
-        <div id="searchBox">
-          <input type="text" placeholder="Search a task" />
-          <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" fill="#F9F9F9" stroke="#A29EF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19 19L14.65 14.65" stroke="#A29EF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg></a>
-        </div>
-      </div>
-    </header>
-
-    <!-- Calender.................................... -->
-    <!-- فکرکنم تاریخ روزها باید توی جی اس ساخته شه -->
-    <section>
-      <h6>October,2023</h6>
-      <div id="calendar">
-        <div class="activeDay">
-          <span>Sun</span>
-          <hr />
-          <span>11</span>
-        </div>
-        <div>
-          <span>Mon</span>
-          <hr />
-          <span>11</span>
-        </div>
-        <div>
-          <span>Tue</span>
-          <hr />
-          <span>11</span>
-        </div>
-        <div>
-          <span>Wed</span>
-          <hr />
-          <span>11</span>
-        </div>
-        <div>
-          <span>Thu</span>
-          <hr />
-          <span>11</span>
-        </div>
-        <div>
-          <span>Fri</span>
-          <hr />
-          <span>11</span>
-        </div>
-        <div>
-          <span>Sat</span>
-          <hr />
-          <span>11</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Special Events & Progress.................. -->
-
-    <section id="important">
-      <!-- Events -->
-      <div id="event">
-        <h3>Special Events:</h3>
-
-        <!-- Each Event........... -->
-        <div class="column">
-          <div class="backImg">
-            <img src="assets/images/Pills.png" alt="Pills" />
+        <!-- Search Box............................... -->
+        <div id="downHeader">
+          <div id="searchBox">
+            <input type="text" placeholder="Search a task" />
+            <a href="#"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+                  fill="#F9F9F9"
+                  stroke="#A29EF1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M19 19L14.65 14.65"
+                  stroke="#A29EF1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></a>
           </div>
-             <p>Eli's Wedding</p>
+        </div>
+      </header>
+
+      <!-- Calender.................................... -->
+      <!-- فکرکنم تاریخ روزها باید توی جی اس ساخته شه -->
+      <section>
+        <h6>October,2023</h6>
+        <div id="calendar">
+          <div class="activeDay">
+            <span>Sun</span>
+            <hr />
+            <span>11</span>
+          </div>
+          <div>
+            <span>Mon</span>
+            <hr />
+            <span>11</span>
+          </div>
+          <div>
+            <span>Tue</span>
+            <hr />
+            <span>11</span>
+          </div>
+          <div>
+            <span>Wed</span>
+            <hr />
+            <span>11</span>
+          </div>
+          <div>
+            <span>Thu</span>
+            <hr />
+            <span>11</span>
+          </div>
+          <div>
+            <span>Fri</span>
+            <hr />
+            <span>11</span>
+          </div>
+          <div>
+            <span>Sat</span>
+            <hr />
+            <span>11</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Special Events & Progress.................. -->
+
+      <section id="important">
+        <!-- Events -->
+        <div id="event">
+          <h3>Special Events:</h3>
+
+          <!-- Each Event........... -->
+          <div class="column">
+            <div class="backImg">
+              <img src="assets/images/Pills.png" alt="Pills" />
+            </div>
+            <p>Eli's Wedding</p>
+          </div>
+
+          <div class="column">
+            <div class="backImg">
+              <img src="assets/images/Pills.png" alt="Pills" />
+            </div>
+            <p>My Mom's Birthday</p>
+          </div>
+
+          <div class="column">
+            <div class="backImg">
+              <img src="assets/images/Pills.png" alt="Pills" />
+            </div>
+            <p>Ebi's Concert</p>
+          </div>
+        </div>
+
+        <!-- Circular Progress Bar -->
+        <div id="progress">
+          <div id="outer">
+            <div id="inner">
+              <h1>7/10</h1>
             </div>
 
-
-            <div class="column">
-          <div class="backImg">
-            <img src="assets/images/Pills.png" alt="Pills" />
+            <!-- progress bar Svg................... -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="160px"
+              height="160px"
+            >
+              <defs>
+                <radialGradient
+                  id="paint0_radial_160_346"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(-0.500003 126.5) rotate(-65.8486) scale(153.978)"
+                >
+                  <stop offset="0.382179" stop-color="#795FFF" />
+                  <stop offset="0.970666" stop-color="#E4B1F1" />
+                </radialGradient>
+              </defs>
+              <circle cx="70" cy="71" r="64" stroke-linecap="round" />
+            </svg>
           </div>
-<p>My Mom's Birthday</p>
-</div>
-
-<div class="column">
-          <div class="backImg">
-            <img src="assets/images/Pills.png" alt="Pills" />
-          </div>
-    <p>Ebi's Concert</p></div>
-
-      </div>
-
-      <!-- Circular Progress Bar -->
-      <div id="progress">
-        <div id="outer">
-          <div id="inner">
-            <h1>7/10</h1>
-          </div>
-
-          <!-- progress bar Svg................... -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            version="1.1"
-            width="160px"
-            height="160px"
-          >
-            <defs>
-            
-              <radialGradient
-                id="paint0_radial_160_346"
-                cx="0"
-                cy="0"
-                r="1"
-                gradientUnits="userSpaceOnUse"
-                gradientTransform="translate(-0.500003 126.5) rotate(-65.8486) scale(153.978)"
-              >
-                <stop offset="0.382179" stop-color="#795FFF" />
-                <stop offset="0.970666" stop-color="#E4B1F1" />
-              </radialGradient>
-            </defs>
-            <circle cx="70" cy="71" r="64" stroke-linecap="round" />
-          </svg>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- To Do Tasks.............................. -->
-    <section>
-      <!-- headline -->
+      <!-- To Do Tasks.............................. -->
+      <section>
+        <!-- headline -->
         <div class="headlineSec">
-        <h2>To-do:</h2>
-        <div class="sort">
-          <span>Sort by</span>
-          <!-- Drop Down Svg..................... -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="11"
-            height="6"
-            viewBox="0 0 11 6"
-            fill="none"
-          >
-            <path
-              d="M1 1L5.5 5L10 1"
-              stroke="#404040"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <h2>To-do:</h2>
+          <div class="sort">
+            <span>Sort by</span>
+            <!-- Drop Down Svg..................... -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="6"
+              viewBox="0 0 11 6"
+              fill="none"
+            >
+              <path
+                d="M1 1L5.5 5L10 1"
+                stroke="#404040"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
 
-      <!-- Tasks -->
-      <div class="tasks toDo"></div>
-    </section>
+        <!-- Tasks -->
+        <div class="tasks toDo"></div>
+      </section>
 
-    <!-- Finished Tasks.......................... -->
-    <section>
-      <!-- headline -->
-      <div class="headlineSec">
-        <h2>Done:</h2>
-        <div class="sort">
-          <span>Sort by</span>
+      <!-- Finished Tasks.......................... -->
+      <section>
+        <!-- headline -->
+        <div class="headlineSec">
+          <h2>Done:</h2>
+          <div class="sort">
+            <span>Sort by</span>
 
-          <!-- Drop Down Svg...................... -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="11"
-            height="6"
-            viewBox="0 0 11 6"
-            fill="none"
-          >
-            <path
-              d="M1 1L5.5 5L10 1"
-              stroke="#404040"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+            <!-- Drop Down Svg...................... -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="6"
+              viewBox="0 0 11 6"
+              fill="none"
+            >
+              <path
+                d="M1 1L5.5 5L10 1"
+                stroke="#404040"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
 
-      <!-- Tasks -->
-      <div class="tasks finished"></div>  
-    </section>
+        <!-- Tasks -->
+        <div class="tasks finished"></div>
+      </section>
 
-<!-- blur page -->
-<div id="blurPage" class="disabled"></div>
+      <!-- blur page -->
+      <div id="blurPage" class="disabled"></div>
+    </div>
 
-  </div>
+    <!-- Task Groups....................  -->
+    <section class="groupsSec"></section>
 
-        <!-- Task Groups....................  -->
-<section class="groupsSec"></section>
-
-      <!-- Mobile Navigation Menu....................  -->
-      <section id="nav">
-        <ul>
-
-       <!-- User Svg............................ -->
-          <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="26" viewBox="0 0 23 26" fill="none">
-          <path d="M21.7143 24.9464V22.3571C21.7143 20.9837 21.1687 19.6665 20.1975 18.6953C19.2263 17.7242 17.9092 17.1786 16.5357 17.1786H6.17857C4.80513 17.1786 3.48794 17.7242 2.51677 18.6953C1.5456 19.6665 1 20.9837 1 22.3571V24.9464" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M11.3571 12C14.2172 12 16.5357 9.68147 16.5357 6.82142C16.5357 3.96138 14.2172 1.64285 11.3571 1.64285C8.49708 1.64285 6.17856 3.96138 6.17856 6.82142C6.17856 9.68147 8.49708 12 11.3571 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg></li>
-
-
-          <!-- Add Task Svg............................ -->
+    <!-- Mobile Navigation Menu....................  -->
+    <section id="nav">
+      <ul>
+        <!-- User Svg............................ -->
         <li>
-          <svg id="addBtn" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
-          <path d="M21.7143 41.9464C32.76 41.9464 41.7143 32.9921 41.7143 21.9464C41.7143 10.9007 32.76 1.94643 21.7143 1.94643C10.6686 1.94643 1.71429 10.9007 1.71429 21.9464C1.71429 32.9921 10.6686 41.9464 21.7143 41.9464Z" fill="#F9F9F9" stroke="#8983F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M21.7143 13.9465V29.9465" stroke="#8983F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13.715 21.9464H29.715" stroke="#8983F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg></li>
-        
-          <!-- Calendar Svg............................ -->
-          <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
-          <path d="M22.4286 3.64285H4.30358C2.87356 3.64285 1.71429 4.80212 1.71429 6.23214V24.3571C1.71429 25.7872 2.87356 26.9464 4.30358 26.9464H22.4286C23.8586 26.9464 25.0179 25.7872 25.0179 24.3571V6.23214C25.0179 4.80212 23.8586 3.64285 22.4286 3.64285Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18.5446 1.05357V6.23214" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M8.18752 1.05357V6.23214" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M1.71429 11.4107H25.0179" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg></li></ul>
-            </section>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="23"
+            height="26"
+            viewBox="0 0 23 26"
+            fill="none"
+          >
+            <path
+              d="M21.7143 24.9464V22.3571C21.7143 20.9837 21.1687 19.6665 20.1975 18.6953C19.2263 17.7242 17.9092 17.1786 16.5357 17.1786H6.17857C4.80513 17.1786 3.48794 17.7242 2.51677 18.6953C1.5456 19.6665 1 20.9837 1 22.3571V24.9464"
+              stroke="#F9F9F9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.3571 12C14.2172 12 16.5357 9.68147 16.5357 6.82142C16.5357 3.96138 14.2172 1.64285 11.3571 1.64285C8.49708 1.64285 6.17856 3.96138 6.17856 6.82142C6.17856 9.68147 8.49708 12 11.3571 12Z"
+              stroke="#F9F9F9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </li>
 
-<!-- notif section................................. -->
+        <!-- Add Task Svg............................ -->
+        <li>
+          <svg
+            id="addBtn"
+            xmlns="http://www.w3.org/2000/svg"
+            width="43"
+            height="43"
+            viewBox="0 0 43 43"
+            fill="none"
+          >
+            <path
+              d="M21.7143 41.9464C32.76 41.9464 41.7143 32.9921 41.7143 21.9464C41.7143 10.9007 32.76 1.94643 21.7143 1.94643C10.6686 1.94643 1.71429 10.9007 1.71429 21.9464C1.71429 32.9921 10.6686 41.9464 21.7143 41.9464Z"
+              fill="#F9F9F9"
+              stroke="#8983F4"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M21.7143 13.9465V29.9465"
+              stroke="#8983F4"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.715 21.9464H29.715"
+              stroke="#8983F4"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </li>
 
-            <script type="module" src="app.js"></script>
+        <!-- Calendar Svg............................ -->
+        <li>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="27"
+            height="28"
+            viewBox="0 0 27 28"
+            fill="none"
+          >
+            <path
+              d="M22.4286 3.64285H4.30358C2.87356 3.64285 1.71429 4.80212 1.71429 6.23214V24.3571C1.71429 25.7872 2.87356 26.9464 4.30358 26.9464H22.4286C23.8586 26.9464 25.0179 25.7872 25.0179 24.3571V6.23214C25.0179 4.80212 23.8586 3.64285 22.4286 3.64285Z"
+              stroke="#F9F9F9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M18.5446 1.05357V6.23214"
+              stroke="#F9F9F9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8.18752 1.05357V6.23214"
+              stroke="#F9F9F9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M1.71429 11.4107H25.0179"
+              stroke="#F9F9F9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </li>
+      </ul>
+    </section>
 
+    <!-- notif section................................. -->
+
+    <script type="module" src="app.js"></script>
   </body>
 </html>
