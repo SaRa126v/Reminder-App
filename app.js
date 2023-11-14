@@ -96,6 +96,9 @@ function emptyStateChecker() {
 
 function emptyState() {
   console.log("need to work on empty state");
+
+  document.querySelector(".disabledEmptyState")?.classList.remove("disabledEmptyState");
+
 }
 
 // ......................................................
@@ -103,6 +106,8 @@ function emptyState() {
 function displaytasks() {
   const taskStorage = getTaskStorage();
   const finishedTaskStorage = getFinishedTaskStorage();
+
+  emptyStateChecker();
 
   // load tasks only once
   removePreLoadedTasks();

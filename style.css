@@ -406,6 +406,7 @@ transition: transform .5s ease-out;
   position: sticky;
   bottom: 0;
   width: fit-content;
+  z-index: 1;
 }
 
 #nav ul {
@@ -435,6 +436,7 @@ transition: transform .5s ease-out;
   width: fit-content;
   height: fit-content;
   margin: 0 auto;
+  z-index: 1;
 }
 
 #groups {
@@ -484,6 +486,7 @@ transition: transform .5s ease-out;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 /* do not blur the container.......... */
@@ -515,34 +518,50 @@ align-content: center;
 }
 
 /* ................................................ */
-/* for notif....................................... */
+/* empty state....................................... */
+
+.emptyState {
+  background:var(--gray-gray-1, #f9f9f9);
+position: absolute;
+top: 250px;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+.emptyStateHolder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.emptyState img{
+  width: 305px;
+  height: 248px;
+}
+
+.emptyStateIext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyStateIext span:first-of-type {
+  color: var(--gray-gray-9, #202020);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
 
 
-#current-time {
-  font-size: 32px;
+.emptyStateIext span:last-of-type {
+  color: var(--Primary, #8983F4);
+  font-size: 1.25rem;
 }
-#current-time,
-.create-alarm,
-h1,
-#active-alarm {
-  text-align: center;
-}
-.create-alarm,
-.alarm-inputs,
-#active-alarm {
-  margin-top: 20px;
-}
-input {
-  width: 100px;
-  height: 30px;
-}
-.alarm-inputs,
-#alarm-text {
-  margin-bottom: 30px;
-}
-button {
-  font-size: 18px;
-}
-#active-alarm {
+
+.disabledEmptyState {
   display: none;
 }
+
