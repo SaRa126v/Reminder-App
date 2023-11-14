@@ -626,8 +626,17 @@ function stopSwipe() {
 import notification from "./components/notification/notification.js";
 
 notification({
-  // topImage:
-  topText: "RemindMe",
-  title: "Meeting",
-  description: "12:00",
+  title: "Have nice day!!",
+  description: "Check your today's task, dear",
+  image: "assets/images/logo.png",
 });
+
+// notification({
+//   // this should be svg
+//   topImage:"assets/images/solo logo.png",
+//   topText: "RemindMe",
+//   title: "????",
+//   timer: ,
+//   // this should be different for each category
+//   image: "assets/images/Hard Working.png",
+// });

@@ -501,7 +501,7 @@ transition: transform .5s ease-out;
 display: flex;
 align-items: center;
 align-content: center;
-
+margin-left: 20px;
 }
 
 .editOptions svg {
