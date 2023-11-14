@@ -238,6 +238,15 @@ const hour = document.querySelector(".hour");
 const min = document.querySelector(".min");
 
 function timeMaker() {
+
+    // perameter of class for emptySpanMaker func
+    let hourClass = "h"
+    let minClass = "m"
+  
+    // build an empty span at the start
+    emptySpanMaker(hour, hourClass);
+    emptySpanMaker(min, minClass);
+
   // making & displaying the hours
   for (let h = 0; h < 24; h++) {
     const spanHour = document.createElement("span");
@@ -259,6 +268,10 @@ function timeMaker() {
     spanMin.innerText = m;
     min?.appendChild(spanMin);
   }
+
+      // build an empty span at the end
+      emptySpanMaker(hour, hourClass);
+      emptySpanMaker(min, minClass);
 }
 
 timeMaker();
@@ -270,10 +283,20 @@ const day = document.querySelector(".day");
 const month = document.querySelector(".month");
 
 function dateMaker() {
+  // perameter of class for emptySpanMaker func
+  let yearClass = "y"
+  let dayClass = "d"
+  let monthClass = "mo"
+
+  // build an empty span at the start
+  emptySpanMaker(year, yearClass);
+  emptySpanMaker(day, dayClass);
+  emptySpanMaker(month, monthClass);
+
   // making & displaying the years
   for (let y = currentyear; y <= currentyear + 10; y++) {
     const spanYear = document.createElement("span");
-    spanYear.setAttribute("class", "y");
+    spanYear.setAttribute("class", yearClass);
     spanYear.innerText = y;
     year?.appendChild(spanYear);
   }
@@ -281,7 +304,7 @@ function dateMaker() {
   // making & displaying the days
   for (let d = 1; d <= 30; d++) {
     const spanDay = document.createElement("span");
-    spanDay.setAttribute("class", "d");
+    spanDay.setAttribute("class", dayClass);
     spanDay.innerText = d;
     day?.appendChild(spanDay);
   }
@@ -289,16 +312,33 @@ function dateMaker() {
   // making & displaying the months
   for (let mo = 1; mo <= 12; mo++) {
     const spanMonth = document.createElement("span");
-    spanMonth.setAttribute("class", "mo");
+    spanMonth.setAttribute("class", monthClass);
     if (mo < 10) {
       mo = "0" + mo;
     }
     spanMonth.innerText = mo;
     month?.appendChild(spanMonth);
   }
+
+  // build an empty span at the end
+  emptySpanMaker(year, yearClass);
+  emptySpanMaker(day, dayClass);
+  emptySpanMaker(month, monthClass);
+
 }
 
 dateMaker();
+
+// .................................................
+// empty span for scroll
+
+function emptySpanMaker(parent, specificClass) {
+  const span = document.createElement("span");
+  span.setAttribute("class", specificClass);
+  span.innerText = " ";
+  span.style.padding = "5px";
+  parent?.appendChild(span);
+}
 
 // .................................................
 

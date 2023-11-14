@@ -160,7 +160,8 @@ textarea {
   align-content: center;
 }
 
-/* hide the scroll........... */
+/* hide the scroll................................. */
+ /* Hide scrollbar for Chrome, Safari and Opera */
 
 .hour::-webkit-scrollbar,
 .min::-webkit-scrollbar,
@@ -169,6 +170,18 @@ textarea {
 .year::-webkit-scrollbar {
   display: none;
 }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hour,
+.min,
+.day,
+.month,
+.year {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+} 
+
+/* ............................................ */
 
 .hour span,
 .min span,
