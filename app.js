@@ -227,7 +227,7 @@ function taskTemp(newTask) {
   </svg>
 </div>
 </div>
-<div class="editOptions">
+<div class="editOptions" data-id="${newTask.id}">
   <!-- trash icon -->
   <svg 
   class="delete"
@@ -437,14 +437,31 @@ editOptionEvents();
 
 // ....................................................
 // edit options functions
-
+// انکار باید دوبار کلیک کرد ک پاک کنه*********************
 // for deleting the task:
-function deleting() {
+function deleting(e) {
   console.log("i am clicked");
+
+    const taskStorage = getTaskStorage();
+    const finishedTaskStorage = getFinishedTaskStorage();
+    const currentId = idGetter(e);
+
+    // find the id in taskStorage
+    taskStorage.find((task) => {
+      if (Object.is(task.id, currentId)) {
+        // remove it from array of task storage
+        taskStorage.splice(taskStorage.indexOf(task), 1);
+        return task;
+      }
+    });
+  
+    // the task is now added to finishedTaskStorage
+    // so we must put it back in ls
+    toLS(taskStorage, finishedTaskStorage);
 }
 
 // for editing the task:
-function editing() {
+function editing(e) {
   console.log("i am clicked");
 }
 
@@ -519,7 +536,7 @@ function swipeWork() {
 swipeWork();
 
 // edit options should be hidden again when the user click on sth else
-window.addEventListener("click", stopSwipe);
+// window.addEventListener("click", stopSwipe);
 
 // ....................................................
 // to prevent the menu from showing when we hold it

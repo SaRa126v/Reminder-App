@@ -502,7 +502,7 @@ align-content: center;
 }
 
 .editOptions svg {
-  margin-left : 21px;
+  padding: 10px;
   cursor: pointer;
 }
 
