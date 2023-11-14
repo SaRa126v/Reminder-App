@@ -1,3 +1,5 @@
+const queryString = simpleQueryString.parse(location.href);
+
 // variables of time...................................
 const timeSelect = document.querySelector(".timeSelect");
 
@@ -64,13 +66,11 @@ const containerCategorySelect = document.querySelector(
 // final save btn
 const finalSaveBtn = document.querySelector("#finalSaveBtn");
 
-// title input 
+// title input
 const titleInput = document.querySelector("#title");
 
 // description textarea
 const descriptionTesxtarea = document.querySelector("#description");
-
-
 
 // on click events..................................
 
@@ -181,7 +181,7 @@ function disappear(e) {
 // display the current time to the user................
 // it is the default time so if the user doesnt select a time this will be selected automatically
 
-// only call new date once to stop time diffrerence 
+// only call new date once to stop time diffrerence
 const datee = new Date();
 
 // get the current time
@@ -467,13 +467,13 @@ optionChosser(categoryOptions, spanCategoryChild);
 // get the type from the previous page to determin which task category is chosen
 
 function gpDeterminer() {
-  let { type } = simpleQueryString.parse(location.href);
+  let { type } = queryString;
 
   // for editing the task in the local storage
   // ***************************************
-if(!type) {
-  type = "custom"
-}
+  if (!type) {
+    type = "custom";
+  }
 
   let taskArray = [];
 
@@ -512,12 +512,12 @@ if(!type) {
 // make a new id for each task by getting the current time as string
 const idMaker = () => new Date().getTime().toString();
 
-
-  // get the info of task & add it in local storage
+// get the info of task & add it in local storage
 function taskSaver() {
+  const { taskId } = finalSaveBtn.dataset;
+
   // take the info
   const taskInfo = {
-    id: idMaker(),
     title: titleInput.value,
     description: descriptionTesxtarea.value,
     category: spanCategoryChild.innerText,
@@ -527,23 +527,49 @@ function taskSaver() {
     repeat: spanRepeatChild.innerText,
   };
 
-  // put it in the local storage
-  addInLs(taskInfo); 
+  // add a key outside of obj
+  // taskInfo.id = idMaker()
 
+  // remove from obj
+  // delete taskInfo.id
+
+  if (!taskId) {
+    taskInfo.id = idMaker();
+
+    // put it in the local storage
+    addInLs(taskInfo);
+  } else {
+    const taskStorage = fromLS1();
+
+    // find the tsk with the pre id
+    const task = taskStorage.find((task) => {
+      return task.id === taskId;
+    });
+  
+    // put the previous id 
+    taskInfo.id = taskId;
+
+    // find the index so we can easily put our object in ls
+   const taskIndex = taskStorage.indexOf(task) 
+   taskStorage[taskIndex] = taskInfo;
+
+    // put it in the local storage
+    toLS(taskStorage);
+  }
 }
 
 // .....................................................
 // local storage:
 
 // 1)
- function fromLS1() {
+function fromLS1() {
   // get the task storage if it already exists
   let tasksStorage = JSON.parse(localStorage.getItem("tasks"));
 
   // if task storage does not exist, build one
   if (!tasksStorage) {
     localStorage.setItem("tasks", JSON.stringify([]));
-   tasksStorage = JSON.parse(localStorage.getItem("tasks"));
+    tasksStorage = JSON.parse(localStorage.getItem("tasks"));
   }
 
   return tasksStorage;
@@ -551,18 +577,14 @@ function taskSaver() {
 
 // 2)
 function addInLs(taskInfo) {
-  
-// get our task storage.....
-const tasksStorage = fromLS1();
+  // get our task storage.....
+  const tasksStorage = fromLS1();
 
-// add an obj in the task storage.....
-tasksStorage.push(
-  taskInfo
-)
+  // add an obj in the task storage.....
+  tasksStorage.push(taskInfo);
 
-// put it back in the local storage.....
-toLS(tasksStorage); 
-
+  // put it back in the local storage.....
+  toLS(tasksStorage);
 }
 
 // 3)
@@ -572,3 +594,31 @@ function toLS(tasksStorage) {
 }
 
 // .....................................................
+// editing the task
+// show the already existing task in the page to edit
+
+function editTask() {
+  let { id } = queryString;
+  // if there is no id, stop
+  if (!id) return;
+
+  finalSaveBtn.dataset.taskId = id;
+
+  const taskStorage = fromLS1();
+
+  const task = taskStorage.find((task) => {
+    return task.id === id;
+    // if(task.id === id) return task
+  });
+
+  // show in Dom
+  titleInput.value = task.title;
+  descriptionTesxtarea.value = task.description;
+  spanCategoryChild.innerText = task.category;
+  spanDateChild.innerText = task.date;
+  spanChild.innerText = task.time;
+  spanReminderChild.innerText = task.reminder;
+  spanRepeatChild.innerText = task.repeat;
+}
+
+editTask();

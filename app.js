@@ -1,3 +1,6 @@
+// import
+// import { editTask } from "./Two Page/app.js";
+
 // variables...........................................
 
 // add task button:
@@ -238,7 +241,7 @@ function taskTemp(newTask) {
     <path d="M10.5486 8.21259V12.938" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   <!-- edit icon -->
-  <a href="Two Page/index.Html">
+  <a href="Two Page/index.Html?id=${newTask.id}">
   <svg 
   class="edit"
   xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -422,11 +425,6 @@ function editOptionEvents() {
     icon.addEventListener("click", deleting);
   });
 
-  // edit icon is clicked
-  edit.forEach((icon) => {
-    icon.addEventListener("click", editing);
-  });
-
   // share icon is clicked
   share.forEach((icon) => {
     icon.addEventListener("click", sharing);
@@ -461,29 +459,7 @@ function deleting(e) {
     toLS(taskStorage, finishedTaskStorage);
 }
 
-// for editing the task:
-function editing(e) {
-  console.log("i am clicked");
 
-  const taskStorage = getTaskStorage();
-  const finishedTaskStorage = getFinishedTaskStorage();
-  const currentId = idGetter(e);
-
-  // find the id in taskStorage
-  taskStorage.find((task) => {
-    if (Object.is(task.id, currentId)) {
-      // remove it from array of task storage
-      taskStorage.splice(taskStorage.indexOf(task), 1);
-      return task;
-    }
-  });
-
-  // the task is now added to finishedTaskStorage
-  // so we must put it back in ls
-  toLS(taskStorage, finishedTaskStorage);
-}
-
-// for editing the task:
 function sharing() {
   console.log("i am clicked");
 }
