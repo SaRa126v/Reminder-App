@@ -373,6 +373,10 @@ transition: transform .5s ease-out;
 
 /* Finished Tasks................................... */
 
+.finished .taskRow {
+  margin-bottom: 16px;
+}
+
 .finished .task {
   background: var(--gray-gray-1, #f9f9f9);
   border: 1.5px solid var(--tint-tint-3, #c5c3f0);
@@ -514,7 +518,7 @@ margin-left: 20px;
   display: flex;
   justify-content: space-around;
   transition: transform 0.5 ease-in-out;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 /* ................................................ */
