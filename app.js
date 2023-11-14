@@ -1,4 +1,3 @@
-
 // variables...........................................
 
 // add task button:
@@ -95,8 +94,9 @@ function emptyStateChecker() {
 function emptyState() {
   console.log("need to work on empty state");
 
-  document.querySelector(".disabledEmptyState")?.classList.remove("disabledEmptyState");
-
+  document
+    .querySelector(".disabledEmptyState")
+    ?.classList.remove("disabledEmptyState");
 }
 
 // ......................................................
@@ -444,24 +444,23 @@ editOptionEvents();
 function deleting(e) {
   console.log("i am clicked");
 
-    const taskStorage = getTaskStorage();
-    const finishedTaskStorage = getFinishedTaskStorage();
-    const currentId = idGetter(e);
+  const taskStorage = getTaskStorage();
+  const finishedTaskStorage = getFinishedTaskStorage();
+  const currentId = idGetter(e);
 
-    // find the id in taskStorage
-    taskStorage.find((task) => {
-      if (Object.is(task.id, currentId)) {
-        // remove it from array of task storage
-        taskStorage.splice(taskStorage.indexOf(task), 1);
-        return task;
-      }
-    });
-  
-    // the task is now added to finishedTaskStorage
-    // so we must put it back in ls
-    toLS(taskStorage, finishedTaskStorage);
+  // find the id in taskStorage
+  taskStorage.find((task) => {
+    if (Object.is(task.id, currentId)) {
+      // remove it from array of task storage
+      taskStorage.splice(taskStorage.indexOf(task), 1);
+      return task;
+    }
+  });
+
+  // the task is now added to finishedTaskStorage
+  // so we must put it back in ls
+  toLS(taskStorage, finishedTaskStorage);
 }
-
 
 function sharing() {
   console.log("i am clicked");
@@ -476,7 +475,7 @@ const toDo = document.querySelector(".toDo");
 // Array.from() is used to *****************
 // animationFrameRequest() is used to***************
 
-  // finger touching the screen?
+// finger touching the screen?
 let isDragging = false,
   // position of finger
   startPosition = 0,
@@ -484,28 +483,21 @@ let isDragging = false,
   currentTranslate = 0,
   preTranslate = 0,
   // animation id
-  animationId = 0;
+  animationId = 0,
   // index of task
-  // currentIndex = 0;
-
+  currentIndex = 0;
 
 // ....................................................
 // swipe with touch events
 
 function swipeWork() {
+  // the container that will move
+  // const taskRows = document.querySelectorAll(".hiddenOption");
+
   // each row
   const taskRows = document.querySelectorAll(".hiddenOption");
 
   taskRows.forEach((taskRow, index) => {
-
-// if (taskRow.data-id === e.target.data-id) {
-  
-// }
-
-// console.log(taskRows);
-// console.log(taskRow);
-// console.log(index);
-
     // finger:
     // finger touches the screen for the first time
     taskRow.addEventListener("touchstart", touchStart(index));
@@ -526,7 +518,6 @@ function swipeWork() {
     taskRow.addEventListener("mouseup", touchEnd);
 
     taskRow.addEventListener("mouseleave", touchEnd);
-
   });
 }
 
@@ -556,7 +547,7 @@ function touchStart(index) {
   // i want to use e as well so i put another function inside this function********************
   // return the whole function
 
-  console.log(index);
+  currentIndex = index;
 
   return function (e) {
     isDragging = true;
@@ -611,7 +602,7 @@ function setPositionX() {
 }
 
 // ....................................................
-// set the translate of the task back to 0 
+// set the translate of the task back to 0
 
 function stopSwipe() {
   currentTranslate = 0;
@@ -623,7 +614,6 @@ function stopSwipe() {
 
 import notification from "./components/notification/notification.js";
 
-
 // each time user enters the page this notification will be shown
 notification({
   title: "Have nice day!!",
@@ -631,28 +621,26 @@ notification({
   image: "assets/images/logo.png",
 });
 
-
 // each task will be shown when the time is right
-function taskForNotif(){
-  const taskStorage = getTaskStorage();
-  
- taskStorage.forEach((task)=>{
- 
-  const arrayNotif =  {
-    // this should be svg
-    topImage:"assets/images/solo logo.png",
-    topText: "RemindMe",
-    title: task.title,
-    // instead of description we need time
-    description: task.time,
-    // this should be different for each category
-    image: "assets/images/Hard Working.png",
-  }
+// function taskForNotif(){
+//   const taskStorage = getTaskStorage();
 
-  notification(arrayNotif);
-  })
+//  taskStorage.forEach((task)=>{
 
- };
- 
- taskForNotif();
+//   const arrayNotif =  {
+//     // this should be svg
+//     topImage:"assets/images/solo logo.png",
+//     topText: "RemindMe",
+//     title: task.title,
+//     // instead of description we need time
+//     description: task.time,
+//     // this should be different for each category
+//     image: "assets/images/Hard Working.png",
+//   }
 
+//   notification(arrayNotif);
+//   })
+
+//  };
+
+//  taskForNotif();

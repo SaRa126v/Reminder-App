@@ -17,7 +17,7 @@ body {
   background: var(--gray-gray-1, #f9f9f9);
   position: relative;
   overflow-y: scroll;
-    /* stop the unnecessary movement */
+  /* stop the unnecessary movement */
   overflow-x: hidden;
 }
 
@@ -321,15 +321,22 @@ circle {
   border-radius: 5px;
 }
 
+
+.toDo {
+    /* for swipe animation */
+    transform: translateX(0);
+    transition: transform 0.5s ease-out;
+}  
+
+
+
 .toDo .task {
   border: 1.5px solid var(--tint-tint-5, #a29ef1);
   background: var(--gray-gray-1, #f9f9f9);
 
   /* for swipe */
-overflow: hidden;
-cursor: grab;
-transform: translateX(0);
-transition: transform .5s ease-out;
+  overflow: hidden;
+  cursor: grab;
 }
 
 .toDo .task:hover {
@@ -475,8 +482,7 @@ transition: transform .5s ease-out;
   left: 10px;
 }
 
-
-#groups img{
+#groups img {
   width: 100%;
   height: 100%;
 }
@@ -484,7 +490,7 @@ transition: transform .5s ease-out;
 /* Blur Page.......................................... */
 
 #blurPage {
-  background: #F9F9F9B2;
+  background: #f9f9f9b2;
   position: absolute;
   top: 0;
   left: 0;
@@ -502,10 +508,10 @@ transition: transform .5s ease-out;
 /* edit the task by swiping */
 
 .editOptions {
-display: flex;
-align-items: center;
-align-content: center;
-margin-left: 20px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-left: 20px;
 }
 
 .editOptions svg {
@@ -517,7 +523,6 @@ margin-left: 20px;
   width: 140%;
   display: flex;
   justify-content: space-around;
-  transition: transform 0.5 ease-in-out;
   margin-bottom: 16px;
 }
 
@@ -525,12 +530,12 @@ margin-left: 20px;
 /* empty state....................................... */
 
 .emptyState {
-  background:var(--gray-gray-1, #f9f9f9);
-position: absolute;
-top: 250px;
-left: 0;
-width: 100%;
-height: 100%;
+  background: var(--gray-gray-1, #f9f9f9);
+  position: absolute;
+  top: 250px;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .emptyStateHolder {
@@ -542,7 +547,7 @@ height: 100%;
   align-content: center;
 }
 
-.emptyState img{
+.emptyState img {
   width: 305px;
   height: 248px;
 }
@@ -559,13 +564,11 @@ height: 100%;
   margin-bottom: 10px;
 }
 
-
 .emptyStateIext span:last-of-type {
-  color: var(--Primary, #8983F4);
+  color: var(--Primary, #8983f4);
   font-size: 1.25rem;
 }
 
 .disabledEmptyState {
   display: none;
 }
-
