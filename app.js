@@ -1,5 +1,3 @@
-// import
-// import { editTask } from "./Two Page/app.js";
 
 // variables...........................................
 
@@ -625,18 +623,36 @@ function stopSwipe() {
 
 import notification from "./components/notification/notification.js";
 
+
+// each time user enters the page this notification will be shown
 notification({
   title: "Have nice day!!",
   description: "Check your today's task, dear",
   image: "assets/images/logo.png",
 });
 
-// notification({
-//   // this should be svg
-//   topImage:"assets/images/solo logo.png",
-//   topText: "RemindMe",
-//   title: "????",
-//   timer: ,
-//   // this should be different for each category
-//   image: "assets/images/Hard Working.png",
-// });
+
+// each task will be shown when the time is right
+function taskForNotif(){
+  const taskStorage = getTaskStorage();
+  
+ taskStorage.forEach((task)=>{
+ 
+  const arrayNotif =  {
+    // this should be svg
+    topImage:"assets/images/solo logo.png",
+    topText: "RemindMe",
+    title: task.title,
+    // instead of description we need time
+    description: task.time,
+    // this should be different for each category
+    image: "assets/images/Hard Working.png",
+  }
+
+  notification(arrayNotif);
+  })
+
+ };
+ 
+ taskForNotif();
+
