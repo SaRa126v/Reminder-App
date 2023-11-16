@@ -20,5 +20,11 @@
 - Sending notification
 - Flexible, useful & easy to use
 
-  ## How to use?
+  ## Figma link:
+- UI:
+  <br/> https://www.figma.com/file/r5gurRkZ96gh8iGmKZCnJY/Reminder-app?type=design&node-id=455%3A1917&mode=design&t=dp5yGTUNDsvlMWu8-1
 
+- UX:
+ <br/> https://www.figma.com/file/VGzt3L4Nn2Xg88Tmn3itvD/UX?type=whiteboard&node-id=0%3A1&t=DrTt9zGVyVyFZpqe-1
+  ## Trello link:
+https://trello.com/invite/b/NKKBGqgy/ATTI83be346c0dda7a09d3a85faa300e539792B73BBF/reminder-app
